@@ -13,6 +13,9 @@
 		9251FA3625A68F91009A0C7C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9251FA3525A68F91009A0C7C /* Preview Assets.xcassets */; };
 		9251FA4125A68F92009A0C7C /* RecordTempTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4025A68F92009A0C7C /* RecordTempTests.swift */; };
 		9251FA4C25A68F92009A0C7C /* RecordTempUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */; };
+		9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */; };
+		9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA6A25A69A88009A0C7C /* ImagePicker.swift */; };
+		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		9251FA4725A68F92009A0C7C /* RecordTempUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecordTempUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempUITests.swift; sourceTree = "<group>"; };
 		9251FA4D25A68F92009A0C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCheckView.swift; sourceTree = "<group>"; };
+		9251FA6A25A69A88009A0C7C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +101,8 @@
 		9251FA2D25A68F8E009A0C7C /* RecordTemp */ = {
 			isa = PBXGroup;
 			children = (
-				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
-				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
+				92ED3AA025A70962008381B5 /* Helper */,
+				9251FA5C25A69A39009A0C7C /* Views */,
 				9251FA3225A68F91009A0C7C /* Assets.xcassets */,
 				9251FA3725A68F91009A0C7C /* Info.plist */,
 				9251FA3425A68F91009A0C7C /* Preview Content */,
@@ -128,6 +134,41 @@
 				9251FA4D25A68F92009A0C7C /* Info.plist */,
 			);
 			path = RecordTempUITests;
+			sourceTree = "<group>";
+		};
+		9251FA5C25A69A39009A0C7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9251FA6925A69A6B009A0C7C /* Screens */,
+				9251FA6525A69A5C009A0C7C /* SubViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9251FA6525A69A5C009A0C7C /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		9251FA6925A69A6B009A0C7C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
+				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
+				9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		92ED3AA025A70962008381B5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +301,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
+				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
+				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
+				9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
