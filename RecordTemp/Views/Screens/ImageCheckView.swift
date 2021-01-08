@@ -20,7 +20,7 @@ struct ImageCheckView: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    VisionHelper.instance.performRecognitionRequest(uiImage: imageSelected)
+                    VisionHelper.instance.prepareRequest(uiImage: imageSelected)
                 }, label: {
                     Text("結果を見る")
                         .bold()
