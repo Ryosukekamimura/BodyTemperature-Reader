@@ -15,8 +15,9 @@ struct VisionHelper{
     
     var uiImage: UIImage?
     private let recognitionLevel: VNRequestTextRecognitionLevel = .accurate
+    
 
-    func prepareRequest(uiImage: UIImage?){
+    func setVisionRequest(uiImage: UIImage?, handler: @escaping(_ bodyTmp: Double, _ confidence: Float) -> ()) {
         guard let uiImage = uiImage else { return }
         // Create a new request to recognize text
         let request = VNRecognizeTextRequest { (request, error) in
@@ -27,7 +28,14 @@ struct VisionHelper{
                 for recognizedText in candidates{
                     print(candidates)
                     let confidence = recognizedText.confidence*100
-                    print("温度\(recognizedText.string), 信頼性\(confidence)")
+                    let bodyTmp = recognizedText.string
+                    print("温度\(bodyTmp), 信頼性\(confidence)")
+                    
+                    if Double(bodyTmp) != nil{
+                        handler(Double(bodyTmp)!, confidence)
+                    }else{
+                        print("bodyTmp is Not Int-> \(recognizedText.string)")
+                    }
                 }
             }
         }

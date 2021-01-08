@@ -6,22 +6,31 @@
 //
 
 import SwiftUI
+import Vision
 
 struct ImageCheckView: View {
     
+    let confidenceThreshold: Int = 40
+    @State var bodyTemperature: Double?
+    @State var confidence: Int?
     @Binding var imageSelected: UIImage
     @Binding var showImagePicker: Bool
+
+    // Alert
+    @State var showFailureAlert: Bool = false
+    
+    // Show View
+    @State var showResultView: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 30){
             Image(uiImage: imageSelected)
                 .resizable()
                 .scaledToFit()
-
             HStack{
                 Spacer()
                 Button(action: {
-                    VisionHelper.instance.prepareRequest(uiImage: imageSelected)
+                    showResultView.toggle()
                 }, label: {
                     Text("結果を見る")
                         .bold()
@@ -36,7 +45,7 @@ struct ImageCheckView: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    showImagePicker = false
                 }, label: {
                     Text("もう1度撮影する")
                         .font(.title)
@@ -45,20 +54,41 @@ struct ImageCheckView: View {
                         .padding(.all, 20)
                         .background(Color.gray)
                         .cornerRadius(20)
-                    
                 })
                 Spacer()
             }
-
+        }
+        .onAppear {
+            VisionHelper.instance.setVisionRequest(uiImage: imageSelected) { (tmp, confidence) in
+                getBodyTemperature(tmp: tmp, con: confidence)
+            }
+        }
+        .sheet(isPresented: $showResultView, content: {
+            ResultView(bodyTemperature: $bodyTemperature)
+        })
+        .alert(isPresented: $showFailureAlert) { () -> Alert in
+            Alert(title: Text("うまく読み取ることができませんでした。"), message: Text("もう一度お試しください"), dismissButton: .default(Text("OK")))
+        }
+    }
+    //MARK: FUNCTIONS
+    func getBodyTemperature(tmp: Double, con: Float){
+        self.confidence = Int(con)
+        //MARK: confidence value is out of range?
+        if self.confidence ?? 0 > confidenceThreshold{
+            //MARK: body temprature is out of range?
+            self.bodyTemperature = tmp
+            print("bodyTemperature = \(self.bodyTemperature)")
+        }else{
+            showFailureAlert.toggle()
         }
     }
 }
 
-struct ImageCheckView_Previews: PreviewProvider {
-    @State static var image = UIImage(named: "noimage")!
-    @State static var isShow: Bool = false
-    
-    static var previews: some View {
-        ImageCheckView(imageSelected: $image, showImagePicker: $isShow)
-    }
-}
+//struct ImageCheckView_Previews: PreviewProvider {
+//    @State static var image = UIImage(named: "noimage")!
+//    @State static var isShow: Bool = false
+//
+//    static var previews: some View {
+//        ImageCheckView(imageSelected: image, showImagePicker: isShow)
+//    }
+//}

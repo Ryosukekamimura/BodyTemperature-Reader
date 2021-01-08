@@ -15,6 +15,7 @@
 		9251FA4C25A68F92009A0C7C /* RecordTempUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */; };
 		9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */; };
 		9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA6A25A69A88009A0C7C /* ImagePicker.swift */; };
+		92AB72D925A84E69000F268A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72D825A84E69000F268A /* ResultView.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		9251FA4D25A68F92009A0C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCheckView.swift; sourceTree = "<group>"; };
 		9251FA6A25A69A88009A0C7C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		92AB72D825A84E69000F268A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
 				9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */,
+				92AB72D825A84E69000F268A /* ResultView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */,
+				92AB72D925A84E69000F268A /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
