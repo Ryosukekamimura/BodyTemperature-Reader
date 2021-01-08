@@ -13,23 +13,43 @@ struct ImageCheckView: View {
     @Binding var showImagePicker: Bool
     
     var body: some View {
-        VStack{
+        VStack(alignment: .center, spacing: 30){
             Image(uiImage: imageSelected)
                 .resizable()
                 .scaledToFit()
-            
-            Button(action: {
-                VisionHelper.instance.performRecognitionRequest(uiImage: imageSelected)
-            }, label: {
-                Text("温度を見る")
-            })
-            
-            
-            Button(action: {
-                showImagePicker = true
-            }, label: {
-                Text("もう1度撮影する")
-            })
+
+            HStack{
+                Spacer()
+                Button(action: {
+                    VisionHelper.instance.prepareRequest(uiImage: imageSelected)
+                }, label: {
+                    Text("結果を見る")
+                        .bold()
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(.all, 20)
+                        .background(Color.orange)
+                        .cornerRadius(20)
+                })
+                Spacer()
+            }
+            HStack{
+                Spacer()
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("もう1度撮影する")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding(.all, 20)
+                        .background(Color.gray)
+                        .cornerRadius(20)
+                    
+                })
+                Spacer()
+            }
+
         }
     }
 }
