@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ImageCheckView: View {
-    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var imageSelected: UIImage
+    @Binding var showImagePicker: Bool
     
     var body: some View {
         VStack{
@@ -25,7 +26,7 @@ struct ImageCheckView: View {
             
             
             Button(action: {
-                presentationMode.wrappedValue.dismiss()
+                showImagePicker = true
             }, label: {
                 Text("もう1度撮影する")
             })
@@ -35,8 +36,9 @@ struct ImageCheckView: View {
 
 struct ImageCheckView_Previews: PreviewProvider {
     @State static var image = UIImage(named: "noimage")!
+    @State static var isShow: Bool = false
     
     static var previews: some View {
-        ImageCheckView(imageSelected: $image)
+        ImageCheckView(imageSelected: $image, showImagePicker: $isShow)
     }
 }

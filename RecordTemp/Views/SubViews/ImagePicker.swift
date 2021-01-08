@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable{
-    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var imageSelected: UIImage
     @Binding var sourceType: UIImagePickerController.SourceType
+    @Binding var showImagePicker: Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -40,7 +41,7 @@ struct ImagePicker: UIViewControllerRepresentable{
                 // select image for app
                 parent.imageSelected = image
                 // dismiss the screen
-                parent.presentationMode.wrappedValue.dismiss()
+                parent.showImagePicker = false
             }
         }
     }
