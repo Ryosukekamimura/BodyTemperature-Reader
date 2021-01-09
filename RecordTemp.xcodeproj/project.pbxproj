@@ -18,6 +18,8 @@
 		92AB72D925A84E69000F268A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72D825A84E69000F268A /* ResultView.swift */; };
 		92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72E225A94577000F268A /* HealthCareIconView.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
+		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
+		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,9 @@
 		92AB72D825A84E69000F268A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		92AB72E225A94577000F268A /* HealthCareIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareIconView.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
+		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +97,7 @@
 				9251FA3F25A68F92009A0C7C /* RecordTempTests */,
 				9251FA4A25A68F92009A0C7C /* RecordTempUITests */,
 				9251FA2C25A68F8E009A0C7C /* Products */,
+				92B2A52125A9722900F1CE66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +114,7 @@
 		9251FA2D25A68F8E009A0C7C /* RecordTemp */ = {
 			isa = PBXGroup;
 			children = (
+				92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */,
 				92AB72EA25A94755000F268A /* Extensions */,
 				92ED3AA025A70962008381B5 /* Helper */,
 				9251FA5C25A69A39009A0C7C /* Views */,
@@ -180,10 +188,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		92B2A52125A9722900F1CE66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92B2A52225A9722900F1CE66 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92ED3AA025A70962008381B5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
+				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -323,6 +340,7 @@
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
 				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
+				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */,
 				92AB72D925A84E69000F268A /* ResultView.swift in Sources */,
 			);
@@ -481,6 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
@@ -503,6 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
