@@ -13,6 +13,9 @@ struct ImageCheckView: View {
     let confidenceThreshold: Int = 40
     @State var bodyTemperature: Double?
     @State var confidence: Int?
+    @State var intPart: Int?
+    @State var decimalPart: Int?
+    
     @Binding var imageSelected: UIImage
     @Binding var showImagePicker: Bool
 
@@ -64,7 +67,7 @@ struct ImageCheckView: View {
             }
         }
         .sheet(isPresented: $showResultView, content: {
-            ResultView(bodyTemperature: $bodyTemperature)
+            ResultView(bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
         })
         .alert(isPresented: $showFailureAlert) { () -> Alert in
             Alert(title: Text("うまく読み取ることができませんでした。"), message: Text("もう一度お試しください"), dismissButton: .default(Text("OK")))
@@ -78,17 +81,30 @@ struct ImageCheckView: View {
             //MARK: body temprature is out of range?
             self.bodyTemperature = tmp
             print("bodyTemperature = \(self.bodyTemperature)")
+            // divide body temperature
+            divideBodyTemperature(tmp: bodyTemperature)
         }else{
             showFailureAlert.toggle()
         }
     }
+    
+    private func divideBodyTemperature(tmp: Double?){
+        if let tmp = tmp{
+            let array: [String] = String(tmp).components(separatedBy: ".")
+            print(array)
+            self.intPart = Int(array[0])
+            self.decimalPart = Int(array[1])
+        }else{
+            print("bodyTemperature is nil")
+        }
+    }
 }
 
-//struct ImageCheckView_Previews: PreviewProvider {
-//    @State static var image = UIImage(named: "noimage")!
-//    @State static var isShow: Bool = false
-//
-//    static var previews: some View {
-//        ImageCheckView(imageSelected: image, showImagePicker: isShow)
-//    }
-//}
+struct ImageCheckView_Previews: PreviewProvider {
+    @State static var image = UIImage(named: "noimage")!
+    @State static var isShow: Bool = false
+
+    static var previews: some View {
+        ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, showImagePicker: $isShow, showFailureAlert: false, showResultView: false)
+    }
+}

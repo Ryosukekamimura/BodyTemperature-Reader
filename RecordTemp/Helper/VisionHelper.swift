@@ -31,8 +31,8 @@ struct VisionHelper{
                     let bodyTmp = recognizedText.string
                     print("温度\(bodyTmp), 信頼性\(confidence)")
                     
-                    if Double(bodyTmp) != nil{
-                        handler(Double(bodyTmp)!, confidence)
+                    if let bodyTemperature = Double(bodyTmp){
+                        handler(bodyTemperature, confidence)
                     }else{
                         print("bodyTmp is Not Int-> \(recognizedText.string)")
                     }
