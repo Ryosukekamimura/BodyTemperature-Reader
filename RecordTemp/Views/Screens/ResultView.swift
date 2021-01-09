@@ -88,7 +88,14 @@ var body: some View {
         .shadow(radius: 20)
         
         Button(action: {
-            
+            //MARK: Determine Body Temperature
+            var confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
+            if let confirmedBodyTemperature = confirmedBodyTemperature{
+                //MARK: HealthKit
+                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature)
+            }else{
+                print("confirmedBody Temperature is nil")
+            }
         }, label: {
             HStack(alignment: .center, spacing: 20){
                 HealthCareIconView()
