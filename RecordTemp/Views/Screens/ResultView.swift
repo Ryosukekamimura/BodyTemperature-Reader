@@ -105,13 +105,15 @@ var body: some View {
             .cornerRadius(20)
             .shadow(radius: 20)
         })
+        .opacity(intPartSelection == 35 && decimalPartSelection == 0 ? 0.0 : 1.0)
+        .animation(.easeOut(duration:0.5))
 
     }
     .onAppear(perform: {
         setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
     })
     .alert(isPresented: $showAlert, content: {
-        Alert(title: Text("うまく読み取ることができませんでした。"), message: Text(""), dismissButton: .default(Text("続ける")))
+        Alert(title: Text("うまく読み取ることができませんでした🔎"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
     })
 }
     

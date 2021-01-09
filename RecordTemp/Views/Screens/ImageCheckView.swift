@@ -18,18 +18,31 @@ struct ImageCheckView: View {
     
     @Binding var imageSelected: UIImage
     @Binding var showImagePicker: Bool
-
+    
     // Alert
     @State var showFailureAlert: Bool = false
+    @State var alertMessage: ErrorAlert = .notExistBodyTemperature
     
     // Show View
     @State var showResultView: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 30){
-            Image(uiImage: imageSelected)
-                .resizable()
-                .scaledToFit()
+            VStack{
+                HStack(alignment: .center){
+                    Text("preview".uppercased())
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .padding([.horizontal], 10)
+                    Spacer()
+                }
+                Image(uiImage: imageSelected)
+                    .resizable()
+                    .scaledToFit()
+                    .padding([.horizontal], 10)
+                    .shadow(radius: 20)
+            }
             HStack{
                 Spacer()
                 Button(action: {
@@ -42,13 +55,14 @@ struct ImageCheckView: View {
                         .padding(.all, 20)
                         .background(Color.orange)
                         .cornerRadius(20)
+                        .shadow(radius: 20)
                 })
                 Spacer()
             }
             HStack{
                 Spacer()
                 Button(action: {
-                    showImagePicker = false
+                    showImagePicker = true
                 }, label: {
                     Text("もう1度撮影する")
                         .font(.title)
@@ -57,6 +71,7 @@ struct ImageCheckView: View {
                         .padding(.all, 20)
                         .background(Color.gray)
                         .cornerRadius(20)
+                        .shadow(radius: 20)
                 })
                 Spacer()
             }
@@ -70,7 +85,13 @@ struct ImageCheckView: View {
             ResultView(bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
         })
         .alert(isPresented: $showFailureAlert) { () -> Alert in
-            Alert(title: Text("うまく読み取ることができませんでした。"), message: Text("もう一度お試しください"), dismissButton: .default(Text("OK")))
+            if alertMessage == .notExistBodyTemperature{
+                return Alert(title: Text("うまく読み取ることができませんでした。"), message: Text(""), dismissButton: .default(Text("OK"), action: {
+                    self.showResultView.toggle()
+                }))
+            }else{
+                return Alert(title: Text("エラーが発生しました。もう1度お試しください"))
+            }
         }
     }
     //MARK: FUNCTIONS
@@ -82,28 +103,44 @@ struct ImageCheckView: View {
             self.bodyTemperature = tmp
             print("bodyTemperature = \(self.bodyTemperature)")
             // divide body temperature
-            divideBodyTemperature(tmp: bodyTemperature)
+            divideBodyTemperature(tmp: bodyTemperature) { (success) in
+                if success {
+                    print("BEST SUCCESS")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                        self.showResultView.toggle()
+                    }
+                }else{
+                    alertMessage = .notExistBodyTemperature
+                    self.showFailureAlert.toggle()
+                }
+            }
         }else{
             showFailureAlert.toggle()
         }
     }
     
-    private func divideBodyTemperature(tmp: Double?){
+    private func divideBodyTemperature(tmp: Double?, handler: @escaping (_ success: Bool) -> ()){
         if let tmp = tmp{
             let array: [String] = String(tmp).components(separatedBy: ".")
             print(array)
             self.intPart = Int(array[0])
             self.decimalPart = Int(array[1])
+            handler(true)
         }else{
             print("bodyTemperature is nil")
+            handler(false)
         }
     }
+}
+
+enum ErrorAlert{
+    case notExistBodyTemperature
 }
 
 struct ImageCheckView_Previews: PreviewProvider {
     @State static var image = UIImage(named: "noimage")!
     @State static var isShow: Bool = false
-
+    
     static var previews: some View {
         ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, showImagePicker: $isShow, showFailureAlert: false, showResultView: false)
     }
