@@ -15,7 +15,7 @@ struct HealthHelper {
     static let instance = HealthHelper()
     
     //MARK: FUNCTIONS
-    func uploadBodyTemperature(bodyTmp: Double){
+    func uploadBodyTemperature(bodyTmp: Double, handler: @escaping (_ success: Bool) -> ()){
         setupHealthKit { (success, healthStore) in
             if success{
                 let myunit: HKUnit! = HKUnit.degreeCelsius()
@@ -27,11 +27,9 @@ struct HealthHelper {
                 
                 healthStore.save(quantitySample) { (success, error) in
                     if !success{
-                        // Error handling
-                        print("Error can't save")
+                        handler(false)
                     }else{
-                        // Success
-                        print("Success")
+                        handler(true)
                     }
                 }
             }

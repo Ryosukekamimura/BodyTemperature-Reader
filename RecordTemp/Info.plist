@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Use HealthKit and Update</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Use HealthKit and Share</string>
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>Use HealthKit and Record</string>
-	<key>NSCameraUsageDescription</key>
-	<string>体温計の温度を読み取ります</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -24,10 +16,27 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>体温計の温度を読み取ります</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Use HealthKit and Record</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Use HealthKit and Share</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Use HealthKit and Update</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

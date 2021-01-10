@@ -21,6 +21,12 @@ struct ResultView: View {
     
     // Alert
     @State var showAlert = false
+    @State var alertMessage: AlertHandling = .success
+    enum AlertHandling{
+        case success
+        case failureToConnectHealthCare
+        case failedToRead
+    }
     
 var body: some View {
     VStack(alignment: .center, spacing: 30){
@@ -92,15 +98,33 @@ var body: some View {
             var confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
             if let confirmedBodyTemperature = confirmedBodyTemperature{
                 //MARK: HealthKit
-                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature)
+//                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature, handler: )
+                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
+                    if success{
+//                        alertMessage = .success
+//                        showAlert.toggle()
+                        let url = URL(string: "prefes:root=HEALTH")!
+                        if UIApplication.shared.canOpenURL(url){
+                            UIApplication.shared.open(url) { (success) in
+                                if success{
+                                    print("URL Success")
+                                }
+                            }
+                        }
+                    }else{
+                        alertMessage = .failureToConnectHealthCare
+                        showAlert.toggle()
+                    }
+                }
+                
             }else{
                 print("confirmedBody Temperature is nil")
             }
         }, label: {
             HStack(alignment: .center, spacing: 20){
                 HealthCareIconView()
-                Text("Health Careに登録する")
-                    .font(.title)
+                Text("ヘルスケアに登録する")
+                    .font(.title2)
                     .foregroundColor(Color.pink)
             }
             .padding(.all, 20)
@@ -120,7 +144,13 @@ var body: some View {
         setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
     })
     .alert(isPresented: $showAlert, content: {
-        Alert(title: Text("うまく読み取ることができませんでした🔎"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
+        if alertMessage == .failedToRead{
+            return Alert(title: Text("うまく読み取ることができませんでした🔎"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
+        }else if alertMessage == .success {
+            return Alert(title: Text("ヘルスケアに接続しました😳"), message: Text(""), dismissButton: .default(Text("OK")))
+        }else{
+            return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
+        }
     })
 }
     
@@ -133,6 +163,7 @@ var body: some View {
             self.intPartSelection = 35
             self.decimalPartSelection = 0
             // show Alert
+            alertMessage = .failedToRead
             showAlert.toggle()
         }
     }
