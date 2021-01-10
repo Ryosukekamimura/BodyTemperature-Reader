@@ -23,7 +23,7 @@ struct HealthHelper {
                 
                 let hkQunatityType: HKQuantityType = HKObjectType.quantityType(forIdentifier: .bodyTemperature)!
                 
-                var quantitySample = HKQuantitySample(type: hkQunatityType, quantity: quantity, start: Date(), end: Date())
+                let quantitySample = HKQuantitySample(type: hkQunatityType, quantity: quantity, start: Date(), end: Date())
                 
                 healthStore.save(quantitySample) { (success, error) in
                     if !success{

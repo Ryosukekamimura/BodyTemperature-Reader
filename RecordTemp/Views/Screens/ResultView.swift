@@ -95,7 +95,7 @@ var body: some View {
         
         Button(action: {
             //MARK: Determine Body Temperature
-            var confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
+            let confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
             if let confirmedBodyTemperature = confirmedBodyTemperature{
                 //MARK: HealthKit
 //                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature, handler: )
