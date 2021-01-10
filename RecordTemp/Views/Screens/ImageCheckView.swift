@@ -23,6 +23,10 @@ struct ImageCheckView: View {
     @State var showFailureAlert: Bool = false
     @State var alertMessage: ErrorAlert = .notExistBodyTemperature
     
+    enum ErrorAlert{
+        case notExistBodyTemperature
+    }
+    
     // Show View
     @State var showResultView: Bool = false
     
@@ -133,9 +137,7 @@ struct ImageCheckView: View {
     }
 }
 
-enum ErrorAlert{
-    case notExistBodyTemperature
-}
+
 
 struct ImageCheckView_Previews: PreviewProvider {
     @State static var image = UIImage(named: "noimage")!
