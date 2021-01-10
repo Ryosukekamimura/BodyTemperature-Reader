@@ -101,16 +101,9 @@ var body: some View {
 //                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature, handler: )
                 HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
                     if success{
-//                        alertMessage = .success
-//                        showAlert.toggle()
-                        let url = URL(string: "prefes:root=HEALTH")!
-                        if UIApplication.shared.canOpenURL(url){
-                            UIApplication.shared.open(url) { (success) in
-                                if success{
-                                    print("URL Success")
-                                }
-                            }
-                        }
+                        alertMessage = .success
+                        showAlert.toggle()
+
                     }else{
                         alertMessage = .failureToConnectHealthCare
                         showAlert.toggle()
@@ -147,7 +140,7 @@ var body: some View {
         if alertMessage == .failedToRead{
             return Alert(title: Text("うまく読み取ることができませんでした🔎"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
         }else if alertMessage == .success {
-            return Alert(title: Text("ヘルスケアに接続しました😳"), message: Text(""), dismissButton: .default(Text("OK")))
+            return Alert(title: Text("ヘルスケアに接続できました！😊"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
         }else{
             return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
         }
@@ -168,6 +161,18 @@ var body: some View {
         }
     }
     
+    private func launchHealthCareApp(){
+        DispatchQueue.main.async {
+            let url = URL(string: "x-apple-health://")!
+            if UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url, options: [:]) { (success) in
+                    if success{
+                        print("Open Health Care")
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct ResultView_Previews: PreviewProvider {
