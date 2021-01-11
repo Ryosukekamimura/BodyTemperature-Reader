@@ -14,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         if showImagePicker {
             ZStack{
+                
                 ImagePicker(imageSelected: $imageSelected, showImagePicker: $showImagePicker)
                 OverlayView()
             }
