@@ -15,7 +15,7 @@ struct VisionHelper{
     
     var uiImage: UIImage?
     private let recognitionLevel: VNRequestTextRecognitionLevel = .accurate
-    
+    let maximumCandidates = 1
 
     func setVisionRequest(uiImage: UIImage?, handler: @escaping(_ bodyTmp: Double, _ confidence: Float) -> ()) {
         guard let uiImage = uiImage else { return }
@@ -23,7 +23,7 @@ struct VisionHelper{
         let request = VNRecognizeTextRequest { (request, error) in
             guard let results = request.results as? [VNRecognizedTextObservation] else{ return }
             for textObservation in results{
-                let candidates = textObservation.topCandidates(1)
+                let candidates = textObservation.topCandidates(maximumCandidates)
                 // output result
                 for recognizedText in candidates{
                     print(candidates)

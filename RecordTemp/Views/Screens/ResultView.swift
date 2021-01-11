@@ -22,6 +22,7 @@ struct ResultView: View {
     // Alert
     @State var showAlert = false
     @State var alertMessage: AlertHandling = .success
+    
     enum AlertHandling{
         case success
         case failureToConnectHealthCare
@@ -95,7 +96,7 @@ var body: some View {
         
         Button(action: {
             //MARK: Determine Body Temperature
-            var confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
+            let confirmedBodyTemperature: Double? = Double(String(intPartSelection) + "." + String(decimalPartSelection))
             if let confirmedBodyTemperature = confirmedBodyTemperature{
                 //MARK: HealthKit
 //                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature, handler: )
@@ -138,9 +139,9 @@ var body: some View {
     })
     .alert(isPresented: $showAlert, content: {
         if alertMessage == .failedToRead{
-            return Alert(title: Text("うまく読み取ることができませんでした🔎"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
+            return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
         }else if alertMessage == .success {
-            return Alert(title: Text("ヘルスケアに接続できました！😊"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
+            return Alert(title: Text("ヘルスケアに接続できました！🎉"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
         }else{
             return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
         }

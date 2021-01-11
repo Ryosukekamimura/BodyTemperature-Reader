@@ -105,7 +105,7 @@ struct ImageCheckView: View {
         if self.confidence ?? 0 > confidenceThreshold{
             //MARK: body temprature is out of range?
             self.bodyTemperature = tmp
-            print("bodyTemperature = \(self.bodyTemperature)")
+            print("bodyTemperature = \(String(describing: bodyTemperature))")
             // divide body temperature
             divideBodyTemperature(tmp: bodyTemperature) { (success) in
                 if success {

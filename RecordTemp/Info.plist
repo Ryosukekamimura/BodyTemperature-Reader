@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>x-apple-health</string>
-	</array>
+	<key>CFBundleDisplayName</key>
+	<string>体温計リーダー</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -31,10 +29,14 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>x-apple-health</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>体温計の温度を読み取ります</string>
+	<string>体温計の読み取りに使用します</string>
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
 	<string>Use HealthKit and Record</string>
 	<key>NSHealthShareUsageDescription</key>

@@ -11,13 +11,12 @@ import SwiftUI
 struct ImagePicker: UIViewControllerRepresentable{
     
     @Binding var imageSelected: UIImage
-    @Binding var sourceType: UIImagePickerController.SourceType
     @Binding var showImagePicker: Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
-        picker.sourceType = sourceType
+        picker.sourceType = .camera
         picker.allowsEditing = true
         return picker
     }
