@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92488A7625ABCE9500B4A68D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92488A7525ABCE9500B4A68D /* OverlayView.swift */; };
 		9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */; };
 		9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA3025A68F8E009A0C7C /* ContentView.swift */; };
 		9251FA3325A68F91009A0C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9251FA3225A68F91009A0C7C /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92488A7525ABCE9500B4A68D /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9251FA2B25A68F8E009A0C7C /* RecordTemp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordTemp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempApp.swift; sourceTree = "<group>"; };
 		9251FA3025A68F8E009A0C7C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
 				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
+				92488A7525ABCE9500B4A68D /* OverlayView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
+				92488A7625ABCE9500B4A68D /* OverlayView.swift in Sources */,
 				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,

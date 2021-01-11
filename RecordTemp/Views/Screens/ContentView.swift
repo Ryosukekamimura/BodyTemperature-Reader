@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-
-    @State var sourceType: UIImagePickerController.SourceType = .camera
     @State var imageSelected: UIImage = UIImage(named: "noimage")!
     @State var showImagePicker: Bool = true
     
     var body: some View {
         if showImagePicker {
-            ImagePicker(imageSelected: $imageSelected, sourceType: $sourceType, showImagePicker: $showImagePicker)
-                .edgesIgnoringSafeArea(.all)
+            ZStack{
+                ImagePicker(imageSelected: $imageSelected, showImagePicker: $showImagePicker)
+                OverlayView()
+            }
+            .edgesIgnoringSafeArea(.all)
         }else{
             ImageCheckView(imageSelected: $imageSelected, showImagePicker: $showImagePicker)
         }
