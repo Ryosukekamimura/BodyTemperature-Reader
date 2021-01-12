@@ -16,7 +16,7 @@ struct ImagePicker: UIViewControllerRepresentable{
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.sourceType = .camera
-        picker.allowsEditing = false
+        picker.allowsEditing = false 
         return picker
     }
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: UIViewControllerRepresentableContext<ImagePicker>) {

@@ -9,7 +9,7 @@ import SwiftUI
 import Vision
 
 struct ImageCheckView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     let confidenceThreshold: Int = 40   // confidence 閾値
     
     //MARK: PROPERTIES
@@ -62,6 +62,7 @@ struct ImageCheckView: View {
                 Spacer()
                 Button(action: {
                     //MARK: Take Picture Again.
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("もう1度撮影する")
                         .font(.title)

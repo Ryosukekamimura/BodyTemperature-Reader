@@ -11,59 +11,62 @@ import Vision
 
 struct VisionHelper{
     
-    static let instance = VisionHelper()
+    static var instance = VisionHelper()
     
+    //MARK: PROPERTIES
     var uiImage: UIImage?
+    
+    //MARK: CONSTANT
     private let recognitionLevel: VNRequestTextRecognitionLevel = .accurate
-    let maximumCandidates = 1
+    private let maximumCandidates = 10
 
     func executeVision(uiImage: UIImage?, handler: @escaping(_ bodyTmp: Double, _ confidence: Int) -> ()) {
-        guard let uiImage = uiImage else { return }
-        // Create a new request to recognize text
-        let request = VNRecognizeTextRequest { (request, error) in
-            guard let results = request.results as? [VNRecognizedTextObservation] else{ return }
-            for textObservation in results{
-                let candidates = textObservation.topCandidates(maximumCandidates)
-                // output result
-                for recognizedText in candidates{
-                    let confidence = Int(recognizedText.confidence*100)
-                    let bodyTmp = recognizedText.string
-                    print("温度\(bodyTmp), 信頼性\(confidence)")
-                    
-                    if let bodyTemperature = Double(bodyTmp){
-                        handler(bodyTemperature, confidence)
-                    }else{
-                        print("bodyTmp is Not Int-> \(recognizedText.string)")
-                    }
-                }
-            }
-        }
-        request.recognitionLevel = recognitionLevel
-        request.usesLanguageCorrection = true
-        
-        // perform recognition
-        performRecognition(uiImage: uiImage, request: request)
+        performRecognition(uiImage: uiImage)
     }
     
+
     //MARK: PRIVATE FUNCTIONS
-    private func performRecognition(uiImage: UIImage?, request: VNRecognizeTextRequest){
+    private func performRecognition(uiImage: UIImage?){
         guard let imageSelected = uiImage else { return }
         
         // Get the CGImage on which to perform request.
         guard let cgImage = imageSelected.cgImage else { return }
         
         // Create a new image-request handler
-        let requestHandler = VNImageRequestHandler(cgImage: cgImage)
+        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage)
         
-        do{
-            // Perform the text-recognition request
-            try requestHandler.perform([request])
-        }catch {
-            print("Unable to perform the requests: \(error)")
+        // Create a new request to recognized text
+        let request = VNRecognizeTextRequest(completionHandler: recognizedTextHandler)
+        request.recognitionLevel = recognitionLevel
+        request.usesLanguageCorrection = true
+        
+        
+        // Send the requests to the request handler.
+        DispatchQueue.global(qos: .userInitiated).async {
+            do{
+                // Perform the text-recognition request
+                try imageRequestHandler.perform([request])
+            }catch {
+                print("Unable to perform the requests: \(error)")
+            }
         }
     }
     
-    
+    private func recognizedTextHandler(request: VNRequest, error: Error?){
+        
+        guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+
+        // the maximum number of candidates to return. This can't exceed 10
+        let maximumCandidates = 1
+        
+        let recognizedStrings = observations.compactMap{ observation in
+            // Return the string of the top VNRecognizedText instance.
+            return observation.topCandidates(maximumCandidates).first?.string
+        }
+        
+        // Process the recognized strings.
+        print(recognizedStrings)
+    }
 }
 
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var isFirstAccess: Bool = true
+    let isFirstAccess: Bool = true
     
     var body: some View {
         if isFirstAccess {
