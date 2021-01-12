@@ -12,19 +12,22 @@ struct ResultView: View {
     let intParts: [Int] = [35, 36, 37, 38, 39, 40]
     let decimalParts: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     
+    @Binding var isSuccess: Bool
     @Binding var bodyTemperature: Double?
     @Binding var intPart: Int?
     @Binding var decimalPart: Int?
+    @Binding var confidence: Int?
     
     @State var intPartSelection: Int = 0
     @State var decimalPartSelection: Int = 0
     
     // Alert
     @State var showAlert = false
-    @State var alertMessage: AlertHandling = .success
+    @State var alertMessage: AlertHandling = .succeededInConnectHealthCare
     
     enum AlertHandling{
-        case success
+        case succeededRecognizedText
+        case succeededInConnectHealthCare
         case failureToConnectHealthCare
         case failedToRead
     }
@@ -68,9 +71,6 @@ var body: some View {
                 .background(Color.orange)
                 .cornerRadius(20)
             
-            
-            
-            
             //MARK: DECIMAL PART
             Picker(selection: $decimalPartSelection, label: Text("")) {
                 ForEach(decimalParts, id:\.self){ number in
@@ -102,7 +102,7 @@ var body: some View {
 //                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature, handler: )
                 HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
                     if success{
-                        alertMessage = .success
+                        alertMessage = .succeededInConnectHealthCare
                         showAlert.toggle()
 
                     }else{
@@ -134,15 +134,32 @@ var body: some View {
         .animation(.easeOut(duration:0.5))
 
     }
+    //MARK: onAppear
     .onAppear(perform: {
-        setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
+        if isSuccess{
+            // show alert
+            alertMessage = .succeededRecognizedText
+            showAlert.toggle()
+            
+            setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
+        }else{
+            // show alert
+            alertMessage = .failedToRead
+            showAlert.toggle()
+            
+            setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
+        }
     })
     .alert(isPresented: $showAlert, content: {
         if alertMessage == .failedToRead{
             return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
-        }else if alertMessage == .success {
-            return Alert(title: Text("ヘルスケアに接続できました！🎉"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
-        }else{
+        }else if alertMessage == .succeededInConnectHealthCare {
+            return Alert(title: Text("登録完了！"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
+        }else if alertMessage == .succeededRecognizedText{
+            return Alert(title: Text("成功しました！"), message: Text(""), dismissButton: .default(Text("OK")))
+        }
+        
+        else{
             return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
         }
     })
@@ -180,7 +197,9 @@ struct ResultView_Previews: PreviewProvider {
     @State static var bodyTemperature: Double? = 36.8
     @State static var intPart: Int? = 36
     @State static var decimalPart: Int? = 8
+    @State static var confidence: Int? = 100
+    @State static var isSuccess: Bool = true
     static var previews: some View {
-        ResultView(bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
+        ResultView(isSuccess: $isSuccess, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart, confidence: $confidence)
     }
 }
