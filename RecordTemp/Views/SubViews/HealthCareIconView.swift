@@ -16,7 +16,7 @@ struct HealthCareIconView: View {
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 2)
+                        .stroke(Color.gray, lineWidth: 3)
                 )
             
             Image(systemName: "suit.heart.fill")

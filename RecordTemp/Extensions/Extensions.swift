@@ -22,5 +22,9 @@ extension Color {
         static var lightYellowColor: Color {
             Color("lightYellow")
         }
+        
+        static var officialOrangeColor: Color{
+            Color("officialOrangeColor")
+        }
     }
 }

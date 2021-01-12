@@ -9,7 +9,7 @@ import SwiftUI
 import Vision
 
 struct ImageCheckView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     let confidenceThreshold: Int = 40
     @State var bodyTemperature: Double?
     @State var confidence: Int?
@@ -17,7 +17,6 @@ struct ImageCheckView: View {
     @State var decimalPart: Int?
     
     @Binding var imageSelected: UIImage
-    @Binding var showImagePicker: Bool
     
     @State private var isSuccess: Bool = false
     
@@ -60,7 +59,8 @@ struct ImageCheckView: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    showImagePicker = true
+                    //MARK: Take Picture Again.
+                    
                 }, label: {
                     Text("もう1度撮影する")
                         .font(.title)
@@ -77,31 +77,48 @@ struct ImageCheckView: View {
         
         .onAppear {
             VisionHelper.instance.setVisionRequest(uiImage: imageSelected) { (tmp, confidence) in
-                getBodyTemperature(bodyTemperature: tmp, confidence: confidence)
+                getBodyTemperature(bodyTemperature: tmp, confidence: confidence){ success in
+                    movedToResultView(success: success)
+                }
             }
         }
         .sheet(isPresented: $isShowResultView, content: {
             ResultView(isSuccess: $isSuccess, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart, confidence: $confidence)
         })
     }
+    
+    func movedToResultView(success: Bool){
+        if success{
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                self.isSuccess = true
+                self.isShowResultView.toggle()
+            }
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                self.isSuccess = false
+                self.isShowResultView.toggle()
+            }
+        }
+    }
+    
+    
     //MARK: FUNCTIONS
-    func getBodyTemperature(bodyTemperature: Double?, confidence: Float){
+    func getBodyTemperature(bodyTemperature: Double?, confidence: Float, handler: @escaping (_ success: Bool) -> ()){
         self.confidence = Int(confidence)
         //MARK: confidence value is out of range?
         if self.confidence! > confidenceThreshold{
             
             print("bodyTemperature = \(String(describing: bodyTemperature))")
             
-            guard let bodyTemperature = bodyTemperature else { return print("bodyTemperature is nil")}
+            guard let bodyTemperature = bodyTemperature else {
+                print("bodyTemperature is nil")
+                return handler(false)
+            }
             
             // divide body temperature
             divideBodyTemperature(bodyTemperature: bodyTemperature)
             print("BEST SUCCESS")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-                self.isSuccess = true
-                self.isShowResultView.toggle()
-            }
+            return handler(true)
         }
     }
     
@@ -118,10 +135,9 @@ struct ImageCheckView: View {
 
 
 struct ImageCheckView_Previews: PreviewProvider {
-    @State static var image = UIImage(named: "noimage")!
-    @State static var isShow: Bool = false
+    @State static var image = UIImage(named: "logo")!
     
     static var previews: some View {
-        ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, showImagePicker: $isShow, isShowResultView: false)
+        ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, isShowResultView: false)
     }
 }

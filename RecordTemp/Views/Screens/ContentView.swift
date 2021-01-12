@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var imageSelected: UIImage = UIImage(named: "noimage")!
-    @State var showImagePicker: Bool = true
+    
+    @State var imageSelected: UIImage = UIImage(named: "logo")!
+    @State var isFirstAccess: Bool = true
+    @State var showResult: Bool = false
+    
+    /// Debug
+    @State var bodyTemperature: Double? = 36.4
+    @State var intPart: Int? = 36
+    @State var decimalPart: Int? = 4
+    @State var confidence: Int? = 100
+    
     
     var body: some View {
-        if showImagePicker {
-            ZStack{
-                
-                ImagePicker(imageSelected: $imageSelected, showImagePicker: $showImagePicker)
-                OverlayView()
-            }
-            .edgesIgnoringSafeArea(.all)
-        }else{
-            ImageCheckView(imageSelected: $imageSelected, showImagePicker: $showImagePicker)
+        //MARK: TODO : Add Tutorial View
+        if isFirstAccess {
+            LogoStartView()
         }
     }
 }

@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable{
-    
+    @Environment(\.presentationMode) var presentationMode
     @Binding var imageSelected: UIImage
-    @Binding var showImagePicker: Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.sourceType = .camera
+        picker.allowsEditing = false
         return picker
     }
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: UIViewControllerRepresentableContext<ImagePicker>) {
@@ -39,7 +39,7 @@ struct ImagePicker: UIViewControllerRepresentable{
                 // select image for app
                 parent.imageSelected = image
                 // dismiss the screen
-                parent.showImagePicker = false
+                parent.presentationMode.wrappedValue.dismiss()
             }
         }
     }

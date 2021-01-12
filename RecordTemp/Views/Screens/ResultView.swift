@@ -21,6 +21,12 @@ struct ResultView: View {
     @State var intPartSelection: Int = 0
     @State var decimalPartSelection: Int = 0
     
+    private let defaultIntPartSelection: Int = 30
+    private let defaultDecimalPartSelection: Int = 10
+    
+    private let minBodyTemperature: Int = 34
+    private let maxBodyTemeprature: Int = 45
+    
     // Alert
     @State var showAlert = false
     @State var alertMessage: AlertHandling = .succeededInConnectHealthCare
@@ -38,11 +44,11 @@ struct ResultView: View {
             HStack(alignment: .center, spacing: 0) {
                 Text("体温:")
                     .bold()
-                Text(" \(intPartSelection == 30 ? "--" : "\(intPartSelection)") ")
+                Text(" \(intPartSelection == defaultIntPartSelection ? "--" : "\(intPartSelection)") ")
                     .bold()
                 Text(".")
                     .bold()
-                Text("\(decimalPartSelection == 10 ? "-" : "\(decimalPartSelection)") ")
+                Text("\(decimalPartSelection == defaultDecimalPartSelection ? "-" : "\(decimalPartSelection)") ")
                     .bold()
                 Text(" °C")
                     .bold()
@@ -141,7 +147,7 @@ struct ResultView: View {
                 .cornerRadius(20)
                 .shadow(radius: 20)
             })
-            .opacity(intPartSelection == 35 && decimalPartSelection == 0 ? 0.0 : 1.0)
+            .opacity(intPartSelection == defaultIntPartSelection && decimalPartSelection == defaultDecimalPartSelection ? 0.0 : 1.0)
             .animation(.easeOut(duration:0.5))
             
         }
@@ -154,6 +160,7 @@ struct ResultView: View {
                 
                 setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
             }else{
+                
                 // show alert
                 print("recognized False")
                 alertMessage = .failedToRead
@@ -166,7 +173,9 @@ struct ResultView: View {
             if alertMessage == .failedToRead{
                 return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
             }else if alertMessage == .succeededInConnectHealthCare {
-                return Alert(title: Text("登録完了！"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
+                return Alert(title: Text("登録完了！"), message: Text(""), primaryButton: .default(Text("OK"), action: {
+                    presentationMode.wrappedValue.dismiss() 
+                }), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
             }else if alertMessage == .succeededRecognizedText{
                 return Alert(title: Text("成功しました！"), message: Text(""), dismissButton: .default(Text("OK")))
             }
@@ -184,12 +193,12 @@ struct ResultView: View {
                 self.intPartSelection = intPart
                 self.decimalPartSelection = decimalPart
             }else{
-                self.intPartSelection = 30
-                self.decimalPartSelection = 10
+                self.intPartSelection = defaultIntPartSelection
+                self.decimalPartSelection = defaultDecimalPartSelection
             }
         }else{
-            self.intPartSelection = 30
-            self.decimalPartSelection = 10
+            self.intPartSelection = defaultIntPartSelection
+            self.decimalPartSelection = defaultDecimalPartSelection
         }
     }
     
@@ -205,6 +214,8 @@ struct ResultView: View {
             }
         }
     }
+    
+    
 }
 
 struct ResultView_Previews: PreviewProvider {
