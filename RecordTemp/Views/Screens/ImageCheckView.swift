@@ -125,6 +125,7 @@ struct ImageCheckView: View {
     
     private func divideBodyTemperature(tmp: Double?, handler: @escaping (_ success: Bool) -> ()){
         if let tmp = tmp{
+            let tmp = floor(tmp*10) / 10
             let array: [String] = String(tmp).components(separatedBy: ".")
             print(array)
             self.intPart = Int(array[0])

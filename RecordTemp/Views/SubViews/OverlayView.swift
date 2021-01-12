@@ -10,17 +10,17 @@ import SwiftUI
 struct OverlayView: View {
     
     let roundedRect = CGRect(x: 45, y: 100, width: 300, height: 300)
-    let rect = CGRect(x: 0, y: -50, width: UIScreen.main.bounds.width, height: 540)
+    let rect = CGRect(x: 0, y: -50, width: UIScreen.main.bounds.width, height: 550)
 
     var body: some View {
         VStack{
             Rectangle()
-                .fill(Color.gray)
+                .fill(Color.white)
                 .frame(width: rect.width, height: rect.height)
                 .mask(holeShapeMask(in: rect, in: roundedRect)
                         .fill(style: FillStyle(eoFill: true))
                 )
-                .opacity(0.8)
+                .opacity(0.3)
                 .edgesIgnoringSafeArea(.all)
         }.onAppear(perform: {
             print(UIScreen.main.bounds.width)
