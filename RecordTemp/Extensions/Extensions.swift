@@ -28,3 +28,16 @@ extension Color {
         }
     }
 }
+
+enum ViewTransition{
+    case showImagePicker
+    case showImageCheckView
+}
+
+
+enum AlertHandling{
+    case succeededRecognizedText
+    case succeededInConnectHealthCare
+    case failureToConnectHealthCare
+    case failedToRead
+}

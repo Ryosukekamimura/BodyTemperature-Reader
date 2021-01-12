@@ -12,12 +12,7 @@ struct LogoStartView: View {
     
     // View Toggle
     @State var isShowView: Bool = false
-    @State var showViewType: viewType = .showImagePicker
-    
-    enum viewType{
-        case showImagePicker
-        case showImageCheckView
-    }
+    @State var showViewType: ViewTransition = .showImagePicker
     
     var body: some View {
             VStack(alignment: .center, spacing: 40){
@@ -54,13 +49,13 @@ struct LogoStartView: View {
     }
     // PRIVATE FUNCTIONS
     private func onDismiss(){
-        print("ondismiss")
         if showViewType == .showImagePicker{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 showViewType = .showImageCheckView
                 isShowView.toggle()
             }
         }else{
+            // nothing to do
             return
         }
     }

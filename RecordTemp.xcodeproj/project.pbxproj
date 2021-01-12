@@ -22,6 +22,8 @@
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
+		92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F5E25AD980D0039F606 /* VisionManager.swift */; };
+		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
+		92BE0F5E25AD980D0039F606 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
+		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */,
+				92BE0F5D25AD97FB0039F606 /* Utilities */,
 				92AB72EA25A94755000F268A /* Extensions */,
 				92ED3AA025A70962008381B5 /* Helper */,
 				9251FA5C25A69A39009A0C7C /* Views */,
@@ -202,11 +207,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92BE0F5D25AD97FB0039F606 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				92BE0F5E25AD980D0039F606 /* VisionManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		92ED3AA025A70962008381B5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
 				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
+				92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -342,8 +356,10 @@
 			files = (
 				92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
+				92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */,
 				9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
+				92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */,
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
 				92488A7625ABCE9500B4A68D /* OverlayView.swift in Sources */,
 				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
