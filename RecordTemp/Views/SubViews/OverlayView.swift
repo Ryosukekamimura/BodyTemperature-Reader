@@ -22,10 +22,7 @@ struct OverlayView: View {
                 )
                 .opacity(0.3)
                 .edgesIgnoringSafeArea(.all)
-        }.onAppear(perform: {
-            print(UIScreen.main.bounds.width)
-            print(UIScreen.main.bounds.height)
-        })
+        }
     }
     
     //MARK: FUNCTIONS

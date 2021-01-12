@@ -19,16 +19,10 @@ struct ImageCheckView: View {
     @Binding var imageSelected: UIImage
     @Binding var showImagePicker: Bool
     
-    // Alert
-    @State var showFailureAlert: Bool = false
-    @State var alertMessage: ErrorAlert = .notExistBodyTemperature
+    @State private var isSuccess: Bool = false
     
-    enum ErrorAlert{
-        case notExistBodyTemperature
-    }
-    
-    // Show View
-    @State var showResultView: Bool = false
+    // View Toggle
+    @State var isShowResultView: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 30){
@@ -50,7 +44,7 @@ struct ImageCheckView: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    showResultView.toggle()
+                    isShowResultView.toggle()
                 }, label: {
                     Text("結果を見る")
                         .bold()
@@ -80,61 +74,44 @@ struct ImageCheckView: View {
                 Spacer()
             }
         }
+        
         .onAppear {
             VisionHelper.instance.setVisionRequest(uiImage: imageSelected) { (tmp, confidence) in
-                getBodyTemperature(tmp: tmp, con: confidence)
+                getBodyTemperature(bodyTemperature: tmp, confidence: confidence)
             }
         }
-        .sheet(isPresented: $showResultView, content: {
-            ResultView(bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
+        .sheet(isPresented: $isShowResultView, content: {
+            ResultView(isSuccess: $isSuccess, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart, confidence: $confidence)
         })
-        .alert(isPresented: $showFailureAlert) { () -> Alert in
-            if alertMessage == .notExistBodyTemperature{
-                return Alert(title: Text("うまく読み取ることができませんでした。"), message: Text(""), dismissButton: .default(Text("OK"), action: {
-                    self.showResultView.toggle()
-                }))
-            }else{
-                return Alert(title: Text("エラーが発生しました。もう1度お試しください"))
-            }
-        }
     }
     //MARK: FUNCTIONS
-    func getBodyTemperature(tmp: Double, con: Float){
-        self.confidence = Int(con)
+    func getBodyTemperature(bodyTemperature: Double?, confidence: Float){
+        self.confidence = Int(confidence)
         //MARK: confidence value is out of range?
-        if self.confidence ?? 0 > confidenceThreshold{
-            //MARK: body temprature is out of range?
-            self.bodyTemperature = tmp
+        if self.confidence! > confidenceThreshold{
+            
             print("bodyTemperature = \(String(describing: bodyTemperature))")
+            
+            guard let bodyTemperature = bodyTemperature else { return print("bodyTemperature is nil")}
+            
             // divide body temperature
-            divideBodyTemperature(tmp: bodyTemperature) { (success) in
-                if success {
-                    print("BEST SUCCESS")
-                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-                        self.showResultView.toggle()
-                    }
-                }else{
-                    alertMessage = .notExistBodyTemperature
-                    self.showFailureAlert.toggle()
-                }
+            divideBodyTemperature(bodyTemperature: bodyTemperature)
+            print("BEST SUCCESS")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                self.isSuccess = true
+                self.isShowResultView.toggle()
             }
-        }else{
-            showFailureAlert.toggle()
         }
     }
     
-    private func divideBodyTemperature(tmp: Double?, handler: @escaping (_ success: Bool) -> ()){
-        if let tmp = tmp{
-            let tmp = floor(tmp*10) / 10
-            let array: [String] = String(tmp).components(separatedBy: ".")
-            print(array)
-            self.intPart = Int(array[0])
-            self.decimalPart = Int(array[1])
-            handler(true)
-        }else{
-            print("bodyTemperature is nil")
-            handler(false)
-        }
+    //MARK: PRIVATE FUNCTIONS
+    private func divideBodyTemperature(bodyTemperature: Double) -> Void{
+        let tmp = floor(bodyTemperature*10) / 10
+        let array: [String] = String(tmp).components(separatedBy: ".")
+        print(array)
+        self.intPart = Int(array[0])
+        self.decimalPart = Int(array[1])
     }
 }
 
@@ -145,6 +122,6 @@ struct ImageCheckView_Previews: PreviewProvider {
     @State static var isShow: Bool = false
     
     static var previews: some View {
-        ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, showImagePicker: $isShow, showFailureAlert: false, showResultView: false)
+        ImageCheckView(bodyTemperature: 35.4, confidence: 100, intPart: 35, decimalPart: 4, imageSelected: $image, showImagePicker: $isShow, isShowResultView: false)
     }
 }
