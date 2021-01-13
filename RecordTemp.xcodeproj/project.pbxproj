@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		92488A7625ABCE9500B4A68D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92488A7525ABCE9500B4A68D /* OverlayView.swift */; };
 		9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */; };
 		9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA3025A68F8E009A0C7C /* ContentView.swift */; };
 		9251FA3325A68F91009A0C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9251FA3225A68F91009A0C7C /* Assets.xcassets */; };
@@ -16,12 +15,18 @@
 		9251FA4C25A68F92009A0C7C /* RecordTempUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */; };
 		9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */; };
 		9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA6A25A69A88009A0C7C /* ImagePicker.swift */; };
+		9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9290494025AD4DEB00D1025C /* LogoStartView.swift */; };
 		92AB72D925A84E69000F268A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72D825A84E69000F268A /* ResultView.swift */; };
 		92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72E225A94577000F268A /* HealthCareIconView.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
+		92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F5E25AD980D0039F606 /* VisionManager.swift */; };
+		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
+		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
+		92BE0F8525AE794C0039F606 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F8425AE794C0039F606 /* ScannerView.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
+		92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		92488A7525ABCE9500B4A68D /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9251FA2B25A68F8E009A0C7C /* RecordTemp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordTemp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempApp.swift; sourceTree = "<group>"; };
 		9251FA3025A68F8E009A0C7C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,13 +61,19 @@
 		9251FA4D25A68F92009A0C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCheckView.swift; sourceTree = "<group>"; };
 		9251FA6A25A69A88009A0C7C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		9290494025AD4DEB00D1025C /* LogoStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoStartView.swift; sourceTree = "<group>"; };
 		92AB72D825A84E69000F268A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		92AB72E225A94577000F268A /* HealthCareIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareIconView.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
+		92BE0F5E25AD980D0039F606 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
+		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
+		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
+		92BE0F8425AE794C0039F606 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
+		92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayRectangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */,
+				92BE0F5D25AD97FB0039F606 /* Utilities */,
 				92AB72EA25A94755000F268A /* Extensions */,
 				92ED3AA025A70962008381B5 /* Helper */,
 				9251FA5C25A69A39009A0C7C /* Views */,
@@ -167,7 +178,8 @@
 			children = (
 				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
 				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
-				92488A7525ABCE9500B4A68D /* OverlayView.swift */,
+				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
+				92BE0F8425AE794C0039F606 /* ScannerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -177,6 +189,7 @@
 			children = (
 				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
+				9290494025AD4DEB00D1025C /* LogoStartView.swift */,
 				9251FA5D25A69A4E009A0C7C /* ImageCheckView.swift */,
 				92AB72D825A84E69000F268A /* ResultView.swift */,
 			);
@@ -199,11 +212,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92BE0F5D25AD97FB0039F606 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				92BE0F5E25AD980D0039F606 /* VisionManager.swift */,
+				92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		92ED3AA025A70962008381B5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
 				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
+				92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -338,14 +361,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */,
+				92BE0F8525AE794C0039F606 /* ScannerView.swift in Sources */,
+				92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
+				92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */,
+				9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
+				92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */,
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
-				92488A7625ABCE9500B4A68D /* OverlayView.swift in Sources */,
 				9251FA6B25A69A88009A0C7C /* ImagePicker.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */,
+				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
 				92AB72D925A84E69000F268A /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct ResultView: View {
+    //MARK: ENVIRONMENT PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    let intParts: [Int] = [35, 36, 37, 38, 39, 40]
-    let decimalParts: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     
+    //MARK: CONSTANT
+    /// range of picker
+    private let intParts: [Int] = [35, 36, 37, 38, 39, 40]
+    private let decimalParts: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    /// default selection value for exception value
+    private let defaultIntPartSelection: Int = 30
+    private let defaultDecimalPartSelection: Int = 10
+    
+    //MARK: BINDING PROPERTIES
     @Binding var isSuccess: Bool
     @Binding var bodyTemperature: Double?
     @Binding var intPart: Int?
     @Binding var decimalPart: Int?
     @Binding var confidence: Int?
     
+    //MARK: PROPERTIES
     @State var intPartSelection: Int = 0
     @State var decimalPartSelection: Int = 0
     
@@ -25,24 +34,17 @@ struct ResultView: View {
     @State var showAlert = false
     @State var alertMessage: AlertHandling = .succeededInConnectHealthCare
     
-    enum AlertHandling{
-        case succeededRecognizedText
-        case succeededInConnectHealthCare
-        case failureToConnectHealthCare
-        case failedToRead
-    }
-    
     var body: some View {
         VStack(alignment: .center, spacing: 30){
             
             HStack(alignment: .center, spacing: 0) {
                 Text("体温:")
                     .bold()
-                Text(" \(intPartSelection == 30 ? "--" : "\(intPartSelection)") ")
+                Text(" \(intPartSelection == defaultIntPartSelection ? "--" : "\(intPartSelection)") ")
                     .bold()
                 Text(".")
                     .bold()
-                Text("\(decimalPartSelection == 10 ? "-" : "\(decimalPartSelection)") ")
+                Text("\(decimalPartSelection == defaultDecimalPartSelection ? "-" : "\(decimalPartSelection)") ")
                     .bold()
                 Text(" °C")
                     .bold()
@@ -141,68 +143,56 @@ struct ResultView: View {
                 .cornerRadius(20)
                 .shadow(radius: 20)
             })
-            .opacity(intPartSelection == 35 && decimalPartSelection == 0 ? 0.0 : 1.0)
+            .opacity(intPartSelection == defaultIntPartSelection && decimalPartSelection == defaultDecimalPartSelection ? 0.0 : 1.0)
             .animation(.easeOut(duration:0.5))
             
         }
         //MARK: onAppear
         .onAppear(perform: {
-            if isSuccess{
-                // show alert
-                alertMessage = .succeededRecognizedText
-                showAlert.toggle()
-                
-                setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
-            }else{
-                // show alert
-                print("recognized False")
+            if !isSuccess {
                 alertMessage = .failedToRead
                 showAlert.toggle()
-                
-                setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
             }
+            if let confidence = confidence, let bodyTemeperature = bodyTemperature, let intPart = intPart, let decimalPart = decimalPart {
+                
+                VisionManager(confidence: confidence, bodyTemperature: bodyTemeperature).setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPartSelection, decimalPartSelection, isPerfectSuccess) in
+                    self.intPartSelection = intPartSelection
+                    self.decimalPartSelection = decimalPartSelection
+                    
+                    if isSuccess && isPerfectSuccess {
+                        alertMessage = .succeededRecognizedText
+                        showAlert.toggle()
+                    }else{
+                        alertMessage = .failedToRead
+                        showAlert.toggle()
+                    }
+                }
+            }else{
+                alertMessage = .failedToRead
+                showAlert.toggle()
+            }
+
         })
         .alert(isPresented: $showAlert, content: {
             if alertMessage == .failedToRead{
                 return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
             }else if alertMessage == .succeededInConnectHealthCare {
-                return Alert(title: Text("登録完了！"), message: Text(""), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
+                return Alert(title: Text("登録完了！"), message: Text(""), primaryButton: .default(Text("OK"), action: {
+                    presentationMode.wrappedValue.dismiss() 
+                }), secondaryButton: .default(Text("ヘルスケアで確認する"), action: launchHealthCareApp))
             }else if alertMessage == .succeededRecognizedText{
                 return Alert(title: Text("成功しました！"), message: Text(""), dismissButton: .default(Text("OK")))
             }
-            
             else{
                 return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
             }
         })
     }
-    
     //MARK: PRIVATE FUNCTIONS
-    private func setIntPartAndDecimalPart(intPart: Int?, decimalPart: Int?){
-        if let intPart = intPart, let decimalPart = decimalPart{
-            if 34 <= intPart && intPart <= 45 {
-                self.intPartSelection = intPart
-                self.decimalPartSelection = decimalPart
-            }else{
-                self.intPartSelection = 30
-                self.decimalPartSelection = 10
-            }
-        }else{
-            self.intPartSelection = 30
-            self.decimalPartSelection = 10
-        }
-    }
-    
     private func launchHealthCareApp(){
         DispatchQueue.main.async {
-            let url = URL(string: "x-apple-health://")!
-            if UIApplication.shared.canOpenURL(url){
-                UIApplication.shared.open(url, options: [:]) { (success) in
-                    if success{
-                        print("Open Health Care")
-                    }
-                }
-            }
+            // open HealthKit Application
+            URLSchemeHelper.instance.openURL()
         }
     }
 }
