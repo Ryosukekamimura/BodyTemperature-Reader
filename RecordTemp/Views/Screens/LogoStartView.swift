@@ -12,7 +12,7 @@ struct LogoStartView: View {
     
     // View Toggle
     @State var isShowView: Bool = false
-    @State var showViewType: ViewTransition = .showImagePicker
+    @State var showViewType: ViewTransition = .showScannerView
     
     var body: some View {
             VStack(alignment: .center, spacing: 40){
@@ -42,6 +42,12 @@ struct LogoStartView: View {
                 if showViewType == .showImagePicker{
                     ImagePicker(imageSelected: $imageSelected)
                         .edgesIgnoringSafeArea(.all)
+                }else if showViewType == .showScannerView{
+                    ScannerView { (returnedText) in
+                        if let returnedText = returnedText {
+                            print(returnedText)
+                        }
+                    }
                 }else{
                     ImageCheckView(imageSelected: $imageSelected)
                 }

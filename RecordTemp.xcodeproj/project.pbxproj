@@ -24,6 +24,8 @@
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
 		92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F5E25AD980D0039F606 /* VisionManager.swift */; };
 		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
+		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
+		92BE0F8525AE794C0039F606 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F8425AE794C0039F606 /* ScannerView.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
 		92BE0F5E25AD980D0039F606 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
 		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
+		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
+		92BE0F8425AE794C0039F606 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +179,7 @@
 				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
 				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
 				92488A7525ABCE9500B4A68D /* OverlayView.swift */,
+				92BE0F8425AE794C0039F606 /* ScannerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				92BE0F5E25AD980D0039F606 /* VisionManager.swift */,
+				92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */,
+				92BE0F8525AE794C0039F606 /* ScannerView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */,
 				9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */,
@@ -366,6 +373,7 @@
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				9251FA5E25A69A4E009A0C7C /* ImageCheckView.swift in Sources */,
+				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
 				92AB72D925A84E69000F268A /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

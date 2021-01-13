@@ -78,18 +78,8 @@ struct ImageCheckView: View {
         }
         
         .onAppear {
-            VisionHelper.instance.executeVision(uiImage: imageSelected) { (tmp, confidence) in
-                self.bodyTemperature = tmp
-                self.confidence = confidence
-                VisionManager(confidence: Int(confidence), bodyTemperature: tmp).getBodyTemperature { (success, intPart, decimalPart) in
-                    if success{
-                        self.intPart = intPart
-                        self.decimalPart = decimalPart
-                        movedToResultView(success: success)
-                    }else{
-                        movedToResultView(success: success)
-                    }
-                }
+            VisionHelper.instance.performVisionRecognition(uiImage: imageSelected) { (returnedTexts) in
+                print(returnedTexts)
             }
         }
         .sheet(isPresented: $isShowResultView, content: {

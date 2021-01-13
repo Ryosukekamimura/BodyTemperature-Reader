@@ -32,6 +32,7 @@ extension Color {
 enum ViewTransition{
     case showImagePicker
     case showImageCheckView
+    case showScannerView
 }
 
 
