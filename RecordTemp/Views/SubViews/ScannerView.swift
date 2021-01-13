@@ -42,8 +42,8 @@ struct ScannerView: UIViewControllerRepresentable {
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             print("Document camera view controller did finish with", scan)
-            let recognizer = TextRecognizer(cameraScan: scan)
-            recognizer.recognizeText(withCompletionHandler: completionHandler)
+            //let recognizer = TextRecognizer(cameraScan: scan)
+                //recognizer.recognizeText(withCompletionHandler: completionHandler)
             
         }
         

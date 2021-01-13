@@ -12,46 +12,44 @@ struct LogoStartView: View {
     
     // View Toggle
     @State var isShowView: Bool = false
-    @State var showViewType: ViewTransition = .showScannerView
+    @State var showViewType: ViewTransition = .showImagePicker
     
     var body: some View {
-            VStack(alignment: .center, spacing: 40){
-                Spacer()
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .background(Color.MyThemeColor.officialOrangeColor)
-                    .cornerRadius(1000)
-                Text("体温計リーダー")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                Spacer()
+        VStack(alignment: .center, spacing: 40){
+            Spacer()
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .background(Color.MyThemeColor.officialOrangeColor)
+                .cornerRadius(1000)
+            Text("体温計リーダー")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+            Spacer()
+        }
+        .padding(.all, 50)
+        .background(Color.MyThemeColor.officialOrangeColor)
+        .edgesIgnoringSafeArea(.all)
+        
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                showViewType = .showImagePicker
+                isShowView.toggle()
             }
-            .padding(.all, 50)
-            .background(Color.MyThemeColor.officialOrangeColor)
-            .edgesIgnoringSafeArea(.all)
-            
-            .onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    showViewType = .showImagePicker
-                    isShowView.toggle()
-                }
-            })
-            .fullScreenCover(isPresented: $isShowView, onDismiss: onDismiss ,content: {
-                if showViewType == .showImagePicker{
+        })
+        .fullScreenCover(isPresented: $isShowView, onDismiss: onDismiss ,content: {
+            if showViewType == .showImagePicker{
+                ZStack{
                     ImagePicker(imageSelected: $imageSelected)
-                        .edgesIgnoringSafeArea(.all)
-                }else if showViewType == .showScannerView{
-                    ScannerView { (returnedText) in
-                        if let returnedText = returnedText {
-                            print(returnedText)
-                        }
-                    }
-                }else{
-                    ImageCheckView(imageSelected: $imageSelected)
+                    OverlayRectangleView()
                 }
-            })
+                //.edgesIgnoringSafeArea(.all)
+
+            }else{
+                ImageCheckView(imageSelected: $imageSelected)
+            }
+        })
     }
     // PRIVATE FUNCTIONS
     private func onDismiss(){
