@@ -1,0 +1,63 @@
+//
+//  HealthCareRegistrationButton.swift
+//  RecordTemp
+//
+//  Created by 神村亮佑 on 2021/01/15.
+//
+
+import SwiftUI
+
+struct HealthCareRegistrationButton: View {
+    
+    @Binding var bodyTemperatureSelectioin: String
+    
+    var body: some View {
+        
+        Button(action: {
+            if let confirmedBodyTemperature = Double(bodyTemperatureSelectioin){
+                // Connect to HealthCare
+                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
+                    if success{
+                        launchHealthCareApp()
+                    }else{
+                        // MARK: MUST CREATE ALERT FUNCTIONS
+                        print("Couldn't Connect To HealthCare")
+                    }
+                } 
+            }else{
+                print("confirmedBody Temperature is not Double")
+            }
+        }, label: {
+            HStack(alignment: .center, spacing: 20){
+                HealthCareIconView()
+                Text("ヘルスケアに登録する")
+                    .font(.title2)
+                    .foregroundColor(Color.pink)
+            }
+            .padding(.all, 20)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.MyThemeColor.lightGrayColor, lineWidth: 5)
+            )
+            .cornerRadius(20)
+            .shadow(radius: 20)
+        })
+        .animation(.easeOut(duration:0.5))
+    }
+    
+    //MARK: PRIVATE FUNCTIONS
+    private func launchHealthCareApp(){
+        DispatchQueue.main.async {
+            // open HealthKit Application
+            URLSchemeHelper.instance.openURL()
+        }
+    }
+}
+
+struct HealthCareRegistrationButton_Previews: PreviewProvider {
+    @State static var bodyTemperatureSelection: String = "36.5"
+    static var previews: some View {
+        HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection)
+    }
+}

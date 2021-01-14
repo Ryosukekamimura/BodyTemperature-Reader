@@ -12,8 +12,6 @@ struct LogoStartView: View {
     @State var imageSelected: UIImage = UIImage(named: "logo")!
     @State var isAfterCaptured: Bool = false
     @State var bodyTemperature: Double?
-    @State var intPart: Int?
-    @State var decimalPart: Int?
     
     // View Toggle
     @State var isDisplayScreen: Bool = false
@@ -39,14 +37,14 @@ struct LogoStartView: View {
         
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                switchAlert(displayViewType: .showImagePicker)
+                displayViewToggle(displayViewType: .showImagePicker)
             }
         })
         .fullScreenCover(isPresented: $isDisplayScreen, onDismiss: onDismiss ,content: {
             if displayViewType == .showImagePicker{
                 ImagePickerOverlayView(imageSelected: $imageSelected, isAfterCaptured: $isAfterCaptured)
             }else{
-                ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
+                ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature)
             }
         })
     }
@@ -59,7 +57,7 @@ struct LogoStartView: View {
             
             // Go Result View
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                switchAlert(displayViewType: .showImageCheckView)
+                displayViewToggle(displayViewType: .showImageCheckView)
             })
         }else if displayViewType == .showImageCheckView{
             return
@@ -79,8 +77,6 @@ struct LogoStartView: View {
                     VisionManager.instance.getBodyTemperature(bodyTemperature: bodyTemperature) { (success, intPart, decimalPart) in
                         VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPart, decimalPart, success) in
                             if success {
-                                self.intPart = intPart
-                                self.decimalPart = decimalPart
                                 print("Success")
                             }else{
                                 //MARK: ERROR HANDLING
@@ -94,7 +90,7 @@ struct LogoStartView: View {
         }
     }
     
-    private func switchAlert(displayViewType: ViewTransition){
+    private func displayViewToggle(displayViewType: ViewTransition){
         self.displayViewType = displayViewType
         isDisplayScreen.toggle()
     }

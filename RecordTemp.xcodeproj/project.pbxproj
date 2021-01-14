@@ -23,6 +23,8 @@
 		92AF909625AFDB0C00B79A0F /* ImagePickerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF909525AFDB0C00B79A0F /* ImagePickerOverlayView.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
+		92B31B2E25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */; };
+		92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */; };
 		92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F5E25AD980D0039F606 /* VisionManager.swift */; };
 		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
 		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
@@ -71,6 +73,8 @@
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
+		92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBodyTemperatureAndPicker.swift; sourceTree = "<group>"; };
+		92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareRegistrationButton.swift; sourceTree = "<group>"; };
 		92BE0F5E25AD980D0039F606 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
 		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
 		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 			children = (
 				9251FA6925A69A6B009A0C7C /* Screens */,
 				9251FA6525A69A5C009A0C7C /* SubViews */,
+				92B31B3225B10D4F0002B366 /* Component */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,12 +191,10 @@
 		9251FA6525A69A5C009A0C7C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
-				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
-				920C0CE325AFCCDE00BFDF06 /* DisplayBodyTemperature.swift */,
 				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
-				920C0CE825AFCE5100BFDF06 /* BodyTemperaturePicker.swift */,
 				92AF909525AFDB0C00B79A0F /* ImagePickerOverlayView.swift */,
+				92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */,
+				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
 				9290494025AD4DEB00D1025C /* LogoStartView.swift */,
 				92AB72D825A84E69000F268A /* ResultView.swift */,
+				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -221,6 +225,16 @@
 				92B2A52225A9722900F1CE66 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92B31B3225B10D4F0002B366 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
+				920C0CE325AFCCDE00BFDF06 /* DisplayBodyTemperature.swift */,
+				920C0CE825AFCE5100BFDF06 /* BodyTemperaturePicker.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		92BE0F5D25AD97FB0039F606 /* Utilities */ = {
@@ -377,6 +391,8 @@
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */,
 				92AF909625AFDB0C00B79A0F /* ImagePickerOverlayView.swift in Sources */,
+				92B31B2E25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift in Sources */,
+				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */,
