@@ -14,18 +14,17 @@ struct VisionFormatter {
     static let instance = VisionFormatter()
     
     
-    func removeCharactersFromStrings(recognized strings: [String]){
-        var returnedText: [Int] = []
+    func removeCharactersFromStrings(recognized strings: [String], handler: @escaping (_ returnedString: Double?) -> Void){
         
         for recognizedText in strings{
+            // Exclude in white space or New lines
             let recognizedText = recognizedText.trimmingCharacters(in: .whitespacesAndNewlines)
-            print(recognizedText)
-            if let recognizedText = Int(recognizedText) {
-                returnedText.append(recognizedText)
+            // Convert Float Type
+            if let returnedBodyTmp = Float(recognizedText) {
+                handler(Double(returnedBodyTmp))
             }else{
-                continue
+                handler(nil)
             }
         }
-        print(returnedText)
     }
 }

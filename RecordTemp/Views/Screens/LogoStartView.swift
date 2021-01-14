@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct LogoStartView: View {
+    
     @State var imageSelected: UIImage = UIImage(named: "logo")!
+    @State var bodyTemperature: Double?
+    @State var confidence: Int?
+    @State var intPart: Int?
+    @State var decimalPart: Int?
     
     // View Toggle
     @State var isShowView: Bool = false
@@ -44,23 +49,56 @@ struct LogoStartView: View {
                     ImagePicker(imageSelected: $imageSelected)
                     OverlayRectangleView()
                 }
-                //.edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
 
             }else{
-                ImageCheckView(imageSelected: $imageSelected)
+                ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
             }
         })
     }
     // PRIVATE FUNCTIONS
     private func onDismiss(){
         if showViewType == .showImagePicker{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("ondismiss")
+            
+            // Vision Started
+            performVision(uiImage: self.imageSelected)
+            
+            // Go Result View
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 showViewType = .showImageCheckView
                 isShowView.toggle()
-            }
-        }else{
-            // nothing to do
+            })
+        }else if showViewType == .showImageCheckView{
             return
+        }
+    }
+    
+    private func performVision(uiImage: UIImage){
+        VisionHelper.instance.performVisionRecognition(uiImage: imageSelected) { (recognizedStrings) in
+            print("recognized Strings")
+            print(recognizedStrings)
+            
+            // Format Result Strings
+            VisionFormatter.instance.removeCharactersFromStrings(recognized: recognizedStrings) { (returnedBodyTmp) in
+                if let bodyTemperature = returnedBodyTmp {
+                    self.bodyTemperature = bodyTemperature
+                    
+                    VisionManager.instance.getBodyTemperature(confidence: 100, bodyTemperature: bodyTemperature) { (success, intPart, decimalPart) in
+                        VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPart, decimalPart, success) in
+                            if success {
+                                self.intPart = intPart
+                                self.decimalPart = decimalPart
+                                print("Success")
+                            }else{
+                                //MARK: ERROR HANDLING
+                            }
+                        }
+                    }
+                }else{
+                    // MARK: ERROR HANDLING
+                }
+            }
         }
     }
 }

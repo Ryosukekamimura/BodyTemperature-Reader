@@ -18,16 +18,21 @@ struct VisionHelper{
     var uiImage: UIImage?
     
     //MARK: CONSTANT
+    //
     private let recognitionLevel: VNRequestTextRecognitionLevel = .accurate
+    
     // the maximum number of candidates to return. This can't exceed 10
     private let maximumCandidates = 1
 
     func performVisionRecognition(uiImage: UIImage?, handler: @escaping(_ recognizedStrings: [String]) -> ()) {
-        performRecognition(uiImage: uiImage)
+        performRecognition(uiImage: uiImage) { (recognizedTextStrings) in
+            handler(recognizedTextStrings)
+        }
+        
     }
 
     //MARK: PRIVATE FUNCTIONS
-    func performRecognition(uiImage: UIImage?){
+    private func performRecognition(uiImage: UIImage?, handler: @escaping (_ recognizedTextStrings: [String]) -> Void){
         guard let imageSelected = uiImage else { return }
         
         // Get the CGImage on which to perform request.
@@ -37,7 +42,12 @@ struct VisionHelper{
         let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage)
         
         // Create a new request to recognized text
-        let request = VNRecognizeTextRequest(completionHandler: recognizedTextHandler)
+        let request = VNRecognizeTextRequest { (request, error) in
+            recognizedTextHandler(request: request, error: error) { (recognizedTextStrings) in
+                handler(recognizedTextStrings)
+            }
+        }
+        
         request.recognitionLevel = recognitionLevel
         request.usesLanguageCorrection = true
         
@@ -53,7 +63,7 @@ struct VisionHelper{
         }
     }
     
-    private func recognizedTextHandler(request: VNRequest, error: Error?){
+    private func recognizedTextHandler(request: VNRequest, error: Error?, handler: @escaping (_ recognizedTextStrings: [String]) -> Void){
         
         guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
         
@@ -64,6 +74,8 @@ struct VisionHelper{
         
         // Process the recognized strings.
         print(recognizedStrings)
-        VisionFormatter.instance.removeCharactersFromStrings(recognized: recognizedStrings)
+        
+        handler(recognizedStrings)
+        
     }
 }
