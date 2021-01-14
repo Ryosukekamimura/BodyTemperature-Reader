@@ -20,6 +20,7 @@
 		92AB72D925A84E69000F268A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72D825A84E69000F268A /* ResultView.swift */; };
 		92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72E225A94577000F268A /* HealthCareIconView.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
+		92AF909625AFDB0C00B79A0F /* ImagePickerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF909525AFDB0C00B79A0F /* ImagePickerOverlayView.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
 		92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F5E25AD980D0039F606 /* VisionManager.swift */; };
@@ -66,6 +67,7 @@
 		92AB72D825A84E69000F268A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		92AB72E225A94577000F268A /* HealthCareIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareIconView.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		92AF909525AFDB0C00B79A0F /* ImagePickerOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerOverlayView.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
@@ -102,6 +104,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66AE678F7CEB5CFA4682F848 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9251FA2225A68F8E009A0C7C = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +119,7 @@
 				9251FA4A25A68F92009A0C7C /* RecordTempUITests */,
 				9251FA2C25A68F8E009A0C7C /* Products */,
 				92B2A52125A9722900F1CE66 /* Frameworks */,
+				66AE678F7CEB5CFA4682F848 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,9 +188,10 @@
 			children = (
 				9251FA6A25A69A88009A0C7C /* ImagePicker.swift */,
 				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
-				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
 				920C0CE325AFCCDE00BFDF06 /* DisplayBodyTemperature.swift */,
+				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
 				920C0CE825AFCE5100BFDF06 /* BodyTemperaturePicker.swift */,
+				92AF909525AFDB0C00B79A0F /* ImagePickerOverlayView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -365,6 +376,7 @@
 				92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92BE0F5F25AD980D0039F606 /* VisionManager.swift in Sources */,
+				92AF909625AFDB0C00B79A0F /* ImagePickerOverlayView.swift in Sources */,
 				9290494125AD4DEB00D1025C /* LogoStartView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */,
