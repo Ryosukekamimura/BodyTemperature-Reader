@@ -29,6 +29,7 @@ struct ResultView: View {
     // MARK: PROPERTIES
     @State var intPartSelection: Int = 0
     @State var decimalPartSelection: Int = 0
+    @State var bodyTemperatureSelection: String = ""
     
     // Alert
     @State var showAlert = false
@@ -37,18 +38,25 @@ struct ResultView: View {
     var body: some View {
         
         VStack(alignment: .center, spacing: 20){
-            Image(uiImage: imageSelected)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(20)
-                .frame(width: 200, height: 200)
-                .padding([.horizontal], 10)
-                .shadow(radius: 20)
             
+            HStack{
+                Spacer()
+                Image(uiImage: imageSelected)
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(20)
+                    .frame(width: .infinity, height: .infinity)
+                    .padding([.horizontal], 10)
+                    .shadow(radius: 20)
+                
+                
+                DisplayBodyTemperature(bodyTemperatureSelection: $bodyTemperatureSelection)
+                Spacer()
+                
+            }
             
-            DisplayBodyTemperature(intPartSelection: $intPartSelection, decimalPartSelection: $decimalPartSelection)
-            
-            BodyTeperaturePicker(intPartSelection: $intPartSelection, decimalPartSelection: $decimalPartSelection)
+            // BodyTemperature Picker
+            BodyTeperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
             
             
             Button(action: {
@@ -101,8 +109,9 @@ struct ResultView: View {
             if let bodyTemeperature = bodyTemperature, let intPart = intPart, let decimalPart = decimalPart {
                 
                 VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPartSelection, decimalPartSelection, isPerfectSuccess) in
-                    self.intPartSelection = intPartSelection
-                    self.decimalPartSelection = decimalPartSelection
+                    
+                    self.bodyTemperatureSelection = String(bodyTemeperature)
+                    
                     
                     if isSuccess && isPerfectSuccess {
                         alertMessage = .succeededRecognizedText
@@ -118,6 +127,8 @@ struct ResultView: View {
             }
             
         })
+        
+        // TODO: - Alert Functions to Enum Struct
         .alert(isPresented: $showAlert, content: {
             if alertMessage == .failedToRead{
                 return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))

@@ -39,7 +39,7 @@ struct LogoStartView: View {
         
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                switchAlert(displayViewType: .showImagePicker)
+                displayViewToggle(displayViewType: .showImagePicker)
             }
         })
         .fullScreenCover(isPresented: $isDisplayScreen, onDismiss: onDismiss ,content: {
@@ -59,7 +59,7 @@ struct LogoStartView: View {
             
             // Go Result View
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                switchAlert(displayViewType: .showImageCheckView)
+                displayViewToggle(displayViewType: .showImageCheckView)
             })
         }else if displayViewType == .showImageCheckView{
             return
@@ -94,7 +94,7 @@ struct LogoStartView: View {
         }
     }
     
-    private func switchAlert(displayViewType: ViewTransition){
+    private func displayViewToggle(displayViewType: ViewTransition){
         self.displayViewType = displayViewType
         isDisplayScreen.toggle()
     }
