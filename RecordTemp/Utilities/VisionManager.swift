@@ -11,8 +11,7 @@ struct VisionManager{
     
     static let instance = VisionManager()
     
-    //MARK: CONSTANT
-    let confidenceThreshold: Int = 40       // confidence 閾値
+    //MARK: CONSTANT    
     /// default selection value for exception value
     private let defaultIntPartSelection: Int = 30
     private let defaultDecimalPartSelection: Int = 10
@@ -20,21 +19,16 @@ struct VisionManager{
     private let minBodyTemperature: Int = 34
     private let maxBodyTemeprature: Int = 45
 
-    
     //MARK: FUNCTIONS
-    func getBodyTemperature(confidence: Int, bodyTemperature: Double, handler: @escaping (_ success: Bool, _ intPart: Int?, _ decimalPart: Int?) -> ()){
-        let confidence = Int(confidence)
-        //MARK: confidence value is out of range?
-        if confidence > confidenceThreshold{
-            
-            print("bodyTemperature = \(String(describing: bodyTemperature))")
-            
-            // divide body temperature
-            divideBodyTemperature(bodyTemperature: bodyTemperature){ (intPart, decimalPart) in
-                print("BEST SUCCESS")
-                return handler(true, intPart, decimalPart)
-            }
+    func getBodyTemperature(bodyTemperature: Double, handler: @escaping (_ success: Bool, _ intPart: Int?, _ decimalPart: Int?) -> ()){
+        print("bodyTemperature = \(String(describing: bodyTemperature))")
+        print(bodyTemperature)
+        // divide body temperature
+        divideBodyTemperature(bodyTemperature: bodyTemperature){ (intPart, decimalPart) in
+            print("BEST SUCCESS")
+            return handler(true, intPart, decimalPart)
         }
+        
     }
     
     func setIntPartAndDecimalPart(intPart: Int?, decimalPart: Int?, handler: @escaping (_ intPartSelection: Int, _ decimalPartSelection: Int, _ isPerfectRecognization: Bool) -> ()){
@@ -58,6 +52,7 @@ struct VisionManager{
     //MARK: PRIVATE FUNCTIONS
     private func divideBodyTemperature(bodyTemperature: Double, handler: @escaping (_ intPart: Int?, _ decimalPart: Int?) -> ()){
         let tmp = floor(bodyTemperature*10) / 10
+        print(tmp)
         let array: [String] = String(tmp).components(separatedBy: ".")
         print(array)
         

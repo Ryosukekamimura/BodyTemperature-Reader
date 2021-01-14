@@ -14,8 +14,8 @@
             filePath = "RecordTemp/Views/Screens/LogoStartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "performVision(uiImage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "RecordTemp/Views/Screens/LogoStartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "performVision(uiImage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "RecordTemp/Views/Screens/LogoStartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "performVision(uiImage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,33 +55,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8D38069A-8A26-4F93-833D-C8292E397654"
+            uuid = "E994DA0F-8421-419B-BB25-6C0299635A0E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RecordTemp/Views/Screens/LogoStartView.swift"
+            filePath = "RecordTemp/Utilities/VisionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "42F38DA4-6284-43D8-8F2B-EA8B3C9709A3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RecordTemp/Views/Screens/LogoStartView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "onDismiss()"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getBodyTemperature(bodyTemperature:handler:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E994DA0F-8421-419B-BB25-6C0299635A0E - c5295602a11d542d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecordTemp.VisionManager.getBodyTemperature(bodyTemperature: Swift.Double, handler: (Swift.Bool, Swift.Optional&lt;Swift.Int&gt;, Swift.Optional&lt;Swift.Int&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RecordTemp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamimura/development/Swift/RecordTemp/Record_Temp/RecordTemp/Utilities/VisionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "704">
+               </Location>
+               <Location
+                  uuid = "E994DA0F-8421-419B-BB25-6C0299635A0E - 7b0c649ceb17f262"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Int&gt;, Swift.Optional&lt;Swift.Int&gt;) -&gt; () in RecordTemp.VisionManager.getBodyTemperature(bodyTemperature: Swift.Double, handler: (Swift.Bool, Swift.Optional&lt;Swift.Int&gt;, Swift.Optional&lt;Swift.Int&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RecordTemp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamimura/development/Swift/RecordTemp/Record_Temp/RecordTemp/Utilities/VisionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

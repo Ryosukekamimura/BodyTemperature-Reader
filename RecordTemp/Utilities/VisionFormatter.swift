@@ -20,8 +20,9 @@ struct VisionFormatter {
             // Exclude in white space or New lines
             let recognizedText = recognizedText.trimmingCharacters(in: .whitespacesAndNewlines)
             // Convert Float Type
-            if let returnedBodyTmp = Float(recognizedText) {
-                handler(Double(returnedBodyTmp))
+            if let returnedBodyTmp = Double(recognizedText) {
+                print("recognizedText = \(returnedBodyTmp)")
+                handler(returnedBodyTmp)
             }else{
                 handler(nil)
             }

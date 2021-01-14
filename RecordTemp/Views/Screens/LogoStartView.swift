@@ -10,14 +10,14 @@ import SwiftUI
 struct LogoStartView: View {
     
     @State var imageSelected: UIImage = UIImage(named: "logo")!
+    @State var isAfterCaptured: Bool = false
     @State var bodyTemperature: Double?
-    @State var confidence: Int?
     @State var intPart: Int?
     @State var decimalPart: Int?
     
     // View Toggle
-    @State var isShowView: Bool = false
-    @State var showViewType: ViewTransition = .showImagePicker
+    @State var isDisplayScreen: Bool = false
+    @State var displayViewType: ViewTransition = .showImagePicker
     
     var body: some View {
         VStack(alignment: .center, spacing: 40){
@@ -38,19 +38,13 @@ struct LogoStartView: View {
         .edgesIgnoringSafeArea(.all)
         
         .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                showViewType = .showImagePicker
-                isShowView.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                switchAlert(displayViewType: .showImagePicker)
             }
         })
-        .fullScreenCover(isPresented: $isShowView, onDismiss: onDismiss ,content: {
-            if showViewType == .showImagePicker{
-                ZStack{
-                    ImagePicker(imageSelected: $imageSelected)
-                    OverlayRectangleView()
-                }
-                .edgesIgnoringSafeArea(.all)
-
+        .fullScreenCover(isPresented: $isDisplayScreen, onDismiss: onDismiss ,content: {
+            if displayViewType == .showImagePicker{
+                ImagePickerOverlayView(imageSelected: $imageSelected, isAfterCaptured: $isAfterCaptured)
             }else{
                 ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
             }
@@ -58,18 +52,16 @@ struct LogoStartView: View {
     }
     // PRIVATE FUNCTIONS
     private func onDismiss(){
-        if showViewType == .showImagePicker{
-            print("ondismiss")
+        if displayViewType == .showImagePicker{
             
             // Vision Started
             performVision(uiImage: self.imageSelected)
             
             // Go Result View
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                showViewType = .showImageCheckView
-                isShowView.toggle()
+                switchAlert(displayViewType: .showImageCheckView)
             })
-        }else if showViewType == .showImageCheckView{
+        }else if displayViewType == .showImageCheckView{
             return
         }
     }
@@ -84,7 +76,7 @@ struct LogoStartView: View {
                 if let bodyTemperature = returnedBodyTmp {
                     self.bodyTemperature = bodyTemperature
                     
-                    VisionManager.instance.getBodyTemperature(confidence: 100, bodyTemperature: bodyTemperature) { (success, intPart, decimalPart) in
+                    VisionManager.instance.getBodyTemperature(bodyTemperature: bodyTemperature) { (success, intPart, decimalPart) in
                         VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPart, decimalPart, success) in
                             if success {
                                 self.intPart = intPart
@@ -100,6 +92,11 @@ struct LogoStartView: View {
                 }
             }
         }
+    }
+    
+    private func switchAlert(displayViewType: ViewTransition){
+        self.displayViewType = displayViewType
+        isDisplayScreen.toggle()
     }
 }
 
