@@ -9,9 +9,7 @@ import Foundation
 
 struct VisionManager{
     
-    //MARK: PROPERTIES
-    var bodyTemperature: Double
-    var confidence: Int
+    static let instance = VisionManager()
     
     //MARK: CONSTANT
     let confidenceThreshold: Int = 40       // confidence 閾値
@@ -21,21 +19,15 @@ struct VisionManager{
     /// bodytemperature range
     private let minBodyTemperature: Int = 34
     private let maxBodyTemeprature: Int = 45
-    
-    
-    //MARK: INITIALIZED FUNCTIONS
-    init(confidence: Int, bodyTemperature: Double){
-        self.confidence = confidence
-        self.bodyTemperature = bodyTemperature
-    }
+
     
     //MARK: FUNCTIONS
-    func getBodyTemperature(handler: @escaping (_ success: Bool, _ intPart: Int?, _ decimalPart: Int?) -> ()){
-        let confidence = Int(self.confidence)
+    func getBodyTemperature(confidence: Int, bodyTemperature: Double, handler: @escaping (_ success: Bool, _ intPart: Int?, _ decimalPart: Int?) -> ()){
+        let confidence = Int(confidence)
         //MARK: confidence value is out of range?
         if confidence > confidenceThreshold{
             
-            print("bodyTemperature = \(String(describing: self.bodyTemperature))")
+            print("bodyTemperature = \(String(describing: bodyTemperature))")
             
             // divide body temperature
             divideBodyTemperature(bodyTemperature: bodyTemperature){ (intPart, decimalPart) in

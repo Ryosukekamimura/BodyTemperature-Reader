@@ -16,7 +16,7 @@ struct OverlayRectangleView: View {
         VStack{
             Spacer()
             
-            Text("数字を枠内に写るように撮影してね！")
+            Text("数字が枠内に写るように撮影してね！")
                 .font(.callout)
                 .fontWeight(.thin)
             

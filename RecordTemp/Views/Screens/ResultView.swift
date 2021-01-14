@@ -20,11 +20,12 @@ struct ResultView: View {
     private let defaultDecimalPartSelection: Int = 10
     
     //MARK: BINDING PROPERTIES
-    @Binding var isSuccess: Bool
+    @Binding var imageSelected: UIImage
     @Binding var bodyTemperature: Double?
     @Binding var intPart: Int?
     @Binding var decimalPart: Int?
-    @Binding var confidence: Int?
+//    @Binding var confidence: Int?
+    
     
     //MARK: PROPERTIES
     @State var intPartSelection: Int = 0
@@ -35,7 +36,14 @@ struct ResultView: View {
     @State var alertMessage: AlertHandling = .succeededInConnectHealthCare
     
     var body: some View {
-        VStack(alignment: .center, spacing: 30){
+        VStack(alignment: .center, spacing: 20){
+            
+            Image(uiImage: imageSelected)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .padding([.horizontal], 10)
+                .shadow(radius: 20)
             
             HStack(alignment: .center, spacing: 0) {
                 Text("体温:")
@@ -149,16 +157,17 @@ struct ResultView: View {
         }
         //MARK: onAppear
         .onAppear(perform: {
+            var isSuccess = true
             if !isSuccess {
                 alertMessage = .failedToRead
                 showAlert.toggle()
             }
-            if let confidence = confidence, let bodyTemeperature = bodyTemperature, let intPart = intPart, let decimalPart = decimalPart {
-                
-                VisionManager(confidence: confidence, bodyTemperature: bodyTemeperature).setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPartSelection, decimalPartSelection, isPerfectSuccess) in
+            if let bodyTemeperature = bodyTemperature, let intPart = intPart, let decimalPart = decimalPart {
+
+                VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPartSelection, decimalPartSelection, isPerfectSuccess) in
                     self.intPartSelection = intPartSelection
                     self.decimalPartSelection = decimalPartSelection
-                    
+
                     if isSuccess && isPerfectSuccess {
                         alertMessage = .succeededRecognizedText
                         showAlert.toggle()
@@ -203,7 +212,9 @@ struct ResultView_Previews: PreviewProvider {
     @State static var decimalPart: Int? = 10
     @State static var confidence: Int? = 100
     @State static var isSuccess: Bool = true
+    @State static var image:UIImage = UIImage(named: "logo")!
+    
     static var previews: some View {
-        ResultView(isSuccess: $isSuccess, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart, confidence: $confidence)
+        ResultView(imageSelected: $image, bodyTemperature: $bodyTemperature, intPart: $intPart, decimalPart: $decimalPart)
     }
 }
