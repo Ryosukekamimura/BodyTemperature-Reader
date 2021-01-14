@@ -41,79 +41,16 @@ struct ResultView: View {
             Image(uiImage: imageSelected)
                 .resizable()
                 .scaledToFit()
+                .cornerRadius(20)
                 .frame(width: 200, height: 200)
                 .padding([.horizontal], 10)
                 .shadow(radius: 20)
+                
             
-            HStack(alignment: .center, spacing: 0) {
-                Text("体温:")
-                    .bold()
-                Text(" \(intPartSelection == defaultIntPartSelection ? "--" : "\(intPartSelection)") ")
-                    .bold()
-                Text(".")
-                    .bold()
-                Text("\(decimalPartSelection == defaultDecimalPartSelection ? "-" : "\(decimalPartSelection)") ")
-                    .bold()
-                Text(" °C")
-                    .bold()
-            }
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .padding(.all, 20)
-            .background(Color.orange)
-            .cornerRadius(20)
-            .shadow(radius: 20)
+            DisplayBodyTemperature(intPartSelection: $intPartSelection, decimalPartSelection: $decimalPartSelection)
 
+            BodyTeperaturePicker(intPartSelection: $intPartSelection, decimalPartSelection: $decimalPartSelection)
             
-            HStack(alignment: .center, spacing: 20){
-                //MARK: INTERGER PART
-                Picker(selection: $intPartSelection, label: Text("")) {
-                    ForEach(intParts, id:\.self){ number in
-                        Text("\(number)")
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .labelsHidden()
-                .frame(width: 50)
-                .padding(.all, 20)
-                .background(Color.orange)
-                .cornerRadius(20)
-                .shadow(radius: 20)
-                
-                //MARK: DOT
-                Text(".")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding(.all, 20)
-                    .background(Color.orange)
-                    .cornerRadius(20)
-                
-                //MARK: DECIMAL PART
-                Picker(selection: $decimalPartSelection, label: Text("")) {
-                    ForEach(decimalParts, id:\.self){ number in
-                        Text("\(number)")
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
-                }
-                .frame(width: 50)
-                .pickerStyle(DefaultPickerStyle())
-                .labelsHidden()
-                .padding(.all, 20)
-                .background(Color.orange)
-                .cornerRadius(20)
-                .shadow(radius: 20)
-            }
-            .padding([.vertical], 20)
-            .padding([.horizontal], 40)
-            .background(Color.MyThemeColor.darkOrangeColor)
-            .cornerRadius(20)
-            .shadow(radius: 20)
             
             Button(action: {
                 //MARK: Determine Body Temperature
