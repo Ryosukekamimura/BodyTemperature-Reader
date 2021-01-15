@@ -39,6 +39,7 @@ struct ImagePicker: UIViewControllerRepresentable{
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage{
                 let resizedImage: UIImage = image.resized(toWidth: image.size.width/4)!
                 
+                parent.imageSelected = resizedImage
                 print(resizedImage.size.width)
                 
                 // dismiss the screen
