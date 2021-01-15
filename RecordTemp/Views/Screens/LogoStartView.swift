@@ -10,7 +10,6 @@ import SwiftUI
 struct LogoStartView: View {
     
     @State var imageSelected: UIImage = UIImage(named: "logo")!
-    @State var isAfterCaptured: Bool = false
     @State var bodyTemperature: Double?
     
     // View Toggle
@@ -42,11 +41,15 @@ struct LogoStartView: View {
         })
         .fullScreenCover(isPresented: $isDisplayScreen, onDismiss: onDismiss ,content: {
             if displayViewType == .showImagePicker{
-                ImagePickerOverlayView(imageSelected: $imageSelected, isAfterCaptured: $isAfterCaptured)
+                ZStack{
+                    ImagePicker(imageSelected: $imageSelected)
+                    OverlayRectangleView()
+                }.edgesIgnoringSafeArea(.all)
             }else{
                 ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature)
             }
         })
+        
     }
     // PRIVATE FUNCTIONS
     private func onDismiss(){

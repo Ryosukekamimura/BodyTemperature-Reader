@@ -27,27 +27,38 @@ struct ResultView: View {
     
     var body: some View {
         ZStack{
-            VStack(alignment: .center, spacing: 20){
-                Spacer()
-                // show captured image
-                HStack{
-                    Spacer()
-                    Image(uiImage: imageSelected)
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(20)
-                        .frame(width: .infinity, height: .infinity)
-                        .padding([.horizontal], 10)
+                VStack(alignment: .center, spacing: 20){
+                    HStack(alignment: .top, spacing: 0, content: {
+                        Button(action: {
+                            
+                        }, label: {
+                            Image(systemName: "camera.viewfinder")
+                                .font(.largeTitle)
+                                .foregroundColor(.orange)
+                        })
+                        .padding([.horizontal], 20)
                         .shadow(radius: 20)
+                        Spacer()
+                    })
+                    // show captured image
+                    HStack{
+                        Spacer()
+                        Image(uiImage: imageSelected)
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(20)
+                            .frame(width: .infinity, height: .infinity)
+                            .shadow(radius: 20)
+                        Spacer()
+                    }
+                    // Display Temperature And Picker View
+                    DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                    
+                    // HealthCare Registration Button View
+                    HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isDisplayHealthCareSuccessView)
                     Spacer()
                 }
-                // Display Temperature And Picker View
-                DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
-                
-                // HealthCare Registration Button View
-                HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isDisplayHealthCareSuccessView)
-                Spacer()
-            }
+            
             if isDisplaySuccessView{
                 // Success Animation
                 SuccessAnimation()
@@ -75,6 +86,7 @@ struct ResultView: View {
                 isDisplayFailureView.toggle()
             }
         })
+        
     }
 }
 

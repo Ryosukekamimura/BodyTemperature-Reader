@@ -9,12 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let isFirstAccess: Bool = true
-    
     var body: some View {
-        if isFirstAccess {
-            LogoStartView()
-        }
+        LogoStartView()
     }
 }
 
