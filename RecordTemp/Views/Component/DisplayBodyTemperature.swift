@@ -12,19 +12,34 @@ struct DisplayBodyTemperature: View {
     @Binding var bodyTemperatureSelection: String
     
     var body: some View {
-        
-        HStack(alignment: .center, spacing: 0) {
-            Text(bodyTemperatureSelection)
-                .bold()
-            Text(" °C")
-                .bold()
+        if bodyTemperatureSelection != "--.-"{
+            HStack(alignment: .center, spacing: 0) {
+                Text(bodyTemperatureSelection)
+                    .bold()
+                Text(" °C")
+                    .bold()
+            }
+            .font(.title)
+            .foregroundColor(.white)
+            .padding(.all, 20)
+            .background(Color.orange)
+            .cornerRadius(20)
+            .shadow(radius: 20)
+        }else{
+            HStack(alignment: .center, spacing: 0) {
+                Text("--.-")
+                    .bold()
+                Text(" °C")
+                    .bold()
+            }
+            .font(.title)
+            .foregroundColor(.white)
+            .padding(.all, 20)
+            .background(Color.orange)
+            .cornerRadius(20)
+            .shadow(radius: 20)
         }
-        .font(.title)
-        .foregroundColor(.white)
-        .padding(.all, 20)
-        .background(Color.orange)
-        .cornerRadius(20)
-        .shadow(radius: 20)
+
     }
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct HealthCareRegistrationButton: View {
     
     @Binding var bodyTemperatureSelectioin: String
+    @Binding var isDisplayHealthCareSuccessView: Bool
     
     var body: some View {
         
@@ -18,6 +19,7 @@ struct HealthCareRegistrationButton: View {
                 // Connect to HealthCare
                 HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
                     if success{
+                        isDisplayHealthCareSuccessView.toggle()
                         launchHealthCareApp()
                     }else{
                         // MARK: MUST CREATE ALERT FUNCTIONS
@@ -48,16 +50,19 @@ struct HealthCareRegistrationButton: View {
     
     //MARK: PRIVATE FUNCTIONS
     private func launchHealthCareApp(){
-        DispatchQueue.main.async {
-            // open HealthKit Application
-            URLSchemeHelper.instance.openURL()
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            DispatchQueue.main.async {
+                // open HealthKit Application
+                URLSchemeHelper.instance.openURL()
+            }
         }
     }
 }
 
 struct HealthCareRegistrationButton_Previews: PreviewProvider {
     @State static var bodyTemperatureSelection: String = "36.5"
+    @State static var isDisplayHealthCareSuccessView: Bool = false
     static var previews: some View {
-        HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection)
+        HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isDisplayHealthCareSuccessView)
     }
 }
