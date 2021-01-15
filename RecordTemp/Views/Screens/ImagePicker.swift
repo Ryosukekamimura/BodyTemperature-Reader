@@ -11,8 +11,6 @@ import SwiftUI
 struct ImagePicker: UIViewControllerRepresentable{
     @Environment(\.presentationMode) var presentationMode
     @Binding var imageSelected: UIImage
-    @Binding var isAfterCaptured: Bool
-    
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -39,10 +37,7 @@ struct ImagePicker: UIViewControllerRepresentable{
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage{
-                parent.isAfterCaptured = true
-                
                 let resizedImage: UIImage = image.resized(toWidth: image.size.width/4)!
-                parent.imageSelected = resizedImage
                 
                 print(resizedImage.size.width)
                 

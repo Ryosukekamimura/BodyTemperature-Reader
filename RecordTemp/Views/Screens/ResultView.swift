@@ -19,59 +19,71 @@ struct ResultView: View {
     // MARK: PROPERTIES
     @State var bodyTemperatureSelection: String = ""
     
-    // Alert
-    @State var showAlert = false
-    @State var alertMessage: AlertHandling = .succeededInConnectHealthCare
+    // Success View
+    @State private var isDisplaySuccessView: Bool = false
+    @State private var isDisplayFailureView: Bool = false
+    @State var isDisplayHealthCareSuccessView: Bool = false
+    
     
     var body: some View {
-        
-        VStack(alignment: .center, spacing: 20){
+        ZStack{
+                VStack(alignment: .center, spacing: 20){
+                    HStack(alignment: .top, spacing: 0, content: {
+                        Button(action: {
+                            
+                        }, label: {
+                            Image(systemName: "camera.viewfinder")
+                                .font(.largeTitle)
+                                .foregroundColor(.orange)
+                        })
+                        .padding([.horizontal], 20)
+                        .shadow(radius: 20)
+                        Spacer()
+                    })
+                    // show captured image
+                    HStack{
+                        Spacer()
+                        Image(uiImage: imageSelected)
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(20)
+                            .frame(width: .infinity, height: .infinity)
+                            .shadow(radius: 20)
+                        Spacer()
+                    }
+                    // Display Temperature And Picker View
+                    DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                    
+                    // HealthCare Registration Button View
+                    HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isDisplayHealthCareSuccessView)
+                    Spacer()
+                }
             
-            Spacer()
-            // show captured image
-            HStack{
-                Spacer()
-                Image(uiImage: imageSelected)
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(20)
-                    .frame(width: .infinity, height: .infinity)
-                    .padding([.horizontal], 10)
-                    .shadow(radius: 20)
-                Spacer()
-                
+            if isDisplaySuccessView{
+                // Success Animation
+                SuccessAnimation()
+                    .padding()
             }
-            DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
-            
-            
-            HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection)
-            
-            Spacer()
-            
+            if isDisplayFailureView {
+                FailureAnimation()
+                    .padding()
+            }
+            if isDisplayHealthCareSuccessView {
+                HealthCareSuccessAnimation()
+                    .padding()
+            }
         }
         //MARK: onAppear
         .onAppear(perform: {
             if let bodyTemeperature = bodyTemperature{
+                
                 self.bodyTemperatureSelection = String(bodyTemeperature)
+                // Success View Toggle
+                isDisplaySuccessView.toggle()
             }else{
-                alertMessage = .failedToRead
-                showAlert.toggle()
-            }
-            
-        })
-        
-        // TODO: - Alert Functions to Enum Struct
-        .alert(isPresented: $showAlert, content: {
-            if alertMessage == .failedToRead{
-                return Alert(title: Text("うまく読み取ることができませんでした💦"), message: Text(""), dismissButton: .default(Text("体温を入力してください")))
-            }else if alertMessage == .succeededInConnectHealthCare {
-                return Alert(title: Text("登録完了！"), message: Text(""), dismissButton: .default(Text("OK"), action: {
-                    presentationMode.wrappedValue.dismiss()}))
-            }else if alertMessage == .succeededRecognizedText{
-                return Alert(title: Text("成功しました！"), message: Text(""), dismissButton: .default(Text("OK")))
-            }
-            else{
-                return Alert(title: Text("HealthCareに接続に失敗しました。🥶"), message: Text("もう1度お試しください"), dismissButton: .default(Text("OK")))
+                self.bodyTemperatureSelection = "--.-"
+                // Failure View Toggle
+                isDisplayFailureView.toggle()
             }
         })
         
@@ -80,14 +92,10 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
     @State static var bodyTemperature: Double? = 36.8
-    @State static var intPart: Int? = 36
-    @State static var decimalPart: Int? = 10
-    @State static var confidence: Int? = 100
-    @State static var isSuccess: Bool = true
     @State static var image:UIImage = UIImage(named: "logo")!
     
     static var previews: some View {
         ResultView(imageSelected: $image, bodyTemperature: $bodyTemperature)
-//            .previewDevice("iPhone SE (2nd generation)")
+        //            .previewDevice("iPhone SE (2nd generation)")
     }
 }

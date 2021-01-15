@@ -40,6 +40,11 @@ struct BodyTeperaturePicker: View {
             .cornerRadius(20)
             .shadow(radius: 20)
         }
+        .onAppear(perform: {
+            if bodyTemperatureSelection == "--.-" {
+                bodyTemperatureSelection = "36.5"
+            }
+        })
     }
 }
 

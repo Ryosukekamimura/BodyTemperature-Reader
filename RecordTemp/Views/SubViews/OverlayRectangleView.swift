@@ -16,14 +16,15 @@ struct OverlayRectangleView: View {
         VStack{
             Spacer()
             
-            Text("数字が枠内に写るように撮影してね！")
+            Text("数字が枠内に写るように撮影")
                 .font(.callout)
                 .fontWeight(.thin)
+                .foregroundColor(.white)
             
             Rectangle()
                 .frame(width: displayScreenWidth, height: displayScreenWidth, alignment: .center)
                 .opacity(0.0)
-                .border(Color.gray, width: 5)
+                .border(Color.white, width: 5)
             
             Spacer()
         }
