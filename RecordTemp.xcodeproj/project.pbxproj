@@ -187,7 +187,7 @@
 			children = (
 				9251FA6925A69A6B009A0C7C /* Screens */,
 				9251FA6525A69A5C009A0C7C /* SubViews */,
-				92B31B3225B10D4F0002B366 /* Component */,
+				92B31B3225B10D4F0002B366 /* ComponentView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92B31B3225B10D4F0002B366 /* Component */ = {
+		92B31B3225B10D4F0002B366 /* ComponentView */ = {
 			isa = PBXGroup;
 			children = (
 				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
@@ -241,7 +241,7 @@
 				9294827025B1408600713E4A /* FailureAnimation.swift */,
 				92D8607E25B146B9002763C4 /* HealthCareSuccessAnimation.swift */,
 			);
-			path = Component;
+			path = ComponentView;
 			sourceTree = "<group>";
 		};
 		92BE0F5D25AD97FB0039F606 /* Utilities */ = {
