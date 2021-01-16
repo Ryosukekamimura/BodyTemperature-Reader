@@ -7,9 +7,11 @@
     - "369.1"
     - "36.68"
     
-- 結果を表示するViewから再撮影するように画面遷移する
+- ~~結果を表示するViewから再撮影するように画面遷移する~~ </br>
+  [1/16 11:35] <a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/4d8e9b75c5d3499b4b65a647003c75d90e4dbfea">URL</a>
 
-- ImagePickerの修正
+- ~~ImagePickerの修正~~</br>
+  [1/16 11:35] <a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/4d8e9b75c5d3499b4b65a647003c75d90e4dbfea">URL</a>
 
 - アイコンを少し修正 (Figma)
 
