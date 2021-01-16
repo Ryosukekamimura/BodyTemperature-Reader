@@ -17,7 +17,6 @@ struct ContentView: View {
         if isDisplayCameraView {
             // Display Camera View
             ImageCaptureView(imageSelected: $imageSelected, isDisplayCameraView: $isDisplayCameraView, bodyTemperature: $bodyTemperature)
-            //LogoStartView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
         }else{
             // Display Result View
             ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)

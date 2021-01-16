@@ -52,3 +52,12 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
+// MARK: For Regular Expression
+extension String {
+    func containPattern(pattern: String) -> Bool {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options()) else {
+            return false
+        }
+        return regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(), range: NSMakeRange(0, self.count)) != nil
+    }
+}
