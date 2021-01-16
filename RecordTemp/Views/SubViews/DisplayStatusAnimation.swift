@@ -9,22 +9,22 @@ import SwiftUI
 
 struct DisplayStatusAnimation: View {
     //MARK: BINDING PROPERTIES
-    @Binding var isDisplaySuccessView: Bool
-    @Binding var isDisplayFailureView: Bool
-    @Binding var isDisplayHealthCareSuccessView: Bool
+    @Binding var isSuccessAnimation: Bool
+    @Binding var isFailureAnimation: Bool
+    @Binding var isHealthCareSuccessAnimation: Bool
     
     var body: some View {
         
-        if isDisplaySuccessView{
+        if isSuccessAnimation{
             // Success Animation
             SuccessAnimation()
                 .padding()
         }
-        if isDisplayFailureView {
+        if isFailureAnimation {
             FailureAnimation()
                 .padding()
         }
-        if isDisplayHealthCareSuccessView {
+        if isHealthCareSuccessAnimation {
             HealthCareSuccessAnimation()
                 .padding()
         }
@@ -36,6 +36,6 @@ struct DisplayStatusAnimation_Previews: PreviewProvider {
     @State static var isDisplayFailureView: Bool = false
     @State static var isDisplayHealthSuccessView: Bool = false
     static var previews: some View {
-        DisplayStatusAnimation(isDisplaySuccessView: $isDisplaySuccessView, isDisplayFailureView: $isDisplayFailureView, isDisplayHealthCareSuccessView: $isDisplayHealthSuccessView)
+        DisplayStatusAnimation(isSuccessAnimation: $isDisplaySuccessView, isFailureAnimation: $isDisplayFailureView, isHealthCareSuccessAnimation: $isDisplayHealthSuccessView)
     }
 }
