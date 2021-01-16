@@ -18,7 +18,7 @@ struct ImageCaptureView: View {
                 imageSelected = returnedImage
                 
                 // Vision Started
-                performVision(uiImage: self.imageSelected)
+                performVision(uiImage: imageSelected)
                 isDisplayCameraView = false
             }
             OverlayRectangleView()
@@ -28,13 +28,13 @@ struct ImageCaptureView: View {
     
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){
+        // Recognied Text -> return [ Recognized Text ]
         VisionHelper.instance.performVisionRecognition(uiImage: imageSelected) { (recognizedStrings) in
-            print("recognized Strings")
-            print(recognizedStrings)
+            print("recognized Strings -> \(recognizedStrings)")
             
             // Format Result Strings
-            VisionFormatter.instance.removeCharactersFromStrings(recognized: recognizedStrings) { (returnedBodyTmp) in
-                if let bodyTemperature = returnedBodyTmp {
+            VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
+                if let bodyTemperature = returnedBodyTemperature {
                     self.bodyTemperature = bodyTemperature
                 }else{
                     // MARK: ERROR HANDLING

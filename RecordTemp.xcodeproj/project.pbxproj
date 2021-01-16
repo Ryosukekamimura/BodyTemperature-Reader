@@ -195,6 +195,7 @@
 		9251FA6525A69A5C009A0C7C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				92D9257925B27CAF00CF5635 /* ImagePickerView.swift */,
 				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
 				92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */,
 				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
@@ -209,7 +210,6 @@
 				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
 				92AB72D825A84E69000F268A /* ResultView.swift */,
-				92D9257925B27CAF00CF5635 /* ImagePickerView.swift */,
 				92D9257E25B27E9B00CF5635 /* ImageCaptureView.swift */,
 			);
 			path = Screens;
