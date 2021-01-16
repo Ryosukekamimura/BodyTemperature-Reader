@@ -9,8 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var isDisplayCameraView: Bool = true
+    @State var imageSelected: UIImage = UIImage(named: "logo")!
+    @State var bodyTemperature: Double?
+    
     var body: some View {
-        LogoStartView()
+        if isDisplayCameraView {
+            // Display Camera View
+            ImageCaptureView(imageSelected: $imageSelected, isDisplayCameraView: $isDisplayCameraView, bodyTemperature: $bodyTemperature)
+            //LogoStartView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
+        }else{
+            // Display Result View
+            ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
+        }
     }
 }
 
