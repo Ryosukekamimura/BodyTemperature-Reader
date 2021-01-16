@@ -2,7 +2,6 @@
 
 ## TODO 
 - ~~様々な認証した温度の場合分け~~
-  </br>example
     - ~~"36.6%"~~ </br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
     - ~~"369.1"~~</br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
     - ~~"36.68"~~</br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
