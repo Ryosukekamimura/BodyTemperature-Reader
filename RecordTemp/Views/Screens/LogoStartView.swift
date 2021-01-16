@@ -76,16 +76,6 @@ struct LogoStartView: View {
             VisionFormatter.instance.removeCharactersFromStrings(recognized: recognizedStrings) { (returnedBodyTmp) in
                 if let bodyTemperature = returnedBodyTmp {
                     self.bodyTemperature = bodyTemperature
-                    
-                    VisionManager.instance.getBodyTemperature(bodyTemperature: bodyTemperature) { (success, intPart, decimalPart) in
-                        VisionManager.instance.setIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart) { (intPart, decimalPart, success) in
-                            if success {
-                                print("Success")
-                            }else{
-                                //MARK: ERROR HANDLING
-                            }
-                        }
-                    }
                 }else{
                     // MARK: ERROR HANDLING
                 }

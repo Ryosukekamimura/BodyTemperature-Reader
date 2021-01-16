@@ -59,19 +59,8 @@ struct ResultView: View {
                     Spacer()
                 }
             
-            if isDisplaySuccessView{
-                // Success Animation
-                SuccessAnimation()
-                    .padding()
-            }
-            if isDisplayFailureView {
-                FailureAnimation()
-                    .padding()
-            }
-            if isDisplayHealthCareSuccessView {
-                HealthCareSuccessAnimation()
-                    .padding()
-            }
+            // Animation For Recognized-Text-Success or Failure or HealthCare-Success
+            DisplayStatusAnimation(isDisplaySuccessView: $isDisplaySuccessView, isDisplayFailureView: $isDisplayFailureView, isDisplayHealthCareSuccessView: $isDisplayHealthCareSuccessView)
         }
         //MARK: onAppear
         .onAppear(perform: {
@@ -81,12 +70,12 @@ struct ResultView: View {
                 // Success View Toggle
                 isDisplaySuccessView.toggle()
             }else{
+                // MARK: TODO - ERROR HANDLING 
                 self.bodyTemperatureSelection = "--.-"
                 // Failure View Toggle
                 isDisplayFailureView.toggle()
             }
         })
-        
     }
 }
 
