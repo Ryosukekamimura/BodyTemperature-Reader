@@ -1,20 +1,36 @@
-体温計をVisionフレームワークで読み取り、ヘルスケアに上げれるようなアプリを実装します！
+## **🎉 プロダクト**
 
-## TODO 
-- ~~様々な認証した温度の場合分け~~
-    - ~~"36.6%"~~ </br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
-    - ~~"369.1"~~</br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
-    - ~~"36.68"~~</br> [1/16 14:25]<a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/d208556b957688575e5c5def5149c03bc78ddc0c">URL</a>
-    
-- ~~結果を表示するViewから再撮影するように画面遷移する~~ </br>
-  [1/16 11:35] <a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/4d8e9b75c5d3499b4b65a647003c75d90e4dbfea">URL</a>
+### 体温計リーダー
 
-- ~~ImagePickerの修正~~</br>
-  [1/16 11:35] <a href="https://github.com/Ryosukekamimura/BodyTemperature-Reader/tree/4d8e9b75c5d3499b4b65a647003c75d90e4dbfea">URL</a>
+## **🌐 アプリURL**
 
-- アイコンを少し修正 (Figma)
+近日中リリース
 
-- AppStoreのプレビュー画面を作成 (Figma)
+## **📊 マーケット**
 
+- 毎日体温を測っている方
+- 体温を日々計り、記録をつけたい方
+- 紙媒体からデジタル媒体に記録管理を変更したい方
+
+## **🌀 ユーザーの課題**
+
+- 体温を測ることを記録したいが、紙に記入するのは大変な方。
+- ヘルスケア アプリを活用し、健康を管理したい方。
+
+## **💡 解決方法**
+
+- 体温計の画像から体温を取り出し、ヘルスケアアプリに接続する
+
+## **✅ 使用技術**
+
+### クライアントサイド
+
+- SwiftUI
+- HealthKit
+- VisionKit
+
+## **📦工夫した点**
+- 疎結合を意識し、Healperクラスごとで管理
+- 体温計の値の例外処理
 
 <img src="https://user-images.githubusercontent.com/52638834/104083638-9f324f80-5283-11eb-952d-75adf51baefd.gif" width="512px"/>
