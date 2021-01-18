@@ -52,6 +52,7 @@ struct VisionFormatter {
             if recognizedText.contains("."){
                 // ex 36.68 or $369.1
                 let recognizedTextSplitList = recognizedText.split(separator: ".")
+                // MARK: ERROR ex 36.
                 let intPart = String(recognizedTextSplitList[0])
                 let decimalPart = String(recognizedTextSplitList[1])
                 let returnedText = adjustIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)

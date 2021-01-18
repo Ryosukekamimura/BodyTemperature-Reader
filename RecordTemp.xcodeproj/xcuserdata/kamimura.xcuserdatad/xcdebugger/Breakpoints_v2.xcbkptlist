@@ -30,8 +30,10 @@
             filePath = "RecordTemp/Utilities/VisionFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+
             startingLineNumber = "82"
             endingLineNumber = "82"
+
             landmarkName = "adjustIntPartAndDecimalPart(intPart:decimalPart:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -64,6 +66,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
+
             landmarkName = "adjustNumberOfDigits(recognizedText:)"
             landmarkType = "7">
          </BreakpointContent>
