@@ -14,6 +14,7 @@ struct VisionFormatter {
     static let instance = VisionFormatter()
     
     func formatRecogzniedText(recognizedStrings: [String], handler: @escaping (_ returnedBodyTemperature: Double?) -> Void){
+        var resultBodyTemperatures: [Double] = []
         
         // For Each recognizedText
         for recogniedString in recognizedStrings{
@@ -24,9 +25,18 @@ struct VisionFormatter {
             //
             let adjustNumber = adjustNumberOfDigits(recognizedText: convertCommaString)
             //
-            if adjustNumber != "" {
-                handler(Double(adjustNumber))
+            if let adjustDoubleNumber = Double(adjustNumber) {
+                resultBodyTemperatures.append(adjustDoubleNumber)
             }
+        }
+        
+        if resultBodyTemperatures.count == 1{
+            handler(resultBodyTemperatures[0])
+        }else if resultBodyTemperatures.count == 0{
+            handler(nil)
+        }else{
+            //
+            handler(resultBodyTemperatures[0])
         }
     }
     // MARK: PRIVATE FUNCTIONS
@@ -45,6 +55,8 @@ struct VisionFormatter {
                 let intPart = String(recognizedTextSplitList[0])
                 let decimalPart = String(recognizedTextSplitList[1])
                 let returnedText = adjustIntPartAndDecimalPart(intPart: intPart, decimalPart: decimalPart)
+                print("returnedText -> \(returnedText)")
+                
                 return returnedText
             }else{
                 // ex $3669

@@ -16,6 +16,7 @@
 		9251FA4125A68F92009A0C7C /* RecordTempTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4025A68F92009A0C7C /* RecordTempTests.swift */; };
 		9251FA4C25A68F92009A0C7C /* RecordTempUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */; };
 		9294827125B1408600713E4A /* FailureAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294827025B1408600713E4A /* FailureAnimation.swift */; };
+		9296AF8E25B50DB600784B7B /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296AF8D25B50DB600784B7B /* Sample.swift */; };
 		92AB72D925A84E69000F268A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72D825A84E69000F268A /* ResultView.swift */; };
 		92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72E225A94577000F268A /* HealthCareIconView.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
@@ -30,6 +31,8 @@
 		92D9257525B26A4600CF5635 /* DisplayStatusAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */; };
 		92D9257A25B27CAF00CF5635 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9257925B27CAF00CF5635 /* ImagePickerView.swift */; };
 		92D9257F25B27E9B00CF5635 /* ImageCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9257E25B27E9B00CF5635 /* ImageCaptureView.swift */; };
+		92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */; };
+		92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DB125B3D68C00DC4925 /* TutorialView.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
 		92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +70,7 @@
 		9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempUITests.swift; sourceTree = "<group>"; };
 		9251FA4D25A68F92009A0C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9294827025B1408600713E4A /* FailureAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureAnimation.swift; sourceTree = "<group>"; };
+		9296AF8D25B50DB600784B7B /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		92AB72D825A84E69000F268A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		92AB72E225A94577000F268A /* HealthCareIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareIconView.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStatusAnimation.swift; sourceTree = "<group>"; };
 		92D9257925B27CAF00CF5635 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		92D9257E25B27E9B00CF5635 /* ImageCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptureView.swift; sourceTree = "<group>"; };
+		92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct&Enum.swift"; sourceTree = "<group>"; };
+		92E45DB125B3D68C00DC4925 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 		92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayRectangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +217,8 @@
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
 				92AB72D825A84E69000F268A /* ResultView.swift */,
 				92D9257E25B27E9B00CF5635 /* ImageCaptureView.swift */,
+				92E45DB125B3D68C00DC4925 /* TutorialView.swift */,
+				9296AF8D25B50DB600784B7B /* Sample.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				92AB72EE25A94765000F268A /* Extensions.swift */,
+				92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,6 +409,7 @@
 				92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92D9257A25B27CAF00CF5635 /* ImagePickerView.swift in Sources */,
+				9296AF8E25B50DB600784B7B /* Sample.swift in Sources */,
 				92B31B2E25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift in Sources */,
 				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				92D8607F25B146B9002763C4 /* HealthCareSuccessAnimation.swift in Sources */,
@@ -409,9 +419,11 @@
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92D9257525B26A4600CF5635 /* DisplayStatusAnimation.swift in Sources */,
 				92B31B4225B112700002B366 /* SuccessAnimation.swift in Sources */,
+				92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */,
 				920C0CE925AFCE5100BFDF06 /* BodyTemperaturePicker.swift in Sources */,
 				92D9257F25B27E9B00CF5635 /* ImageCaptureView.swift in Sources */,
 				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
+				92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */,
 				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
 				9294827125B1408600713E4A /* FailureAnimation.swift in Sources */,
 				92AB72D925A84E69000F268A /* ResultView.swift in Sources */,
