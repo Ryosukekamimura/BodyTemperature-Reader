@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//MARK: FOR USE EXTENSION COLOR
 extension Color {
     struct MyThemeColor {
         static var lightGrayColor: Color {
@@ -28,20 +29,6 @@ extension Color {
     }
 }
 
-enum ViewTransition{
-    case showImagePicker
-    case showImageCheckView
-    case showScannerView
-}
-
-
-enum AlertHandling{
-    case succeededRecognizedText
-    case succeededInConnectHealthCare
-    case failureToConnectHealthCare
-    case failedToRead
-}
-
 // MARK: For Resize Input UIImage
 extension UIImage {
     func resized(toWidth width: CGFloat) -> UIImage? {
@@ -52,6 +39,8 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
+
+
 // MARK: For Regular Expression
 extension String {
     func containPattern(pattern: String) -> Bool {

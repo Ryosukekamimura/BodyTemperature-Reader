@@ -19,7 +19,10 @@ struct ImageCaptureView: View {
                 
                 // Vision Started
                 performVision(uiImage: imageSelected)
-                isDisplayCameraView = false
+                // Go to Result View
+                DispatchQueue.main.asyncAfter(deadline: .now()+1.0, execute: {
+                    isDisplayCameraView = false
+                })
             }
             OverlayRectangleView()
         }
@@ -35,9 +38,11 @@ struct ImageCaptureView: View {
             // Format Result Strings
             VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
                 if let bodyTemperature = returnedBodyTemperature {
+                    print("BODY TEMPERATURE IS \(bodyTemperature)")
                     self.bodyTemperature = bodyTemperature
                 }else{
                     // MARK: ERROR HANDLING
+                    print("bodyTemperature is Not Contains in Image")
                 }
             }
         }
