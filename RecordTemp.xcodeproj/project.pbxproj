@@ -24,7 +24,7 @@
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
-		92B31B2E25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */; };
+		92B31B2E25B10B3E0002B366 /* TemperaturePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */; };
 		92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */; };
 		92B31B4225B112700002B366 /* SuccessAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B4125B112700002B366 /* SuccessAnimation.swift */; };
 		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
@@ -81,7 +81,7 @@
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
-		92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBodyTemperatureAndPicker.swift; sourceTree = "<group>"; };
+		92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePicker.swift; sourceTree = "<group>"; };
 		92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareRegistrationButton.swift; sourceTree = "<group>"; };
 		92B31B4125B112700002B366 /* SuccessAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAnimation.swift; sourceTree = "<group>"; };
 		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				92E45DB125B3D68C00DC4925 /* TutorialView.swift */,
 				92D9257925B27CAF00CF5635 /* ImagePickerView.swift */,
 				92F8247825AEB40E00EA480F /* OverlayRectangleView.swift */,
-				92B31B2D25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift */,
+				92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */,
 				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
 				92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */,
 				9241866425B68FA9006384D2 /* CALayer.swift */,
@@ -414,7 +414,7 @@
 				92F8247925AEB40E00EA480F /* OverlayRectangleView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
 				92D9257A25B27CAF00CF5635 /* ImagePickerView.swift in Sources */,
-				92B31B2E25B10B3E0002B366 /* DisplayBodyTemperatureAndPicker.swift in Sources */,
+				92B31B2E25B10B3E0002B366 /* TemperaturePicker.swift in Sources */,
 				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				92A00EF325B647CB00452BF5 /* MeasurementView.swift in Sources */,
 				92D8607F25B146B9002763C4 /* HealthCareSuccessAnimation.swift in Sources */,

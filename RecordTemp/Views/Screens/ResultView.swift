@@ -53,7 +53,7 @@ struct ResultView: View {
                         Spacer()
                     }
                     // Display Temperature And Picker View
-                    DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                    TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
                     
                     // HealthCare Registration Button View
                     HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)

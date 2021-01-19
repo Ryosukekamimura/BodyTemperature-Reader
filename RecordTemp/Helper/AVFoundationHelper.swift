@@ -74,7 +74,7 @@ class AVFoundationVM: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Ob
 
     func endSession() {
         if !captureSession.isRunning { return }
-        captureSession.stopRunning()
+        captureSession
     }
 
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
