@@ -16,19 +16,43 @@ struct ContentView: View {
     @State private var isShowTutorialVIew: Bool = false
     
     var body: some View {
-        if isDisplayCameraView {
-            // Display Camera View
-            ImageCaptureView(imageSelected: $imageSelected, isDisplayCameraView: $isDisplayCameraView, bodyTemperature: $bodyTemperature)
-                .onAppear {
-                    firstVisitStep()
+        TabView{
+            MeasurementView()
+                .tabItem{
+                    Image(systemName: "camera.fill")
+                    Text("計測")
                 }
-                .fullScreenCover(isPresented: $isShowTutorialVIew, content: {
-                    TutorialView()
-                })
-        }else{
-            // Display Result View
-            ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
+            Text("グラフ")
+                .tabItem{
+                    Image(systemName: "waveform.path.ecg")
+                    Text("グラフ")
+                }
+            AccountView()
+                .tabItem{
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("アカウント")
+                }
         }
+        .accentColor(Color.MyThemeColor.officialOrangeColor)
+        
+        
+        
+        
+        
+        
+//        if isDisplayCameraView {
+//            // Display Camera View
+//            ImageCaptureView(imageSelected: $imageSelected, isDisplayCameraView: $isDisplayCameraView, bodyTemperature: $bodyTemperature)
+//                .onAppear {
+//                    firstVisitStep()
+//                }
+//                .fullScreenCover(isPresented: $isShowTutorialVIew, content: {
+//                    TutorialView()
+//                })
+//        }else{
+//            // Display Result View
+//            ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
+//        }
         
         
     }

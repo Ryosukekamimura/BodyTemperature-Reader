@@ -12,8 +12,6 @@ struct DisplayBodyTemperatureAndPicker: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 20){
-            
-            DisplayBodyTemperature(bodyTemperatureSelection: $bodyTemperatureSelection)
             // BodyTemperature Picker
             BodyTeperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
         }
