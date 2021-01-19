@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DisplayBodyTemperatureAndPicker: View {
+struct TemperaturePicker: View {
     @Binding var bodyTemperatureSelection: String
 
     var body: some View {
@@ -21,10 +21,10 @@ struct DisplayBodyTemperatureAndPicker: View {
     }
 }
 
-struct DisplayBodyTemperatureAndPicker_Previews: PreviewProvider {
+struct TemperaturePicker_Previews: PreviewProvider {
     @State static var bodyTemperatureSelection: String = "36.5"
     
     static var previews: some View {
-        DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+        TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
     }
 }

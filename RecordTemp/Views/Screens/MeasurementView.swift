@@ -13,7 +13,12 @@ struct MeasurementView: View {
     @State private var tapCount: Int = 0
     @State var bodyTemperatureSelection: String = "36.6"
     @State var isHealthCareSuccessAnimation: Bool = true
-
+    
+    @State var bodyTemperature: Double?
+    
+    @State private var isPreviewSheet: Bool = false
+    
+    
     var body: some View {
         VStack {
             if avFoundationVM.image == nil {
@@ -23,32 +28,30 @@ struct MeasurementView: View {
                             tapCount += 1
                             if tapCount % 2 == 0{
                                 // stop Picture
-                                self.avFoundationVM.endSession()
+                                self.avFoundationVM.takePhoto()
                             }else{
                                 // re-start Picture
                                 self.avFoundationVM.startSession()
                             }
                         }
-                    
-                    Button(action: {
-                        self.avFoundationVM.takePhoto()
-                    }) {
-                        Image(systemName: "camera.circle.fill")
-                        .renderingMode(.original)
-                        .resizable()
-                        .frame(width: 80, height: 80, alignment: .center)
+                        .aspectRatio(contentMode: .fill)
+                    //
+                    HStack(alignment: .center, spacing: 10){
+                        TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                        
+                        // HealthCare Registration Button View
+                        HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
                     }
-                    .padding(.bottom, 100.0)
-                    
                     Spacer()
-                    
-                }.onAppear {
-                    self.avFoundationVM.startSession()
-                }.onDisappear {
-                    self.avFoundationVM.endSession()
+                        .onAppear {
+                            self.avFoundationVM.startSession()
+                        }
+                        .onDisappear {
+                            self.avFoundationVM.endSession()
+                        }
                 }
-
-            } else {
+                
+            }else {
                 ZStack(alignment: .topLeading) {
                     VStack(alignment: .center, spacing: 0){
                         Image(uiImage: avFoundationVM.image!)
@@ -56,8 +59,9 @@ struct MeasurementView: View {
                             .scaledToFit()
                             .aspectRatio(contentMode: .fit)
                         
-                        HStack{
-                            DisplayBodyTemperatureAndPicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                        HStack(alignment: .center, spacing: 0){
+                            
+                            TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
                             
                             // HealthCare Registration Button View
                             HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
@@ -67,20 +71,58 @@ struct MeasurementView: View {
                     Button(action: {
                         self.avFoundationVM.image = nil
                     }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 30, height: 30, alignment: .center)
-                                .foregroundColor(.white)
-                                .background(Color.gray)
+                        Image(systemName: "xmark.circle.fill")
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .foregroundColor(.white)
+                            .background(Color.gray)
                     }
                     .frame(width: 80, height: 80, alignment: .center)
                 }
+                .onAppear(perform: {
+                    performVision(uiImage: avFoundationVM.image!)
+                    DispatchQueue.main.asyncAfter(deadline: .now()+4) {
+                        if let bodyTemperature = bodyTemperature{
+                            bodyTemperatureSelection = String(bodyTemperature)
+                        }else{
+                            //DEBUG: preview sheet
+                            isPreviewSheet.toggle()
+                            print(avFoundationVM.image?.size.width)
+                            print(avFoundationVM.image?.size.height)
+                        }
+                    }
+                })
+            }
+        }.sheet(isPresented: $isPreviewSheet, content: {
+            Image(uiImage: avFoundationVM.image!)
+                .resizable()
+                .scaledToFit()
+        })
+    }
+    //MARK: PRIVATE FUNCTIONS
+    private func performVision(uiImage: UIImage){
+        // Recognied Text -> return [ Recognized Text ]
+        print("size ")
+        print(uiImage.size.width)
+        print(uiImage.size.height)
+        VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
+            print("recognized Strings -> \(recognizedStrings)")
+            
+            // Format Result Strings
+            VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
+                if let bodyTemperature = returnedBodyTemperature {
+                    print("BODY TEMPERATURE IS \(bodyTemperature)")
+                    self.bodyTemperature = bodyTemperature
+                }else{
+                    // MARK: ERROR HANDLING
+                    print("bodyTemperature is Not Contains in Image")
+                }
             }
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
+
 
 struct MeasurementView_Previews: PreviewProvider {
     static var previews: some View {
