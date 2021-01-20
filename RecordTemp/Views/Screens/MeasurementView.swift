@@ -15,7 +15,6 @@ struct MeasurementView: View {
     @State var isHealthCareSuccessAnimation: Bool = true
     
     @State var bodyTemperature: Double?
-    @State var isMiniPreviewImage: Bool = false
     
     
     
@@ -31,15 +30,13 @@ struct MeasurementView: View {
                                 // Take Picture Second Time
                                 avFoundationVM.image = nil
                                 avFoundationVM.takePicture()
-                                isMiniPreviewImage = true
                             }else{
                                 // Take Picture First Time
                                 avFoundationVM.takePicture()
-                                isMiniPreviewImage = true
                             }
                             
                         }
-                    if avFoundationVM.image != nil && isMiniPreviewImage {
+                    if avFoundationVM.image != nil {
                         VStack{
                             Spacer()
                             HStack{
@@ -48,8 +45,7 @@ struct MeasurementView: View {
                                     .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
                                     .border(Color.white, width: 5)
                                     .background(Color.white)
-                                    .opacity(isMiniPreviewImage ? 1.0: 0.0)
-                                    .animation(.easeOut(duration: 4))
+                                    .offset(x: 0, y: -40)
                                     .onAppear(perform: {
                                         performVision(uiImage: avFoundationVM.image!)
                                         DispatchQueue.main.asyncAfter(deadline: .now()+4) {
@@ -58,15 +54,8 @@ struct MeasurementView: View {
                                             }
                                         }
                                     })
-                                
-                                
                                 Spacer()
                             }
-                        }
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-                                isMiniPreviewImage = false
-                            })
                         }
                     }
                 }
@@ -78,9 +67,9 @@ struct MeasurementView: View {
                 
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle("Record".uppercased())
+            .navigationBarTitle(Text("体温計リーダー"))
             .navigationBarItems(trailing: Button(action: {
-                
+                // MARK: ADD BUTTON
             }, label: {
                 Image(systemName: "plus.square")
                     .font(.title)

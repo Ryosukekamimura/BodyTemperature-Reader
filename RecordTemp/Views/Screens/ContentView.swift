@@ -20,17 +20,17 @@ struct ContentView: View {
             MeasurementView()
                 .tabItem{
                     Image(systemName: "camera.fill")
-                    Text("計測")
+                    Text("Record")
                 }
             Text("グラフ")
                 .tabItem{
                     Image(systemName: "waveform.path.ecg")
-                    Text("グラフ")
+                    Text("Graph")
                 }
             AccountView()
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
-                    Text("アカウント")
+                    Text("Setting")
                 }
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
