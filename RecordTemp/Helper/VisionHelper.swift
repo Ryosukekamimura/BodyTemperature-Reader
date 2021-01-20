@@ -24,8 +24,8 @@ struct VisionHelper{
     // the maximum number of candidates to return. This can't exceed 10
     private let maximumCandidates = 1
 
-    func performVisionRecognition(cmSampleBuffer: CMSampleBuffer?, handler: @escaping(_ recognizedStrings: [String]) -> ()) {
-        performRecognition(cmSampleBuffer: cmSampleBuffer) { (recognizedTextStrings) in
+    func performVisionRecognition(uiImage: UIImage?, handler: @escaping(_ recognizedStrings: [String]) -> ()) {
+        performRecognition(uiImage: uiImage) { (recognizedTextStrings) in
             handler(recognizedTextStrings)
         }
     }
@@ -33,14 +33,14 @@ struct VisionHelper{
     
 
     //MARK: PRIVATE FUNCTIONS
-    private func performRecognition(cmSampleBuffer: CMSampleBuffer?, handler: @escaping (_ recognizedTextStrings: [String]) -> Void){
-        guard let imageSelected = cmSampleBuffer else { return }
+    private func performRecognition(uiImage: UIImage?, handler: @escaping (_ recognizedTextStrings: [String]) -> Void){
+        guard let imageSelected = uiImage else { return }
         
         // Get the CGImage on which to perform request.
-        //guard let cgImage = imageSelected.cgImage else { return }
+        guard let cgImage = imageSelected.cgImage else { return }
         
         // Create a new image-request handler
-        let imageRequestHandler = VNImageRequestHandler(cmSampleBuffer: cmSampleBuffer!)
+        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage)
         
         // Create a new request to recognized text
         let request = VNRecognizeTextRequest { (request, error) in

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountView: View {
     var body: some View {
-        Text("H")
+        Text("Hello World!")
         
     }
 }

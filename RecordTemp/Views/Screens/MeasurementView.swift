@@ -24,25 +24,14 @@ struct MeasurementView: View {
             if avFoundationVM.image == nil {
                 VStack{
                     CALayerView(caLayer: avFoundationVM.previewLayer)
-                        .onTapGesture {
-                            tapCount += 1
-                            if tapCount % 2 == 0{
-                                // stop Picture
-                                self.avFoundationVM.takePhoto()
-                            }else{
-                                // re-start Picture
-                                self.avFoundationVM.startSession()
-                            }
-                        }
-                        .aspectRatio(contentMode: .fill)
-                    //
-                    HStack(alignment: .center, spacing: 10){
-                        TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
-                        
-                        // HealthCare Registration Button View
-                        HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
-                    }
+                    
+                    Button(action: {
+                        avFoundationVM.takePicture()
+                    }, label: {
+                        Text("Capture Photos")
+                    })
                     Spacer()
+                        
                         .onAppear {
                             self.avFoundationVM.startSession()
                         }
@@ -64,7 +53,7 @@ struct MeasurementView: View {
                             TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
                             
                             // HealthCare Registration Button View
-                            HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
+                            //                            HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
                         }
                         Spacer()
                     }
@@ -81,6 +70,7 @@ struct MeasurementView: View {
                     .frame(width: 80, height: 80, alignment: .center)
                 }
                 .onAppear(perform: {
+                    
                     performVision(uiImage: avFoundationVM.image!)
                     DispatchQueue.main.asyncAfter(deadline: .now()+4) {
                         if let bodyTemperature = bodyTemperature{
@@ -106,20 +96,20 @@ struct MeasurementView: View {
         print("size ")
         print(uiImage.size.width)
         print(uiImage.size.height)
-//        VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
-//            print("recognized Strings -> \(recognizedStrings)")
-//
-//            // Format Result Strings
-//            VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
-//                if let bodyTemperature = returnedBodyTemperature {
-//                    print("BODY TEMPERATURE IS \(bodyTemperature)")
-//                    self.bodyTemperature = bodyTemperature
-//                }else{
-//                    // MARK: ERROR HANDLING
-//                    print("bodyTemperature is Not Contains in Image")
-//                }
-//            }
-//        }
+        VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
+            print("recognized Strings -> \(recognizedStrings)")
+            
+            // Format Result Strings
+            VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
+                if let bodyTemperature = returnedBodyTemperature {
+                    print("BODY TEMPERATURE IS \(bodyTemperature)")
+                    self.bodyTemperature = bodyTemperature
+                }else{
+                    // MARK: ERROR HANDLING
+                    print("bodyTemperature is Not Contains in Image")
+                }
+            }
+        }
     }
 }
 
