@@ -15,103 +15,100 @@ struct MeasurementView: View {
     @State var isHealthCareSuccessAnimation: Bool = true
     
     @State var bodyTemperature: Double?
+    @State var isMiniPreviewImage: Bool = false
     
-    @State private var isPreviewSheet: Bool = false
     
     
     var body: some View {
-        VStack {
-            if avFoundationVM.image == nil {
-                VStack{
-                    CALayerView(caLayer: avFoundationVM.previewLayer)
-                    
-                    Button(action: {
-                        avFoundationVM.takePicture()
-                    }, label: {
-                        Text("Capture Photos")
-                    })
-                    Spacer()
-                        
-                        .onAppear {
-                            self.avFoundationVM.startSession()
-                        }
-                        .onDisappear {
-                            self.avFoundationVM.endSession()
-                        }
-                }
-                
-            }else {
-                ZStack(alignment: .topLeading) {
-                    VStack(alignment: .center, spacing: 0){
-                        Image(uiImage: avFoundationVM.image!)
-                            .resizable()
-                            .scaledToFit()
-                            .aspectRatio(contentMode: .fit)
-                        
-                        HStack(alignment: .center, spacing: 0){
-                            
-                            TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
-                            
-                            // HealthCare Registration Button View
-                            //                            HealthCareRegistrationButton(bodyTemperatureSelectioin: $bodyTemperatureSelection, isDisplayHealthCareSuccessView: $isHealthCareSuccessAnimation)
-                        }
-                        Spacer()
-                    }
-                    Button(action: {
-                        self.avFoundationVM.image = nil
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width: 30, height: 30, alignment: .center)
-                            .foregroundColor(.white)
-                            .background(Color.gray)
-                    }
-                    .frame(width: 80, height: 80, alignment: .center)
-                }
-                .onAppear(perform: {
-                    
-                    performVision(uiImage: avFoundationVM.image!)
-                    DispatchQueue.main.asyncAfter(deadline: .now()+4) {
-                        if let bodyTemperature = bodyTemperature{
-                            bodyTemperatureSelection = String(bodyTemperature)
+        VStack{
+            ZStack {
+                // camera View
+                CALayerView(caLayer: avFoundationVM.previewLayer)
+                    .onTapGesture {
+                        if avFoundationVM.image != nil {
+                            // Take Picture Second Time
+                            avFoundationVM.image = nil
+                            avFoundationVM.takePicture()
+                            isMiniPreviewImage = true
                         }else{
-                            //DEBUG: preview sheet
-                            isPreviewSheet.toggle()
-                            print(avFoundationVM.image?.size.width)
-                            print(avFoundationVM.image?.size.height)
+                            // Take Picture First Time
+                            avFoundationVM.takePicture()
+                            isMiniPreviewImage = true
+                        }
+                        
+                    }
+                if avFoundationVM.image != nil && isMiniPreviewImage {
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Image(uiImage: avFoundationVM.image!)
+                                .resizable()
+                                .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
+                                .border(Color.white, width: 5)
+                                .background(Color.white)
+                                .opacity(isMiniPreviewImage ? 1.0: 0.0)
+                                .animation(.easeOut(duration: 4))
+                                .onAppear(perform: {
+                                    performVision(uiImage: avFoundationVM.image!)
+                                    DispatchQueue.main.asyncAfter(deadline: .now()+4) {
+                                        if let bodyTemperature = bodyTemperature{
+                                            bodyTemperatureSelection = String(bodyTemperature)
+                                        }
+                                    }
+                                })
+                                
+
+                            Spacer()
                         }
                     }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                            isMiniPreviewImage = false
+                        })
+                    }
+                }
+            }
+            HStack{
+                TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                
+                // Enter Button
+                Button(action: {
+                    
+                }, label: {
+                    Text("決定".uppercased())
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                        .background(Color.MyThemeColor.officialOrangeColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 })
             }
-        }.sheet(isPresented: $isPreviewSheet, content: {
-            Image(uiImage: avFoundationVM.image!)
-                .resizable()
-                .scaledToFit()
-        })
+            
+        }
+        .onAppear {
+            self.avFoundationVM.startSession()
+        }
+        .onDisappear {
+            self.avFoundationVM.endSession()
+        }
+        
     }
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){
         // Recognied Text -> return [ Recognized Text ]
-        print("size ")
-        print(uiImage.size.width)
-        print(uiImage.size.height)
         VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
             print("recognized Strings -> \(recognizedStrings)")
-            
             // Format Result Strings
-            VisionFormatter.instance.formatRecogzniedText(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
-                if let bodyTemperature = returnedBodyTemperature {
-                    print("BODY TEMPERATURE IS \(bodyTemperature)")
-                    self.bodyTemperature = bodyTemperature
-                }else{
-                    // MARK: ERROR HANDLING
-                    print("bodyTemperature is Not Contains in Image")
-                }
+            VisionFormatter.instance.recognizedTextFormatter(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
+                self.bodyTemperature = returnedBodyTemperature
+                print("bodyTemperature -> \(bodyTemperature)")
             }
         }
     }
 }
+
+
 
 
 struct MeasurementView_Previews: PreviewProvider {
