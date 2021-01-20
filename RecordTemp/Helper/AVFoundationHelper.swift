@@ -74,7 +74,7 @@ class AVFoundationVM: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Ob
 
     func endSession() {
         if !captureSession.isRunning { return }
-        captureSession
+        captureSession.stopRunning()
     }
 
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
@@ -90,6 +90,13 @@ class AVFoundationVM: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Ob
     }
 
     private func getImageFromSampleBuffer (buffer: CMSampleBuffer) -> UIImage? {
+        
+        VisionHelper.instance.performVisionRecognition(cmSampleBuffer: buffer) { (returnedStrings) in
+            print("CMSampleBuffer")
+            print(returnedStrings)
+        }
+        
+        
         if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
             let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
             let context = CIContext()
