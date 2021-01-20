@@ -34,7 +34,7 @@ struct BodyTeperaturePicker: View {
             })
             .pickerStyle(WheelPickerStyle())
             .labelsHidden()
-            .frame(width: 75)
+            .frame(width: 50, height: 150)
             .padding(.all, 20)
             .background(Color.orange)
             .cornerRadius(20)

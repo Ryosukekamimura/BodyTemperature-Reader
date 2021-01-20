@@ -28,8 +28,9 @@ struct VisionHelper{
         performRecognition(uiImage: uiImage) { (recognizedTextStrings) in
             handler(recognizedTextStrings)
         }
-        
     }
+    
+    
 
     //MARK: PRIVATE FUNCTIONS
     private func performRecognition(uiImage: UIImage?, handler: @escaping (_ recognizedTextStrings: [String]) -> Void){
