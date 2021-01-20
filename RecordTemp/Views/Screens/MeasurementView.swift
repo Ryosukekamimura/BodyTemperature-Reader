@@ -20,77 +20,78 @@ struct MeasurementView: View {
     
     
     var body: some View {
-        VStack{
-            ZStack {
-                // camera View
-                CALayerView(caLayer: avFoundationVM.previewLayer)
-                    .onTapGesture {
-                        if avFoundationVM.image != nil {
-                            // Take Picture Second Time
-                            avFoundationVM.image = nil
-                            avFoundationVM.takePicture()
-                            isMiniPreviewImage = true
-                        }else{
-                            // Take Picture First Time
-                            avFoundationVM.takePicture()
-                            isMiniPreviewImage = true
+        NavigationView{
+            VStack{
+                ZStack {
+                    // camera View
+                    CALayerView(caLayer: avFoundationVM.previewLayer)
+                        .offset(x: 0, y: -100)
+                        .onTapGesture {
+                            if avFoundationVM.image != nil {
+                                // Take Picture Second Time
+                                avFoundationVM.image = nil
+                                avFoundationVM.takePicture()
+                                isMiniPreviewImage = true
+                            }else{
+                                // Take Picture First Time
+                                avFoundationVM.takePicture()
+                                isMiniPreviewImage = true
+                            }
+                            
                         }
-                        
-                    }
-                if avFoundationVM.image != nil && isMiniPreviewImage {
-                    VStack{
-                        Spacer()
-                        HStack{
-                            Image(uiImage: avFoundationVM.image!)
-                                .resizable()
-                                .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
-                                .border(Color.white, width: 5)
-                                .background(Color.white)
-                                .opacity(isMiniPreviewImage ? 1.0: 0.0)
-                                .animation(.easeOut(duration: 4))
-                                .onAppear(perform: {
-                                    performVision(uiImage: avFoundationVM.image!)
-                                    DispatchQueue.main.asyncAfter(deadline: .now()+4) {
-                                        if let bodyTemperature = bodyTemperature{
-                                            bodyTemperatureSelection = String(bodyTemperature)
-                                        }
-                                    }
-                                })
-                                
-
+                    if avFoundationVM.image != nil && isMiniPreviewImage {
+                        VStack{
                             Spacer()
+                            HStack{
+                                Image(uiImage: avFoundationVM.image!)
+                                    .resizable()
+                                    .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
+                                    .border(Color.white, width: 5)
+                                    .background(Color.white)
+                                    .opacity(isMiniPreviewImage ? 1.0: 0.0)
+                                    .animation(.easeOut(duration: 4))
+                                    .onAppear(perform: {
+                                        performVision(uiImage: avFoundationVM.image!)
+                                        DispatchQueue.main.asyncAfter(deadline: .now()+4) {
+                                            if let bodyTemperature = bodyTemperature{
+                                                bodyTemperatureSelection = String(bodyTemperature)
+                                            }
+                                        }
+                                    })
+                                
+                                
+                                Spacer()
+                            }
                         }
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-                            isMiniPreviewImage = false
-                        })
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                                isMiniPreviewImage = false
+                            })
+                        }
                     }
                 }
-            }
-            HStack{
-                TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                HStack{
+                    Spacer()
+                    TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                    Spacer()
+                }
                 
-                // Enter Button
-                Button(action: {
-                    
-                }, label: {
-                    Text("決定".uppercased())
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                        .background(Color.MyThemeColor.officialOrangeColor)
-                        .foregroundColor(.white)
-                        .cornerRadius(20)
-                })
             }
-            
-        }
-        .onAppear {
-            self.avFoundationVM.startSession()
-        }
-        .onDisappear {
-            self.avFoundationVM.endSession()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Record".uppercased())
+            .navigationBarItems(trailing: Button(action: {
+                
+            }, label: {
+                Image(systemName: "plus.square")
+                    .font(.title)
+                    
+            }))
+            .onAppear {
+                self.avFoundationVM.startSession()
+            }
+            .onDisappear {
+                self.avFoundationVM.endSession()
+            }
         }
         
     }
