@@ -13,18 +13,22 @@ struct ListView: View {
     private let time = Date()
     
     var body: some View {
-        VStack{
-            List{
-                ForEach(tmps.bodyTemperatureArray, id:\.self, content: { tmp in
-                    HStack(alignment: .center, spacing: 20){
-                        Image(uiImage: tmp.image)
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                        Text(tmp.bodyTemperature)
-                        Text(tmp.date)
-                    }
-                })
+        NavigationView{
+            VStack{
+                List{
+                    ForEach(tmps.bodyTemperatureArray, id:\.self, content: { tmp in
+                        HStack(alignment: .center, spacing: 20){
+                            Image(uiImage: tmp.image)
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                            Text(tmp.bodyTemperature)
+                            Text(tmp.date)
+                        }
+                    })
+                }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle(Text("リスト"))
         }
         
     }

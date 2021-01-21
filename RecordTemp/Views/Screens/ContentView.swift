@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isShowTutorialVIew: Bool = false
-    @State var tabViewSelection: Int = 1
+    @State var tabViewSelection: Int = 0
     
     var body: some View {
         TabView(selection: $tabViewSelection){
@@ -24,7 +24,7 @@ struct ContentView: View {
             ListView(tmps: BodyTemperatureArrayObject())
                 .tabItem{
                     Image(systemName: "waveform.path.ecg")
-                    Text("Graph")
+                    Text("List")
                 }
                 .tag(1)
             ProfileView()
