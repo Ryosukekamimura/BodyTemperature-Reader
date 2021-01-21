@@ -8,8 +8,44 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @State private var isConnectHealthCare: Bool = true
+    @State private var isPerformVision: Bool = true
+    
     var body: some View {
-        Text("Hello World!")
+        NavigationView{
+            ScrollView{
+                GroupBox{
+                    VStack{
+                        SettingRowView(title: "Application", imageName: "iphone")
+                        Divider()
+                        //MARK: ヘルスケアに接続する
+                        HStack{
+                            Toggle(isOn: $isConnectHealthCare, label: {
+                                HStack{
+                                    Image(systemName: "heart.text.square")
+                                        .font(.title)
+                                    Text("ヘルスケアと接続する")
+                                }
+                            })
+                        }
+                        //MARK: 自動認識をオフにする
+                        HStack{
+                            Toggle(isOn: $isPerformVision, label: {
+                                HStack{
+                                    Image(systemName: "eyes")
+                                        .font(.title)
+                                    Text("自動認識する")
+                                }
+                            })
+                        }
+                    }
+                }
+                .padding()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Settings")
+        }
     }
 }
 

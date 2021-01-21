@@ -10,24 +10,29 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isShowTutorialVIew: Bool = false
+    @State var tabViewSelection: Int = 0
     
     var body: some View {
-        TabView{
-            HomeView()
+        TabView(selection: $tabViewSelection){
+            
+            HomeView(tabViewSelection: $tabViewSelection)
                 .tabItem{
                     Image(systemName: "camera.fill")
                     Text("Record")
                 }
-            ListView()
+                .tag(0)
+            ListView(tmps: BodyTemperatureArrayObject())
                 .tabItem{
                     Image(systemName: "waveform.path.ecg")
-                    Text("Graph")
+                    Text("List")
                 }
+                .tag(1)
             ProfileView()
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
                     Text("Setting")
                 }
+                .tag(2)
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
     }
