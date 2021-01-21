@@ -1,8 +1,8 @@
 //
-//  CALayer.swift
+//  CALayerView.swift
 //  RecordTemp
 //
-//  Created by 神村亮佑 on 2021/01/19.
+//  Created by 神村亮佑 on 2021/01/21.
 //
 
 import SwiftUI

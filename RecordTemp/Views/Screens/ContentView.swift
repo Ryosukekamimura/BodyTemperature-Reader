@@ -17,7 +17,7 @@ struct ContentView: View {
             
             HomeView(tabViewSelection: $tabViewSelection)
                 .tabItem{
-                    Image(systemName: "camera.fill")
+                    Image(systemName: "thermometer")
                     Text("Record")
                 }
                 .tag(0)
