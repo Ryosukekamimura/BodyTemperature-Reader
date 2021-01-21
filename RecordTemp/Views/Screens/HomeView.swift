@@ -63,7 +63,7 @@ struct HomeView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarTitle(Text("体温計リーダー"))
+                .navigationBarTitle(Text("体温計きろく"))
                 .navigationBarItems(trailing: Button(action: {
                     // MARK: ADD BUTTON
                     if avFoundationVM.image != nil{
