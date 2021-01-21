@@ -12,6 +12,6 @@ struct BodyTemperatureModel: Identifiable, Hashable {
     var id = UUID()
     var image: UIImage
     var bodyTemperature: String
-    var date: Date
+    var date: String
 }
 

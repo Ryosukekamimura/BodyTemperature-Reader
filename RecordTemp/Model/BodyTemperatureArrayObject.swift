@@ -13,9 +13,9 @@ class BodyTemperatureArrayObject: ObservableObject {
     
     init(){
         print("FETCH FROM DATABASE HERE")
-        let bodyTmp1 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.4", date: Date())
-        let bodyTmp2 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.7", date: Date())
-        let bodyTmp3 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.9", date: Date())
+        let bodyTmp1 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.4", date: "2020-1-21 13:37")
+        let bodyTmp2 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.7", date: "2020-1-21 13:37")
+        let bodyTmp3 = BodyTemperatureModel(image: UIImage(named: "logo")!, bodyTemperature: "36.9", date: "2020-1-21 13:37")
         
         self.bodyTemperatureArray.append(bodyTmp1)
         self.bodyTemperatureArray.append(bodyTmp2)
@@ -24,5 +24,6 @@ class BodyTemperatureArrayObject: ObservableObject {
     
     init(bodyTemperatureModel: BodyTemperatureModel){
         self.bodyTemperatureArray.append(bodyTemperatureModel)
+        print(bodyTemperatureArray)
     }
 }
