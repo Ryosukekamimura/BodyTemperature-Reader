@@ -1,5 +1,5 @@
 //
-//  MeasurementView.swift
+//  HomeView.swift
 //  RecordTemp
 //
 //  Created by 神村亮佑 on 2021/01/19.
@@ -8,15 +8,12 @@
 import SwiftUI
 import UIKit
 
-struct MeasurementView: View {
+struct HomeView: View {
+    
     @ObservedObject private var avFoundationVM = AVFoundationVM()
-    @State private var tapCount: Int = 0
-    @State var bodyTemperatureSelection: String = "36.6"
-    @State var isHealthCareSuccessAnimation: Bool = true
-    
-    @State var bodyTemperature: Double?
-    
-    
+    @State var selectedBodyTemperature: String = "36.5"
+    @State var selectedIntPart: String = "36."
+    @State var selectedDecimalPart: String = "5"
     
     var body: some View {
         NavigationView{
@@ -24,7 +21,6 @@ struct MeasurementView: View {
                 ZStack {
                     // camera View
                     CALayerView(caLayer: avFoundationVM.previewLayer)
-                        .offset(x: 0, y: -100)
                         .onTapGesture {
                             if avFoundationVM.image != nil {
                                 // Take Picture Second Time
@@ -45,14 +41,8 @@ struct MeasurementView: View {
                                     .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
                                     .border(Color.white, width: 5)
                                     .background(Color.white)
-                                    .offset(x: 0, y: -40)
                                     .onAppear(perform: {
                                         performVision(uiImage: avFoundationVM.image!)
-                                        DispatchQueue.main.asyncAfter(deadline: .now()+4) {
-                                            if let bodyTemperature = bodyTemperature{
-                                                bodyTemperatureSelection = String(bodyTemperature)
-                                            }
-                                        }
                                     })
                                 Spacer()
                             }
@@ -61,9 +51,10 @@ struct MeasurementView: View {
                 }
                 HStack{
                     Spacer()
-                    TemperaturePicker(bodyTemperatureSelection: $bodyTemperatureSelection)
+                    BodyTemperaturePickerView(selectedBodyTemperature: $selectedBodyTemperature, intPartSelection: $selectedIntPart, decimalPartSelection: $selectedDecimalPart)
                     Spacer()
                 }
+                .padding()
                 
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -72,8 +63,7 @@ struct MeasurementView: View {
                 // MARK: ADD BUTTON
             }, label: {
                 Image(systemName: "plus.square")
-                    .font(.title)
-                    
+                    .font(.title3)    
             }))
             .onAppear {
                 self.avFoundationVM.startSession()
@@ -91,8 +81,10 @@ struct MeasurementView: View {
             print("recognized Strings -> \(recognizedStrings)")
             // Format Result Strings
             VisionFormatter.instance.recognizedTextFormatter(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
-                self.bodyTemperature = returnedBodyTemperature
-                print("bodyTemperature -> \(bodyTemperature)")
+                selectedBodyTemperature = String(returnedBodyTemperature)
+                let intPartAndDecimalPart = selectedBodyTemperature.split(separator: ".")
+                selectedIntPart = String(intPartAndDecimalPart[0]) + "."
+                selectedDecimalPart = String(intPartAndDecimalPart[1])
             }
         }
     }
@@ -101,7 +93,7 @@ struct MeasurementView: View {
 
 
 
-struct MeasurementView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()

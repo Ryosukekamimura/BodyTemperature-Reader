@@ -78,7 +78,7 @@ struct VisionFormatter {
         if resultBodyTemperatures.count == 1{
             handler(resultBodyTemperatures[0])
         }else if resultBodyTemperatures.count == 0{
-            print("WARNING 1つも認識できませんでした")
+            print("WARNING 1つも認識できませんでした、default値 (36.5)")
             handler(Double(36.5))
         }
         

@@ -9,52 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var isDisplayCameraView: Bool = true
-    @State var imageSelected: UIImage = UIImage(named: "logo")!
-    @State var bodyTemperature: Double?
-    
     @State private var isShowTutorialVIew: Bool = false
     
     var body: some View {
         TabView{
-            MeasurementView()
+            HomeView()
                 .tabItem{
                     Image(systemName: "camera.fill")
                     Text("Record")
                 }
-            Text("グラフ")
+            ListView()
                 .tabItem{
                     Image(systemName: "waveform.path.ecg")
                     Text("Graph")
                 }
-            AccountView()
+            ProfileView()
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
                     Text("Setting")
                 }
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
-        
-        
-        
-        
-        
-        
-//        if isDisplayCameraView {
-//            // Display Camera View
-//            ImageCaptureView(imageSelected: $imageSelected, isDisplayCameraView: $isDisplayCameraView, bodyTemperature: $bodyTemperature)
-//                .onAppear {
-//                    firstVisitStep()
-//                }
-//                .fullScreenCover(isPresented: $isShowTutorialVIew, content: {
-//                    TutorialView()
-//                })
-//        }else{
-//            // Display Result View
-//            ResultView(imageSelected: $imageSelected, bodyTemperature: $bodyTemperature, isDisplayCameraView: $isDisplayCameraView)
-//        }
-        
-        
     }
     // MARK: PRIVATE FUNCTIONS
     private func firstVisitStep(){
