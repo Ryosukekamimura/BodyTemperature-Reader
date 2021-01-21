@@ -15,30 +15,91 @@ struct ProfileView: View {
     var body: some View {
         NavigationView{
             ScrollView{
+                
+                // MARK: APPLICATION
                 GroupBox{
                     VStack{
-                        SettingRowView(title: "Application", imageName: "iphone")
+                        SettingRowView(title: "Application".uppercased(), imageName: "iphone")
                         Divider()
                         //MARK: ヘルスケアに接続する
                         HStack{
                             Toggle(isOn: $isConnectHealthCare, label: {
-                                HStack{
+                                HStack(alignment:.center, spacing: 10){
                                     Image(systemName: "heart.text.square")
                                         .font(.title)
                                     Text("ヘルスケアと接続する")
                                 }
                             })
+                            .padding()
                         }
                         //MARK: 自動認識をオフにする
                         HStack{
                             Toggle(isOn: $isPerformVision, label: {
-                                HStack{
+                                HStack(alignment: .center, spacing: 10){
                                     Image(systemName: "eyes")
                                         .font(.title)
                                     Text("自動認識する")
                                 }
                             })
+                            .padding()
                         }
+                    }
+                }
+                .padding()
+                
+                // MARK: CONTACT US
+                GroupBox{
+                    VStack{
+                        SettingRowView(title: "Contact us".uppercased(), imageName: "paperplane.circle")
+                        Divider()
+                        // MARK: お問い合わせ
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "envelope.circle")
+                                .font(.title)
+                            Text("お問い合わせ")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: お問い合わせの実装
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
+                        
+                        // MARK: 規約
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "doc.plaintext")
+                                .font(.title)
+                            Text("規約")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: 規約の実装
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
+                        
+                        // MARK: プライバシーポリシー
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "person.crop.square.fill.and.at.rectangle")
+                                .font(.title)
+                            Text("プライバシーポリシー")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: プライバシーポリシーの実装
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
+                        
                     }
                 }
                 .padding()

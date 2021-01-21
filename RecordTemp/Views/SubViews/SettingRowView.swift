@@ -18,6 +18,7 @@ struct SettingRowView: View {
                 .bold()
             Spacer()
             Image(systemName: imageName)
+                .font(.title)
         }
     }
 }
