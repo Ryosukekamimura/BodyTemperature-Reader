@@ -16,72 +16,80 @@ struct HomeView: View {
     @State var selectedIntPart: String = "36."
     @State var selectedDecimalPart: String = "5"
     
+    @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+    
     var body: some View {
-        NavigationView{
-            VStack{
-                ZStack {
-                    // camera View
-                    CALayerView(caLayer: avFoundationVM.previewLayer)
-                        .onTapGesture {
-                            if avFoundationVM.image != nil {
-                                // Take Picture Second Time
-                                avFoundationVM.image = nil
-                                avFoundationVM.takePicture()
-                            }else{
-                                // Take Picture First Time
-                                avFoundationVM.takePicture()
+        GeometryReader{ geometry in
+            NavigationView{
+                VStack(alignment: .center, spacing: 50){
+                    ZStack {
+                        // camera View
+                        CALayerView(caLayer: avFoundationVM.previewLayer)
+                            .offset(x: 0, y: -UIScreen.main.bounds.height + geometry.size.height)
+                            .onTapGesture {
+                                if avFoundationVM.image != nil {
+                                    // Take Picture Second Time
+                                    avFoundationVM.image = nil
+                                    avFoundationVM.takePicture()
+                                }else{
+                                    // Take Picture First Time
+                                    avFoundationVM.takePicture()
+                                }
+                                
                             }
-                            
-                        }
-                    if avFoundationVM.image != nil {
-                        VStack{
-                            Spacer()
-                            HStack{
-                                Image(uiImage: avFoundationVM.image!)
-                                    .resizable()
-                                    .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
-                                    .border(Color.white, width: 5)
-                                    .background(Color.white)
-                                    .onAppear(perform: {
-                                        performVision(uiImage: avFoundationVM.image!)
-                                    })
+                        if avFoundationVM.image != nil {
+                            VStack{
                                 Spacer()
+                                HStack{
+                                    Image(uiImage: avFoundationVM.image!)
+                                        .resizable()
+                                        .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
+                                        .border(Color.white, width: 5)
+                                        .background(Color.white)
+                                        .offset(x: 0, y: -UIScreen.main.bounds.height + geometry.size.height - 5) // -5 is boarderHeight
+                                        .onAppear(perform: {
+                                            performVision(uiImage: avFoundationVM.image!)
+                                        })
+                                    Spacer()
+                                }
                             }
                         }
                     }
+                    HStack(alignment: .center){
+                        Spacer()
+                        BodyTemperaturePickerView(selectedBodyTemperature: $selectedBodyTemperature, intPartSelection: $selectedIntPart, decimalPartSelection: $selectedDecimalPart)
+                            .offset(x: 0, y: -UIScreen.main.bounds.height + geometry.size.height)
+                        Spacer()
+                    }
                 }
-                HStack{
-                    Spacer()
-                    BodyTemperaturePickerView(selectedBodyTemperature: $selectedBodyTemperature, intPartSelection: $selectedIntPart, decimalPartSelection: $selectedDecimalPart)
-                    Spacer()
-                }
-                .padding()
-                
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(Text("体温計リーダー"))
-            .navigationBarItems(trailing: Button(action: {
-                // MARK: ADD BUTTON
-                if avFoundationVM.image != nil{
-                    let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
-                    let bodyTmpObject = BodyTemperatureModel(image: avFoundationVM.image!, bodyTemperature: bodyTemperature, date: "2020-1-21 13:46")
-                    let tmps = BodyTemperatureArrayObject(bodyTemperatureModel: bodyTmpObject)
-                    print(tmps)
-                    tabViewSelection = 1
-                }
-                
-            }, label: {
-                Image(systemName: "plus.square")
-                    .font(.title3)    
-            }))
-            .onAppear {
-                self.avFoundationVM.startSession()
-            }
-            .onDisappear {
-                self.avFoundationVM.endSession()
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitle(Text("体温計きろく"))
+                .navigationBarItems(trailing: Button(action: {
+                    // MARK: ADD BUTTON
+                    if avFoundationVM.image != nil{
+                        let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
+                        bodyTmpStore.bodyTemperature = bodyTemperature
+                        print("Add Data -> \(bodyTemperature)")
+                        bodyTmpStore.addData()
+                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                            tabViewSelection = 1
+                        }
+                    }
+                    
+                }, label: {
+                    Image(systemName: "plus.square")
+                        .font(.title3)
+                }))
             }
         }
         
+        .onAppear {
+            self.avFoundationVM.startSession()
+        }
+        .onDisappear {
+            self.avFoundationVM.endSession()
+            bodyTmpStore.deInitData()
+        }
     }
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){

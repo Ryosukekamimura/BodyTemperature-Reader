@@ -23,33 +23,33 @@ struct BodyTemperaturePickerView: View {
             Picker(selection: $intPartSelection, label: Text(""), content: {
                 ForEach(intPartReference, id:\.self){ tmp in
                     Text("\(tmp)")
-                        .font(.body)
+                        .font(.title)
                         .foregroundColor(.black)
                         .fontWeight(.regular)
                 }
             })
             .pickerStyle(WheelPickerStyle())
             .labelsHidden()
-            .frame(width: 20, height: 50)
-            .padding(.all, 20)
+            .frame(width: 100, height: 200)
+            .clipped()
             
             //MARK: DECIMAL PART
             Picker(selection: $decimalPartSelection, label: Text(""), content: {
                 ForEach(decimalPartReference, id:\.self){ tmp in
                     Text("\(tmp)")
-                        .font(.body)
+                        .font(.title)
                         .foregroundColor(.black)
                         .fontWeight(.regular)
                 }
             })
             .pickerStyle(WheelPickerStyle())
             .labelsHidden()
-            .frame(width: 30, height: 50)
-            .padding(.all, 20)
+            .frame(width: 100, height: 150)
+            .clipped()
         }
-        .padding()
-        .frame(width: 150, height: 150)
+        .frame(width: 200, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
+    
 }
 
 struct BodyTemperaturePickerView_Previews: PreviewProvider {

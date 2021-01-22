@@ -31,7 +31,7 @@ struct HealthCareRegistrationButton: View {
             }
         }, label: {
             HStack(alignment: .center, spacing: 20){
-                HealthCareIconView()
+                
                 Text("ヘルスケアに登録する")
                     .font(.title2)
                     .foregroundColor(Color.pink)

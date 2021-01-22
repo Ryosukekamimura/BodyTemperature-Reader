@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9206319D25B99B2600217D10 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9206319C25B99B2600217D10 /* Realm */; };
+		9206319F25B99B2600217D10 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9206319E25B99B2600217D10 /* RealmSwift */; };
+		920631A925B99C5200217D10 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920631A825B99C5200217D10 /* Sample.swift */; };
 		9241866025B68F7C006384D2 /* AVFoundationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241865F25B68F7C006384D2 /* AVFoundationHelper.swift */; };
-		9241866525B68FA9006384D2 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241866425B68FA9006384D2 /* CALayer.swift */; };
 		9241866D25B6A77E006384D2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241866C25B6A77E006384D2 /* ProfileView.swift */; };
 		9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */; };
 		9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA3025A68F8E009A0C7C /* ContentView.swift */; };
@@ -16,24 +18,19 @@
 		9251FA3625A68F91009A0C7C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9251FA3525A68F91009A0C7C /* Preview Assets.xcassets */; };
 		9251FA4125A68F92009A0C7C /* RecordTempTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4025A68F92009A0C7C /* RecordTempTests.swift */; };
 		9251FA4C25A68F92009A0C7C /* RecordTempUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */; };
-		9294827125B1408600713E4A /* FailureAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294827025B1408600713E4A /* FailureAnimation.swift */; };
 		92977B2625B9148F002F01FD /* BodyTemperaturePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92977B2525B9148F002F01FD /* BodyTemperaturePickerView.swift */; };
-		92977B3525B92F62002F01FD /* BodyTemperatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92977B3425B92F62002F01FD /* BodyTemperatureModel.swift */; };
-		92977B4025B930C7002F01FD /* BodyTemperatureArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92977B3F25B930C7002F01FD /* BodyTemperatureArrayObject.swift */; };
 		92977B4825B9442D002F01FD /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92977B4725B9442D002F01FD /* SettingRowView.swift */; };
-		929D38F425B85090003B1B77 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D38F325B85090003B1B77 /* ListView.swift */; };
+		92977B6825B97787002F01FD /* CALayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92977B6725B97787002F01FD /* CALayerView.swift */; };
+		929D38F425B85090003B1B77 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D38F325B85090003B1B77 /* LogView.swift */; };
 		92A00EF325B647CB00452BF5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A00EF225B647CB00452BF5 /* HomeView.swift */; };
-		92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72E225A94577000F268A /* HealthCareIconView.swift */; };
+		92A6080F25BA64A300827651 /* BodyTmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6080E25BA64A300827651 /* BodyTmp.swift */; };
+		92A6081825BA656B00827651 /* BodyTmpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6081725BA656B00827651 /* BodyTmpStore.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
-		92B31B2E25B10B3E0002B366 /* TemperaturePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */; };
 		92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */; };
-		92B31B4225B112700002B366 /* SuccessAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B4125B112700002B366 /* SuccessAnimation.swift */; };
 		92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */; };
 		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
-		92D8607F25B146B9002763C4 /* HealthCareSuccessAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8607E25B146B9002763C4 /* HealthCareSuccessAnimation.swift */; };
-		92D9257525B26A4600CF5635 /* DisplayStatusAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */; };
 		92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */; };
 		92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DB125B3D68C00DC4925 /* TutorialView.swift */; };
 		92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED3AA125A70977008381B5 /* VisionHelper.swift */; };
@@ -57,8 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		920631A825B99C5200217D10 /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		9241865F25B68F7C006384D2 /* AVFoundationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationHelper.swift; sourceTree = "<group>"; };
-		9241866425B68FA9006384D2 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		9241866C25B6A77E006384D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9251FA2B25A68F8E009A0C7C /* RecordTemp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordTemp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempApp.swift; sourceTree = "<group>"; };
@@ -72,25 +69,20 @@
 		9251FA4725A68F92009A0C7C /* RecordTempUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecordTempUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9251FA4B25A68F92009A0C7C /* RecordTempUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTempUITests.swift; sourceTree = "<group>"; };
 		9251FA4D25A68F92009A0C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9294827025B1408600713E4A /* FailureAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureAnimation.swift; sourceTree = "<group>"; };
 		92977B2525B9148F002F01FD /* BodyTemperaturePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTemperaturePickerView.swift; sourceTree = "<group>"; };
-		92977B3425B92F62002F01FD /* BodyTemperatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTemperatureModel.swift; sourceTree = "<group>"; };
-		92977B3F25B930C7002F01FD /* BodyTemperatureArrayObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTemperatureArrayObject.swift; sourceTree = "<group>"; };
 		92977B4725B9442D002F01FD /* SettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
-		929D38F325B85090003B1B77 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		92977B6725B97787002F01FD /* CALayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerView.swift; sourceTree = "<group>"; };
+		929D38F325B85090003B1B77 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		92A00EF225B647CB00452BF5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		92AB72E225A94577000F268A /* HealthCareIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareIconView.swift; sourceTree = "<group>"; };
+		92A6080E25BA64A300827651 /* BodyTmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTmp.swift; sourceTree = "<group>"; };
+		92A6081725BA656B00827651 /* BodyTmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTmpStore.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
-		92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePicker.swift; sourceTree = "<group>"; };
 		92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareRegistrationButton.swift; sourceTree = "<group>"; };
-		92B31B4125B112700002B366 /* SuccessAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAnimation.swift; sourceTree = "<group>"; };
 		92BE0F6C25AD9EF10039F606 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
 		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
-		92D8607E25B146B9002763C4 /* HealthCareSuccessAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareSuccessAnimation.swift; sourceTree = "<group>"; };
-		92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStatusAnimation.swift; sourceTree = "<group>"; };
 		92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct&Enum.swift"; sourceTree = "<group>"; };
 		92E45DB125B3D68C00DC4925 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		92ED3AA125A70977008381B5 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
@@ -101,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9206319F25B99B2600217D10 /* RealmSwift in Frameworks */,
+				9206319D25B99B2600217D10 /* Realm in Frameworks */,
 				92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +148,7 @@
 		9251FA2D25A68F8E009A0C7C /* RecordTemp */ = {
 			isa = PBXGroup;
 			children = (
+				92A6081625BA655900827651 /* Service */,
 				92977B3325B92F48002F01FD /* Model */,
 				92BE0F5D25AD97FB0039F606 /* Utilities */,
 				92AB72EA25A94755000F268A /* Extensions */,
@@ -198,7 +193,6 @@
 			children = (
 				9251FA6925A69A6B009A0C7C /* Screens */,
 				9251FA6525A69A5C009A0C7C /* SubViews */,
-				92B31B3225B10D4F0002B366 /* ComponentView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,9 +203,8 @@
 				92E45DB125B3D68C00DC4925 /* TutorialView.swift */,
 				92977B2525B9148F002F01FD /* BodyTemperaturePickerView.swift */,
 				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
-				92D9257425B26A4600CF5635 /* DisplayStatusAnimation.swift */,
-				9241866425B68FA9006384D2 /* CALayer.swift */,
 				92977B4725B9442D002F01FD /* SettingRowView.swift */,
+				92977B6725B97787002F01FD /* CALayerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -222,8 +215,9 @@
 				9251FA2E25A68F8E009A0C7C /* RecordTempApp.swift */,
 				9251FA3025A68F8E009A0C7C /* ContentView.swift */,
 				92A00EF225B647CB00452BF5 /* HomeView.swift */,
-				929D38F325B85090003B1B77 /* ListView.swift */,
+				929D38F325B85090003B1B77 /* LogView.swift */,
 				9241866C25B6A77E006384D2 /* ProfileView.swift */,
+				920631A825B99C5200217D10 /* Sample.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -231,10 +225,17 @@
 		92977B3325B92F48002F01FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				92977B3425B92F62002F01FD /* BodyTemperatureModel.swift */,
-				92977B3F25B930C7002F01FD /* BodyTemperatureArrayObject.swift */,
+				92A6080E25BA64A300827651 /* BodyTmp.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		92A6081625BA655900827651 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				92A6081725BA656B00827651 /* BodyTmpStore.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		92AB72EA25A94755000F268A /* Extensions */ = {
@@ -252,18 +253,6 @@
 				92B2A52225A9722900F1CE66 /* HealthKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		92B31B3225B10D4F0002B366 /* ComponentView */ = {
-			isa = PBXGroup;
-			children = (
-				92B31B2D25B10B3E0002B366 /* TemperaturePicker.swift */,
-				92AB72E225A94577000F268A /* HealthCareIconView.swift */,
-				92B31B4125B112700002B366 /* SuccessAnimation.swift */,
-				9294827025B1408600713E4A /* FailureAnimation.swift */,
-				92D8607E25B146B9002763C4 /* HealthCareSuccessAnimation.swift */,
-			);
-			path = ComponentView;
 			sourceTree = "<group>";
 		};
 		92BE0F5D25AD97FB0039F606 /* Utilities */ = {
@@ -302,6 +291,8 @@
 			);
 			name = RecordTemp;
 			packageProductDependencies = (
+				9206319C25B99B2600217D10 /* Realm */,
+				9206319E25B99B2600217D10 /* RealmSwift */,
 			);
 			productName = RecordTemp;
 			productReference = 9251FA2B25A68F8E009A0C7C /* RecordTemp.app */;
@@ -375,6 +366,7 @@
 			);
 			mainGroup = 9251FA2225A68F8E009A0C7C;
 			packageReferences = (
+				9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 9251FA2C25A68F8E009A0C7C /* Products */;
 			projectDirPath = "";
@@ -418,31 +410,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92AB72E325A94577000F268A /* HealthCareIconView.swift in Sources */,
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
-				92B31B2E25B10B3E0002B366 /* TemperaturePicker.swift in Sources */,
 				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				92A00EF325B647CB00452BF5 /* HomeView.swift in Sources */,
-				92D8607F25B146B9002763C4 /* HealthCareSuccessAnimation.swift in Sources */,
-				9241866525B68FA9006384D2 /* CALayer.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92BE0F6D25AD9EF10039F606 /* URLSchemeHelper.swift in Sources */,
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
-				92977B4025B930C7002F01FD /* BodyTemperatureArrayObject.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92977B2625B9148F002F01FD /* BodyTemperaturePickerView.swift in Sources */,
-				92D9257525B26A4600CF5635 /* DisplayStatusAnimation.swift in Sources */,
-				929D38F425B85090003B1B77 /* ListView.swift in Sources */,
-				92B31B4225B112700002B366 /* SuccessAnimation.swift in Sources */,
+				929D38F425B85090003B1B77 /* LogView.swift in Sources */,
 				92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */,
 				9241866025B68F7C006384D2 /* AVFoundationHelper.swift in Sources */,
 				9241866D25B6A77E006384D2 /* ProfileView.swift in Sources */,
+				92977B6825B97787002F01FD /* CALayerView.swift in Sources */,
 				92977B4825B9442D002F01FD /* SettingRowView.swift in Sources */,
 				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */,
+				92A6081825BA656B00827651 /* BodyTmpStore.swift in Sources */,
 				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
-				92977B3525B92F62002F01FD /* BodyTemperatureModel.swift in Sources */,
-				9294827125B1408600713E4A /* FailureAnimation.swift in Sources */,
+				920631A925B99C5200217D10 /* Sample.swift in Sources */,
+				92A6080F25BA64A300827651 /* BodyTmp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +753,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9206319C25B99B2600217D10 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		9206319E25B99B2600217D10 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9251FA2325A68F8E009A0C7C /* Project object */;
 }

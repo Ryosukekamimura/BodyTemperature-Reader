@@ -6,25 +6,33 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ContentView: View {
     
+    @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+
     @State private var isShowTutorialVIew: Bool = false
     @State var tabViewSelection: Int = 0
+    
     
     var body: some View {
         TabView(selection: $tabViewSelection){
             
             HomeView(tabViewSelection: $tabViewSelection)
+                .onDisappear(perform: {
+                    bodyTmpStore.deInitData()
+                })
                 .tabItem{
-                    Image(systemName: "camera.fill")
+                    Image(systemName: "thermometer")
                     Text("Record")
                 }
                 .tag(0)
-            ListView(tmps: BodyTemperatureArrayObject())
+            LogView()
+                .environmentObject(bodyTmpStore)
                 .tabItem{
                     Image(systemName: "waveform.path.ecg")
-                    Text("List")
+                    Text("Log")
                 }
                 .tag(1)
             ProfileView()
@@ -35,7 +43,10 @@ struct ContentView: View {
                 .tag(2)
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
+ 
     }
+
+    
     // MARK: PRIVATE FUNCTIONS
     private func firstVisitStep(){
         let visit = UserDefaults.standard.bool(forKey: CurrentUserDefault.isFirstVisit)
@@ -51,6 +62,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(bodyTmpStore: BodyTmpStore())
     }
 }
