@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct RecordTempApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(bodyTmpStore: BodyTmpStore())
         }
     }
 }

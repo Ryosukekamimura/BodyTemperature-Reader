@@ -16,7 +16,7 @@ struct HomeView: View {
     @State var selectedIntPart: String = "36."
     @State var selectedDecimalPart: String = "5"
     
-    
+    @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
     
     var body: some View {
         GeometryReader{ geometry in
@@ -68,23 +68,27 @@ struct HomeView: View {
                     // MARK: ADD BUTTON
                     if avFoundationVM.image != nil{
                         let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
-                        let bodyTmpObject = BodyTemperatureModel(image: avFoundationVM.image!, bodyTemperature: bodyTemperature, date: "2020-1-21 13:46")
-                        let tmps = BodyTemperatureArrayObject(bodyTemperatureModel: bodyTmpObject)
-                        print(tmps)
-                        tabViewSelection = 1
+                        bodyTmpStore.bodyTemperature = bodyTemperature
+                        print("Add Data -> \(bodyTemperature)")
+                        bodyTmpStore.addData()
+                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                            tabViewSelection = 1
+                        }
                     }
                     
                 }, label: {
                     Image(systemName: "plus.square")
                         .font(.title3)
                 }))
-                .onAppear {
-                    self.avFoundationVM.startSession()
-                }
-                .onDisappear {
-                    self.avFoundationVM.endSession()
-                }
             }
+        }
+        
+        .onAppear {
+            self.avFoundationVM.startSession()
+        }
+        .onDisappear {
+            self.avFoundationVM.endSession()
+            bodyTmpStore.deInitData()
         }
     }
     //MARK: PRIVATE FUNCTIONS
