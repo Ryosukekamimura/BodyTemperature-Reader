@@ -53,7 +53,11 @@ struct HealthCareRegistrationButton: View {
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             DispatchQueue.main.async {
                 // open HealthKit Application
-                URLSchemeHelper.instance.openURL()
+                URLHelper.instance.openURL(urlString: "x-apple-health://") { (success) in
+                    if success {
+                        print("HealthCareのリンクを正常に開くことができました。")
+                    }
+                }
             }
         }
     }
