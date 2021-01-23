@@ -16,19 +16,22 @@ struct LogView: View {
                 List {
                    VStack {
                         ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
-                            VStack(alignment: .leading, spacing: 10, content: {
+                            HStack(alignment: .center, spacing: 20, content: {
                                 Text(bodyTmp.bodyTemperature)
-                                    .font(.caption)
-                                    .foregroundColor(.black)
+                                Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
                             })
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.gray)
+                            font(.title)
                             .padding(10)
-                            .background(Color.gray.opacity(0.15))
-                            .cornerRadius(10)
+                        }
+                        .onDelete { (index) in
+                            
                         }
                     }
+                
                     .padding()
                 }
+                
                 .listStyle(GroupedListStyle())
             }
             .onAppear(perform: {
@@ -39,6 +42,9 @@ struct LogView: View {
         }
         
     }
+    
+
+    
 }
 
 struct LogView_Previews: PreviewProvider {

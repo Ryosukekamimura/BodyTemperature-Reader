@@ -105,6 +105,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: 規約の実装
+                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
+                                    if success {
+                                        print("規約を開くことができました")
+                                    }else {
+                                        print("規約を開くことができませんでした。")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -121,6 +128,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: プライバシーポリシーの実装
+                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
+                                    if success {
+                                        print("プライバシーポリシーを開くことができました。")
+                                    }else {
+                                        print("プライバシーポリシーを開くことができませんでした")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -147,6 +161,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: amazon ほしい物リスト
+                                URLHelper.instance.openURL(urlString: "https://www.amazon.jp/hz/wishlist/ls/2RW8GL0IYK5NE?ref_=wl_share") { (success) in
+                                    if success {
+                                        print("欲しいものリストを表示しました")
+                                    }else {
+                                        print("ほしい物リストを表示することができませんでした。")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -162,7 +183,7 @@ struct SettingView: View {
                             Text("開発者って誰？")
                             Spacer()
                             Button(action: {
-                                // MARK: TODO: amazon ほしい物リスト
+                                // MARK: TODO: 開発者プロフィール　facebook?
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)

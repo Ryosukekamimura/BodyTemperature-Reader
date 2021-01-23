@@ -25,6 +25,7 @@
 		92A6080F25BA64A300827651 /* BodyTmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6080E25BA64A300827651 /* BodyTmp.swift */; };
 		92A6081825BA656B00827651 /* BodyTmpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6081725BA656B00827651 /* BodyTmpStore.swift */; };
 		92A6084A25BBC09200827651 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6084925BBC09200827651 /* URLHelper.swift */; };
+		92A6085225BC10B400827651 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6085125BC10B400827651 /* DateHelper.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
 		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
@@ -75,6 +76,7 @@
 		92A6080E25BA64A300827651 /* BodyTmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTmp.swift; sourceTree = "<group>"; };
 		92A6081725BA656B00827651 /* BodyTmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTmpStore.swift; sourceTree = "<group>"; };
 		92A6084925BBC09200827651 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
+		92A6085125BC10B400827651 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -267,6 +269,7 @@
 				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
 				9241865F25B68F7C006384D2 /* AVFoundationHelper.swift */,
 				92A6084925BBC09200827651 /* URLHelper.swift */,
+				92A6085125BC10B400827651 /* DateHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				92A00EF325B647CB00452BF5 /* HomeView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92A6084A25BBC09200827651 /* URLHelper.swift in Sources */,
+				92A6085225BC10B400827651 /* DateHelper.swift in Sources */,
 				92AB72EF25A94765000F268A /* Extensions.swift in Sources */,
 				9251FA2F25A68F8E009A0C7C /* RecordTempApp.swift in Sources */,
 				92977B2625B9148F002F01FD /* BodyTemperaturePickerView.swift in Sources */,

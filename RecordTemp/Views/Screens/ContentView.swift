@@ -13,7 +13,7 @@ struct ContentView: View {
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
 
     @State private var isShowTutorialVIew: Bool = false
-    @State var tabViewSelection: Int = 0
+    @State var tabViewSelection: Int = 1
     
     
     var body: some View {
