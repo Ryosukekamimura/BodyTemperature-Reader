@@ -59,6 +59,17 @@ class BodyTmpStore: ObservableObject {
         // Updation
     }
     
+    // Delete Data
+    func deleteData(object: BodyTmp) {
+        guard let dbRef = try? Realm() else { return }
+        try? dbRef.write {
+            dbRef.delete(object)
+            fetchData()
+        }
+    }
+    
+    
+    
     func deInitData() {
         bodyTemperature = ""
     }

@@ -12,39 +12,43 @@ struct LogView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                List {
-                   VStack {
-                        ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
-                            HStack(alignment: .center, spacing: 20, content: {
-                                Text(bodyTmp.bodyTemperature)
-                                Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
-                            })
-                            .foregroundColor(.gray)
-                            font(.title)
-                            .padding(10)
-                        }
-                        .onDelete { (index) in
-                            
-                        }
-                    }
-                
+            ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
+                ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
+
+                    HStack(alignment: .center, spacing: 20, content: {
+                        Text(bodyTmp.bodyTemperature)
+                        Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
+                            .padding([.horizontal], 20)
+                    })
+                    .foregroundColor(.white)
+                    .font(.headline)
                     .padding()
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                    .contextMenu {
+                        Button(action: {
+                            //MARK: TODO - 編集ボタン
+                        }, label: {
+                            Text("編集")
+                        })
+                        Button(action: {
+                            //MARK: TODO - 削除ボタン
+                            bodyTmpStore.deleteData(object: bodyTmp)
+                        }, label: {
+                            Text("削除")
+                        })
+                    }
                 }
-                
-                .listStyle(GroupedListStyle())
+                .padding()
             }
+            .padding()
             .onAppear(perform: {
                 bodyTmpStore.fetchData()
             })
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(Text("リスト"))
+            .navigationBarTitle(Text("Log"))
         }
-        
     }
-    
-
-    
 }
 
 struct LogView_Previews: PreviewProvider {
