@@ -17,11 +17,9 @@ struct LogView: View {
                    VStack {
                         ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
                             VStack(alignment: .leading, spacing: 10, content: {
-                                Text("HE")
                                 Text(bodyTmpStore.bodyTemperature)
                                     .font(.caption)
-                                    .foregroundColor(.gray)
-                                Text("HE")
+                                    .foregroundColor(.black)
                             })
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(10)

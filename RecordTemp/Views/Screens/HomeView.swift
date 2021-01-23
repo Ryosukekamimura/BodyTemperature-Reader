@@ -70,10 +70,15 @@ struct HomeView: View {
                         let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
                         bodyTmpStore.bodyTemperature = bodyTemperature
                         print("Add Data -> \(bodyTemperature)")
+                        bodyTmpStore.id = UUID().hashValue
+                        bodyTmpStore.dateCreated = Date()
+                        print(bodyTmpStore.dateCreated)
                         bodyTmpStore.addData()
                         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
                             tabViewSelection = 1
                         }
+                    }else{
+                        print("写真を撮影してください")
                     }
                     
                 }, label: {

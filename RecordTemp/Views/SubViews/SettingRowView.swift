@@ -14,7 +14,7 @@ struct SettingRowView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 20){
             Text(title)
-                .font(.title3)
+                .font(.title)
                 .bold()
             Spacer()
             Image(systemName: imageName)

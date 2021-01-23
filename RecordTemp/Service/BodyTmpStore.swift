@@ -11,7 +11,7 @@ import SwiftUI
 class BodyTmpStore: ObservableObject {
     
     // Data
-    @Published var id: Int = 0
+    @Published var id: Int = UUID().hashValue
     @Published var bodyTemperature: String = ""
     @Published var dateCreated: Date = Date()
     
@@ -21,8 +21,6 @@ class BodyTmpStore: ObservableObject {
     init() {
         fetchData()
     }
-    
-    
     
     // Fetching Data
     func fetchData() {
@@ -63,6 +61,14 @@ class BodyTmpStore: ObservableObject {
     
     func deInitData() {
         bodyTemperature = ""
+    }
+    
+    // Delete All Object Data
+    func deleteAllObjectData() {
+        guard let dbRef = try? Realm() else { return }
+        try? dbRef.write {
+            dbRef.deleteAll()
+        }
     }
 }
 
