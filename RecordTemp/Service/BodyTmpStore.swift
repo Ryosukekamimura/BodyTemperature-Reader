@@ -32,7 +32,6 @@ class BodyTmpStore: ObservableObject {
         self.bodyTmps = results.compactMap({ (bodyTmp) -> BodyTmp? in
             return bodyTmp
         })
-        
     }
     
     // Adding New Data
@@ -54,11 +53,6 @@ class BodyTmpStore: ObservableObject {
         }
     }
     
-    // Setting And Clearing Data
-    func setUpInitialData() {
-        // Updation
-    }
-    
     // Delete Data
     func deleteData(object: BodyTmp) {
         guard let dbRef = try? Realm() else { return }
@@ -67,7 +61,6 @@ class BodyTmpStore: ObservableObject {
             fetchData()
         }
     }
-    
     
     
     func deInitData() {

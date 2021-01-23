@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct LogView: View {
-    @EnvironmentObject var bodyTmpStore: BodyTmpStore
+    @EnvironmentObject var  bodyTmpStore: BodyTmpStore
     
     var body: some View {
         NavigationView{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
-
+                    
                     HStack(alignment: .center, spacing: 20, content: {
-                        Text(bodyTmp.bodyTemperature)
-                        Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
-                            .padding([.horizontal], 20)
+                        VStack{
+                            Text(bodyTmp.bodyTemperature)
+                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
+                        }
+                        .padding([.horizontal], 20)
                     })
                     .foregroundColor(.white)
                     .font(.headline)

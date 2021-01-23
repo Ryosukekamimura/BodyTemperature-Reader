@@ -16,6 +16,10 @@ struct HomeView: View {
     @State var selectedIntPart: String = "36."
     @State var selectedDecimalPart: String = "5"
     
+    // DEBUG
+    @State var isSheet: Bool = false
+    @State var imageData: Data? = nil 
+    
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
     
     var body: some View {
@@ -35,7 +39,6 @@ struct HomeView: View {
                                     // Take Picture First Time
                                     avFoundationVM.takePicture()
                                 }
-                                
                             }
                         if avFoundationVM.image != nil {
                             VStack{
@@ -62,6 +65,7 @@ struct HomeView: View {
                         Spacer()
                     }
                 }
+
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle(Text("体温計きろく"))
                 .navigationBarItems(trailing: Button(action: {
@@ -70,13 +74,19 @@ struct HomeView: View {
                         let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
                         bodyTmpStore.bodyTemperature = bodyTemperature
                         print("Add Data -> \(bodyTemperature)")
+                        
                         bodyTmpStore.id = UUID().hashValue
                         bodyTmpStore.dateCreated = Date()
                         print(bodyTmpStore.dateCreated)
+                        
+                        imageData = avFoundationVM.image!.resized(toWidth: avFoundationVM.image!.size.width/10)!.jpegData(compressionQuality: 0.8)
+                        
                         bodyTmpStore.addData()
-                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                            tabViewSelection = 1
-                        }
+                        
+                        isSheet.toggle()
+//                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+//                            tabViewSelection = 1
+//                        }
                     }else{
                         print("写真を撮影してください")
                     }
@@ -86,7 +96,11 @@ struct HomeView: View {
                         .font(.title3)
                 }))
             }
+
         }
+        .sheet(isPresented: $isSheet, content: {
+            Image(uiImage: UIImage(data: imageData!)!)
+        })
         
         .onAppear {
             self.avFoundationVM.startSession()
@@ -96,6 +110,7 @@ struct HomeView: View {
             bodyTmpStore.deInitData()
         }
     }
+
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){
         // Recognied Text -> return [ Recognized Text ]

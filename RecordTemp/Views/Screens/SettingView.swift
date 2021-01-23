@@ -19,7 +19,6 @@ struct SettingView: View {
     var body: some View {
         NavigationView{
             ScrollView{
-                
                 // MARK: APPLICATION
                 GroupBox{
                     VStack{
@@ -57,6 +56,7 @@ struct SettingView: View {
                             Button(action: {
                                 // MARK: TODO: 端末内データの削除
                                 bodyTmpStore.deleteAllObjectData()
+                                print("全データを削除しました")
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -180,7 +180,7 @@ struct SettingView: View {
                         HStack(alignment: .center, spacing: 10){
                             Image(systemName: "person.crop.square")
                                 .font(.title)
-                            Text("開発者って誰？")
+                            Text("開発者のプロフィール")
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: 開発者プロフィール　facebook?
