@@ -35,7 +35,8 @@ struct ContentView: View {
                     Text("Log")
                 }
                 .tag(1)
-            ProfileView()
+            SettingView()
+                .environmentObject(bodyTmpStore)
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
                     Text("Setting")

@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  SettingView.swift
 //  RecordTemp
 //
 //  Created by 神村亮佑 on 2021/01/19.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct SettingView: View {
     
+    @EnvironmentObject var bodyTmpStore: BodyTmpStore
     @State private var isConnectHealthCare: Bool = true
     @State private var isPerformVision: Bool = true
     
@@ -19,7 +20,7 @@ struct ProfileView: View {
                 // MARK: APPLICATION
                 GroupBox{
                     VStack{
-                        SettingRowView(title: "Application".uppercased(), imageName: "iphone")
+                        SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                         Divider()
                         //MARK: ヘルスケアに接続する
                         HStack{
@@ -43,6 +44,23 @@ struct ProfileView: View {
                             })
                             .padding()
                         }
+                        
+                        //MARK: 端末内データを削除する
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "trash")
+                                .font(.title)
+                            Text("端末内データを削除する")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: 端末内データの削除
+                                bodyTmpStore.deleteAllObjectData()
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
                     }
                 }
                 .padding()
@@ -54,7 +72,7 @@ struct ProfileView: View {
                         Divider()
                         // MARK: お問い合わせ
                         HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "envelope.circle")
+                            Image(systemName: "envelope.fill")
                                 .font(.title)
                             Text("お問い合わせ")
                             Spacer()
@@ -103,6 +121,47 @@ struct ProfileView: View {
                     }
                 }
                 .padding()
+                
+                
+                // MARK: Supporting Developer
+                GroupBox{
+                    VStack{
+                        SettingRowView(title: "Supporting Developer".uppercased(), imageName: "gift.circle")
+                        Divider()
+                        // MARK: 開発者を支援する
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "suit.heart")
+                                .font(.title)
+                            Text("開発者を支援する")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: amazon ほしい物リスト
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
+                        
+                        // MARK: 開発者について
+                        HStack(alignment: .center, spacing: 10){
+                            Image(systemName: "person.crop.square")
+                                .font(.title)
+                            Text("開発者って誰？")
+                            Spacer()
+                            Button(action: {
+                                // MARK: TODO: amazon ほしい物リスト
+                            }, label: {
+                                Image(systemName: "arrow.forward")
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            })
+                        }
+                        .padding()
+                    }
+                }
+                .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle("Settings")
@@ -110,8 +169,8 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
+struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        SettingView()
     }
 }

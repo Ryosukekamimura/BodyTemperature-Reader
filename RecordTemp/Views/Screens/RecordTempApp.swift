@@ -12,7 +12,7 @@ struct RecordTempApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(bodyTmpStore: BodyTmpStore())
+            ContentView()
         }
     }
 }
