@@ -47,6 +47,7 @@ class BodyTmpStore: ObservableObject {
         // Writing Data
         try? dbRef.write {
             dbRef.add(bodyTmp)
+            print("Realmデータベースに追加することができました！")
             
             // Updating UI
             fetchData()
