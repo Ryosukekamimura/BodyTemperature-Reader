@@ -12,6 +12,7 @@ struct LogView: View {
     
     var body: some View {
         NavigationView{
+            VStack{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
                     
@@ -48,6 +49,8 @@ struct LogView: View {
                     }
                 }
                 .padding()
+            }
+                Spacer()
             }
             .padding()
             .onAppear(perform: {
