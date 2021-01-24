@@ -33,13 +33,7 @@ struct LogView: View {
                     .font(.headline)
                     .padding()
                     .background(Color.gray)
-                    .cornerRadius(10)
                     .contextMenu {
-                        Button(action: {
-                            //MARK: TODO - 編集ボタン
-                        }, label: {
-                            Text("編集")
-                        })
                         Button(action: {
                             //MARK: TODO - 削除ボタン
                             bodyTmpStore.deleteData(object: bodyTmp)

@@ -150,7 +150,7 @@ struct SettingView: View {
                 // MARK: Supporting Developer
                 GroupBox{
                     VStack{
-                        SettingRowView(title: "Supporting Developer".uppercased(), imageName: "gift.circle")
+                        SettingRowView(title: "Support Developer".uppercased(), imageName: "gift.circle")
                         Divider()
                         // MARK: 開発者を支援する
                         HStack(alignment: .center, spacing: 10){
