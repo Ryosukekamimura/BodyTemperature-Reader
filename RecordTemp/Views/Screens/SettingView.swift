@@ -11,11 +11,8 @@ struct SettingView: View {
     
     @EnvironmentObject var bodyTmpStore: BodyTmpStore
     
-    // MARK: TODO - ヘルスケアに接続するかどうかのToggleを設定
-    @State private var isConnectHealthCare: Bool = true
-    // MARK: TODO - 児童認識するかどうかのToggle設定
-    @State private var isPerformVision: Bool = true
-    
+    @Binding var isConnectHealthCare: Bool
+    @Binding var isRecognizedText: Bool
     
     // MARK: Alert
     @State private var alertDeleteAll: Bool = false
@@ -41,7 +38,7 @@ struct SettingView: View {
                         }
                         //MARK: 自動認識をオフにする
                         HStack{
-                            Toggle(isOn: $isPerformVision, label: {
+                            Toggle(isOn: $isRecognizedText, label: {
                                 HStack(alignment: .center, spacing: 10){
                                     Image(systemName: "eyes")
                                         .font(.title)
@@ -198,7 +195,11 @@ struct SettingView: View {
 }
 
 struct SettingView_Previews: PreviewProvider {
+    
+    @State static var isConnectHealthCare: Bool = true
+    @State static var isRecognizedText: Bool = true
+    
     static var previews: some View {
-        SettingView()
+        SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
     }
 }

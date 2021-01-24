@@ -11,16 +11,19 @@ import RealmSwift
 struct ContentView: View {
     
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
-
     @State private var isShowTutorialVIew: Bool = false
     @State var tabViewSelection: Int = 0
     
+    @State var isConnectHealthCare: Bool = true
+    @State var isRecognizedText: Bool = true
+    
     private let minDragTranslationForSwipe: CGFloat = 50
     private let sumTabs: Int = 3
+    
     var body: some View {
         TabView(selection: $tabViewSelection){
             
-            HomeView(tabViewSelection: $tabViewSelection)
+            HomeView(tabViewSelection: $tabViewSelection, isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .onDisappear(perform: {
                     bodyTmpStore.deInitData()
                 })
@@ -38,7 +41,7 @@ struct ContentView: View {
                 }
                 .tag(1)
                 .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
-            SettingView()
+            SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .environmentObject(bodyTmpStore)
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
@@ -48,9 +51,7 @@ struct ContentView: View {
                 .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
- 
     }
-
     
     // MARK: PRIVATE FUNCTIONS
     private func firstVisitStep(){
@@ -63,10 +64,6 @@ struct ContentView: View {
             UserDefaults.standard.set(true, forKey: CurrentUserDefault.isFirstVisit)
         }
     }
-    
-//    private func handleSwipe(translation: CGFloat) {
-//        print("handling swipe! horizontal translation was \(translation)")
-//    }
     
     private func handleSwipe(translation: CGFloat) {
         if translation > minDragTranslationForSwipe && tabViewSelection > 0 {

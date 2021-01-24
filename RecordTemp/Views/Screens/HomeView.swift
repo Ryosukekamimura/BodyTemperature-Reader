@@ -12,6 +12,10 @@ struct HomeView: View {
     
     @ObservedObject private var avFoundationVM = AVFoundationVM()
     @Binding var tabViewSelection: Int
+    @Binding var isConnectHealthCare: Bool
+    @Binding var isRecognizedText: Bool
+    
+    
     @State var selectedBodyTemperature: String = "36.5"
     @State var selectedIntPart: String = "36."
     @State var selectedDecimalPart: String = "5"
@@ -65,11 +69,11 @@ struct HomeView: View {
                         Spacer()
                     }
                 }
-
+                
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle(Text("体温計きろく"))
                 .navigationBarItems(trailing: Button(action: {
-                    // MARK: ADD BUTTON
+                    
                     if avFoundationVM.image != nil{
                         let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
                         bodyTmpStore.bodyTemperature = bodyTemperature
@@ -87,7 +91,25 @@ struct HomeView: View {
                                 print(bodyTmpStore.dateCreated)
                                 print(bodyTmpStore.id)
                                 bodyTmpStore.addData()
-
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                                    tabViewSelection = 1
+                                    if let bodyTemperatureValue = (Double(bodyTemperature)){
+                                        if isConnectHealthCare == true {
+                                            HealthHelper.instance.uploadBodyTemperature(bodyTmp: bodyTemperatureValue) { (success) in
+                                                if success {
+                                                    print("ヘルスケアにアップロードすることができました")
+                                                }else {
+                                                    print("ヘルスケアに接続できませんでした")
+                                                }
+                                            }
+                                        } else{
+                                            print("ヘルスケアに接続許可が降りていません")
+                                        }
+                                    }else{
+                                        print("ERROR: 体温をDouble値に変換できませんでした")
+                                    }
+                                }
                             }else {
                                 print("画像の保存に失敗しました。")
                                 bodyTmpStore.addData()
@@ -95,39 +117,24 @@ struct HomeView: View {
                                 isSheet.toggle()
                             }
                         }
-
-                        
-                        
-//                        imageData = avFoundationVM.image!.resized(toWidth: avFoundationVM.image!.size.width/10)!.jpegData(compressionQuality: 0.8)
-                        
-
-//                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-//                            tabViewSelection = 1
-//                        }
                     }else{
                         print("写真を撮影してください")
                     }
-                    
                 }, label: {
                     Image(systemName: "plus.square")
                         .font(.title3)
                 }))
             }
-
         }
-//        .sheet(isPresented: $isSheet, content: {
-//            Image(uiImage: UIImage(data: imageData!)!)
-//        })
-        
         .onAppear {
             self.avFoundationVM.startSession()
         }
         .onDisappear {
-            self.avFoundationVM.endSession()
+            //self.avFoundationVM.endSession()
             bodyTmpStore.deInitData()
         }
     }
-
+    
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){
         // Recognied Text -> return [ Recognized Text ]
@@ -147,9 +154,11 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     @State static var tabViewSelection: Int = 0
+    @State static var isBool = true
+    
     static var previews: some View {
         Group {
-            HomeView(tabViewSelection: $tabViewSelection)
+            HomeView(tabViewSelection: $tabViewSelection, isConnectHealthCare: $isBool, isRecognizedText: $isBool)
         }
     }
 }
