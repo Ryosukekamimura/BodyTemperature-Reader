@@ -12,17 +12,20 @@ struct LogView: View {
     
     var body: some View {
         NavigationView{
+            VStack{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
                     
                     HStack(alignment: .center, spacing: 20, content: {
-                        VStack{
-                            Image(uiImage: FileHelper.instance.getSavedImage(fileName: String(bodyTmp.id)))
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                            Text(String(bodyTmp.id))
-                            Text(bodyTmp.bodyTemperature)
-                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))   
+                        Image(uiImage: FileHelper.instance.getSavedImage(fileName: String(bodyTmp.id)))
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                            .cornerRadius(20)
+                        VStack(alignment: .center, spacing: 10){
+                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
+                                .font(.callout)
+                            Text("温度:\(bodyTmp.bodyTemperature)℃")
+                                .font(.headline)
                         }
                         .padding([.horizontal], 20)
                     })
@@ -46,6 +49,8 @@ struct LogView: View {
                     }
                 }
                 .padding()
+            }
+                Spacer()
             }
             .padding()
             .onAppear(perform: {

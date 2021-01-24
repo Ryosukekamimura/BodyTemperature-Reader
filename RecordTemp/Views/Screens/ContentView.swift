@@ -11,15 +11,19 @@ import RealmSwift
 struct ContentView: View {
     
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
-
     @State private var isShowTutorialVIew: Bool = false
     @State var tabViewSelection: Int = 0
     
+    @State var isConnectHealthCare: Bool = true
+    @State var isRecognizedText: Bool = true
+    
+    private let minDragTranslationForSwipe: CGFloat = 50
+    private let sumTabs: Int = 3
     
     var body: some View {
         TabView(selection: $tabViewSelection){
             
-            HomeView(tabViewSelection: $tabViewSelection)
+            HomeView(tabViewSelection: $tabViewSelection, isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .onDisappear(perform: {
                     bodyTmpStore.deInitData()
                 })
@@ -28,6 +32,7 @@ struct ContentView: View {
                     Text("Record")
                 }
                 .tag(0)
+                .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
             LogView()
                 .environmentObject(bodyTmpStore)
                 .tabItem{
@@ -35,18 +40,18 @@ struct ContentView: View {
                     Text("Log")
                 }
                 .tag(1)
-            SettingView()
+                .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
+            SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .environmentObject(bodyTmpStore)
                 .tabItem{
                     Image(systemName: "person.crop.circle.fill")
                     Text("Setting")
                 }
                 .tag(2)
+                .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
         }
         .accentColor(Color.MyThemeColor.officialOrangeColor)
- 
     }
-
     
     // MARK: PRIVATE FUNCTIONS
     private func firstVisitStep(){
@@ -57,6 +62,14 @@ struct ContentView: View {
             print("First access")
             isShowTutorialVIew.toggle()
             UserDefaults.standard.set(true, forKey: CurrentUserDefault.isFirstVisit)
+        }
+    }
+    
+    private func handleSwipe(translation: CGFloat) {
+        if translation > minDragTranslationForSwipe && tabViewSelection > 0 {
+            tabViewSelection -= 1
+        } else  if translation < -minDragTranslationForSwipe && tabViewSelection < sumTabs-1 {
+            tabViewSelection += 1
         }
     }
 }

@@ -11,23 +11,18 @@ struct SettingView: View {
     
     @EnvironmentObject var bodyTmpStore: BodyTmpStore
     
-    // MARK: TODO - ヘルスケアに接続するかどうかのToggleを設定
-    @State private var isConnectHealthCare: Bool = true
-    // MARK: TODO - 児童認識するかどうかのToggle設定
-    @State private var isPerformVision: Bool = true
+    @Binding var isConnectHealthCare: Bool
+    @Binding var isRecognizedText: Bool
+    
+    // MARK: Alert
+    @State private var alertDeleteAll: Bool = false
     
     var body: some View {
         NavigationView{
-            ScrollView{
+            ScrollView(.vertical, showsIndicators: false) {
                 // MARK: APPLICATION
                 GroupBox{
                     VStack{
-                        Image(uiImage: FileHelper.instance.getSavedImage(fileName: "-8929462766454640062"))
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                        
-                        
-                        
                         SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                         Divider()
                         //MARK: ヘルスケアに接続する
@@ -43,7 +38,7 @@ struct SettingView: View {
                         }
                         //MARK: 自動認識をオフにする
                         HStack{
-                            Toggle(isOn: $isPerformVision, label: {
+                            Toggle(isOn: $isRecognizedText, label: {
                                 HStack(alignment: .center, spacing: 10){
                                     Image(systemName: "eyes")
                                         .font(.title)
@@ -60,9 +55,7 @@ struct SettingView: View {
                             Text("端末内データを削除する")
                             Spacer()
                             Button(action: {
-                                // MARK: TODO: 端末内データの削除
-                                bodyTmpStore.deleteAllObjectData()
-                                print("全データを削除しました")
+                                alertDeleteAll.toggle()
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -148,7 +141,7 @@ struct SettingView: View {
                             })
                         }
                         .padding()
-
+                        
                     }
                 }
                 .padding()
@@ -181,22 +174,6 @@ struct SettingView: View {
                             })
                         }
                         .padding()
-                        
-                        // MARK: 開発者について
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "person.crop.square")
-                                .font(.title)
-                            Text("開発者のプロフィール")
-                            Spacer()
-                            Button(action: {
-                                // MARK: TODO: 開発者プロフィール　facebook?
-                            }, label: {
-                                Image(systemName: "arrow.forward")
-                                    .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
-                        .padding()
                     }
                 }
                 .padding()
@@ -204,11 +181,25 @@ struct SettingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle("Settings")
         }
+        .alert(isPresented: $alertDeleteAll, content: {
+            Alert(title: Text("本当に削除しますか？"), message: Text("この作業は取り消すことができません。"), primaryButton:.destructive(Text("削除"), action: {
+                // 削除するアクション
+                bodyTmpStore.deleteAllObjectData()
+                print("全データを削除しました")
+            }), secondaryButton: .default(Text("キャンセル"), action: {
+                // キャンセルするアクション
+                return
+            }))
+        })
     }
 }
 
 struct SettingView_Previews: PreviewProvider {
+    
+    @State static var isConnectHealthCare: Bool = true
+    @State static var isRecognizedText: Bool = true
+    
     static var previews: some View {
-        SettingView()
+        SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
     }
 }
