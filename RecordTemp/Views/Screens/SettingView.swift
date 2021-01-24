@@ -10,16 +10,24 @@ import SwiftUI
 struct SettingView: View {
     
     @EnvironmentObject var bodyTmpStore: BodyTmpStore
+    
+    // MARK: TODO - ヘルスケアに接続するかどうかのToggleを設定
     @State private var isConnectHealthCare: Bool = true
+    // MARK: TODO - 児童認識するかどうかのToggle設定
     @State private var isPerformVision: Bool = true
     
     var body: some View {
         NavigationView{
             ScrollView{
-                
                 // MARK: APPLICATION
                 GroupBox{
                     VStack{
+                        Image(uiImage: FileHelper.instance.getSavedImage(fileName: "-8929462766454640062"))
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        
+                        
+                        
                         SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                         Divider()
                         //MARK: ヘルスケアに接続する
@@ -54,6 +62,7 @@ struct SettingView: View {
                             Button(action: {
                                 // MARK: TODO: 端末内データの削除
                                 bodyTmpStore.deleteAllObjectData()
+                                print("全データを削除しました")
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -78,6 +87,14 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: お問い合わせの実装
+                                URLHelper.instance.openURL(urlString: "mailto:info.ryosuke.kamimura@gmail.com") { (success) in
+                                    if success {
+                                        print("お問い合わせリンクを正常に開きました。")
+                                    }else {
+                                        print("URL を正常に開くことができませんでした。")
+                                    }
+                                }
+                                
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -94,6 +111,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: 規約の実装
+                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
+                                    if success {
+                                        print("規約を開くことができました")
+                                    }else {
+                                        print("規約を開くことができませんでした。")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -110,6 +134,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: プライバシーポリシーの実装
+                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
+                                    if success {
+                                        print("プライバシーポリシーを開くことができました。")
+                                    }else {
+                                        print("プライバシーポリシーを開くことができませんでした")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -117,7 +148,7 @@ struct SettingView: View {
                             })
                         }
                         .padding()
-                        
+
                     }
                 }
                 .padding()
@@ -136,6 +167,13 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: amazon ほしい物リスト
+                                URLHelper.instance.openURL(urlString: "https://www.amazon.jp/hz/wishlist/ls/2RW8GL0IYK5NE?ref_=wl_share") { (success) in
+                                    if success {
+                                        print("欲しいものリストを表示しました")
+                                    }else {
+                                        print("ほしい物リストを表示することができませんでした。")
+                                    }
+                                }
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)
@@ -148,10 +186,10 @@ struct SettingView: View {
                         HStack(alignment: .center, spacing: 10){
                             Image(systemName: "person.crop.square")
                                 .font(.title)
-                            Text("開発者って誰？")
+                            Text("開発者のプロフィール")
                             Spacer()
                             Button(action: {
-                                // MARK: TODO: amazon ほしい物リスト
+                                // MARK: TODO: 開発者プロフィール　facebook?
                             }, label: {
                                 Image(systemName: "arrow.forward")
                                     .font(.title)

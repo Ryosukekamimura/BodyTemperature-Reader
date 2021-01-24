@@ -1,7 +1,7 @@
 //
 //  BodyTmpStore.swift
 //  RecordTemp
-//
+//  
 //  Created by 神村亮佑 on 2021/01/22.
 //
 
@@ -32,7 +32,6 @@ class BodyTmpStore: ObservableObject {
         self.bodyTmps = results.compactMap({ (bodyTmp) -> BodyTmp? in
             return bodyTmp
         })
-        
     }
     
     // Adding New Data
@@ -54,10 +53,15 @@ class BodyTmpStore: ObservableObject {
         }
     }
     
-    // Setting And Clearing Data
-    func setUpInitialData() {
-        // Updation
+    // Delete Data
+    func deleteData(object: BodyTmp) {
+        guard let dbRef = try? Realm() else { return }
+        try? dbRef.write {
+            dbRef.delete(object)
+            fetchData()
+        }
     }
+    
     
     func deInitData() {
         bodyTemperature = ""

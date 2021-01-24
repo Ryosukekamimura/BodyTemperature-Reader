@@ -8,36 +8,52 @@
 import SwiftUI
 
 struct LogView: View {
-    @EnvironmentObject var bodyTmpStore: BodyTmpStore
+    @EnvironmentObject var  bodyTmpStore: BodyTmpStore
     
     var body: some View {
         NavigationView{
-            VStack{
-                List {
-                   VStack {
-                        ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
-                            VStack(alignment: .leading, spacing: 10, content: {
-                                Text(bodyTmp.bodyTemperature)
-                                    .font(.caption)
-                                    .foregroundColor(.black)
-                            })
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(10)
-                            .background(Color.gray.opacity(0.15))
-                            .cornerRadius(10)
+            ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
+                ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
+                    
+                    HStack(alignment: .center, spacing: 20, content: {
+                        VStack{
+                            Image(uiImage: FileHelper.instance.getSavedImage(fileName: String(bodyTmp.id)))
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            Text(String(bodyTmp.id))
+                            Text(bodyTmp.bodyTemperature)
+                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))   
                         }
-                    }
+                        .padding([.horizontal], 20)
+                    })
+                    .foregroundColor(.white)
+                    .font(.headline)
                     .padding()
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                    .contextMenu {
+                        Button(action: {
+                            //MARK: TODO - 編集ボタン
+                        }, label: {
+                            Text("編集")
+                        })
+                        Button(action: {
+                            //MARK: TODO - 削除ボタン
+                            bodyTmpStore.deleteData(object: bodyTmp)
+                        }, label: {
+                            Text("削除")
+                        })
+                    }
                 }
-                .listStyle(GroupedListStyle())
+                .padding()
             }
+            .padding()
             .onAppear(perform: {
                 bodyTmpStore.fetchData()
             })
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(Text("リスト"))
+            .navigationBarTitle(Text("Log"))
         }
-        
     }
 }
 
