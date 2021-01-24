@@ -77,13 +77,30 @@ struct HomeView: View {
                         
                         bodyTmpStore.id = UUID().hashValue
                         bodyTmpStore.dateCreated = Date()
-                        print(bodyTmpStore.dateCreated)
                         
-                        imageData = avFoundationVM.image!.resized(toWidth: avFoundationVM.image!.size.width/10)!.jpegData(compressionQuality: 0.8)
+                        let fileName = String(bodyTmpStore.id)
+                        FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
+                            if success {
+                                
+                                print("画像の保存に成功しました。")
+                                
+                                print(bodyTmpStore.dateCreated)
+                                print(bodyTmpStore.id)
+                                bodyTmpStore.addData()
+
+                            }else {
+                                print("画像の保存に失敗しました。")
+                                bodyTmpStore.addData()
+                                
+                                isSheet.toggle()
+                            }
+                        }
+
                         
-                        bodyTmpStore.addData()
                         
-                        isSheet.toggle()
+//                        imageData = avFoundationVM.image!.resized(toWidth: avFoundationVM.image!.size.width/10)!.jpegData(compressionQuality: 0.8)
+                        
+
 //                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
 //                            tabViewSelection = 1
 //                        }
@@ -98,9 +115,9 @@ struct HomeView: View {
             }
 
         }
-        .sheet(isPresented: $isSheet, content: {
-            Image(uiImage: UIImage(data: imageData!)!)
-        })
+//        .sheet(isPresented: $isSheet, content: {
+//            Image(uiImage: UIImage(data: imageData!)!)
+//        })
         
         .onAppear {
             self.avFoundationVM.startSession()

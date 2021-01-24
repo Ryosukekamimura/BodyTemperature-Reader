@@ -22,6 +22,12 @@ struct SettingView: View {
                 // MARK: APPLICATION
                 GroupBox{
                     VStack{
+                        Image(uiImage: FileHelper.instance.getSavedImage(fileName: "-8929462766454640062"))
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        
+                        
+                        
                         SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                         Divider()
                         //MARK: ヘルスケアに接続する
@@ -142,7 +148,7 @@ struct SettingView: View {
                             })
                         }
                         .padding()
-                        
+
                     }
                 }
                 .padding()

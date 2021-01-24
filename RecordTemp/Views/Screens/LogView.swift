@@ -17,8 +17,12 @@ struct LogView: View {
                     
                     HStack(alignment: .center, spacing: 20, content: {
                         VStack{
+                            Image(uiImage: FileHelper.instance.getSavedImage(fileName: String(bodyTmp.id)))
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            Text(String(bodyTmp.id))
                             Text(bodyTmp.bodyTemperature)
-                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
+                            Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))   
                         }
                         .padding([.horizontal], 20)
                     })
