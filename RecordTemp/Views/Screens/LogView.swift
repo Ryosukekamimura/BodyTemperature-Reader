@@ -28,22 +28,22 @@ struct LogView: View {
                                 .font(.headline)
                         }
                         .padding([.horizontal], 20)
-                    })
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .padding()
-                    .background(Color.gray)
-                    .contextMenu {
-                        Button(action: {
-                            //MARK: TODO - 削除ボタン
-                            bodyTmpStore.deleteData(object: bodyTmp)
-                        }, label: {
-                            Text("削除")
                         })
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .padding()
+                        .background(Color.gray)
+                        .contextMenu {
+                            Button(action: {
+                                //MARK: TODO - 削除ボタン
+                                bodyTmpStore.deleteData(object: bodyTmp)
+                            }, label: {
+                                Text("削除")
+                            })
+                        }
                     }
+                    .padding()
                 }
-                .padding()
-            }
                 Spacer()
             }
             .padding()
