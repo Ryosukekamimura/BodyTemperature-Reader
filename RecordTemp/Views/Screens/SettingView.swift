@@ -31,7 +31,7 @@ struct SettingView: View {
                                 HStack(alignment:.center, spacing: 10){
                                     Image(systemName: "heart.text.square")
                                         .font(.title)
-                                    Text("ヘルスケアと接続する")
+                                    Text("ヘルスケアに連携する")
                                 }
                             })
                             .padding()
@@ -42,7 +42,7 @@ struct SettingView: View {
                                 HStack(alignment: .center, spacing: 10){
                                     Image(systemName: "eyes")
                                         .font(.title)
-                                    Text("自動認識する")
+                                    Text("自動認識機能")
                                 }
                             })
                             .padding()
@@ -96,28 +96,6 @@ struct SettingView: View {
                         }
                         .padding()
                         
-                        // MARK: 規約
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "doc.plaintext")
-                                .font(.title)
-                            Text("規約")
-                            Spacer()
-                            Button(action: {
-                                // MARK: TODO: 規約の実装
-                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
-                                    if success {
-                                        print("規約を開くことができました")
-                                    }else {
-                                        print("規約を開くことができませんでした。")
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "arrow.forward")
-                                    .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
-                        .padding()
                         
                         // MARK: プライバシーポリシー
                         HStack(alignment: .center, spacing: 10){
@@ -127,7 +105,7 @@ struct SettingView: View {
                             Spacer()
                             Button(action: {
                                 // MARK: TODO: プライバシーポリシーの実装
-                                URLHelper.instance.openURL(urlString: "https://ryosukekamimura.github.io/") { (success) in
+                                URLHelper.instance.openURL(urlString: "https://www.notion.so/afb19b1809f542d7ac5492c57849d290") { (success) in
                                     if success {
                                         print("プライバシーポリシーを開くことができました。")
                                     }else {
@@ -148,38 +126,38 @@ struct SettingView: View {
                 
                 
                 // MARK: Supporting Developer
-                GroupBox{
-                    VStack{
-                        SettingRowView(title: "Support Developer".uppercased(), imageName: "gift.circle")
-                        Divider()
-                        // MARK: 開発者を支援する
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "suit.heart")
-                                .font(.title)
-                            Text("開発者を支援する")
-                            Spacer()
-                            Button(action: {
-                                // MARK: TODO: amazon ほしい物リスト
-                                URLHelper.instance.openURL(urlString: "https://www.amazon.jp/hz/wishlist/ls/2RW8GL0IYK5NE?ref_=wl_share") { (success) in
-                                    if success {
-                                        print("欲しいものリストを表示しました")
-                                    }else {
-                                        print("ほしい物リストを表示することができませんでした。")
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "arrow.forward")
-                                    .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
-                        .padding()
-                    }
-                }
-                .padding()
+//                GroupBox{
+//                    VStack{
+//                        SettingRowView(title: "Support Developer".uppercased(), imageName: "gift.circle")
+//                        Divider()
+//                        // MARK: 開発者を支援する
+//                        HStack(alignment: .center, spacing: 10){
+//                            Image(systemName: "suit.heart")
+//                                .font(.title)
+//                            Text("開発者を支援する")
+//                            Spacer()
+//                            Button(action: {
+//                                // MARK: TODO: amazon ほしい物リスト
+//                                URLHelper.instance.openURL(urlString: "https://www.amazon.jp/hz/wishlist/ls/2RW8GL0IYK5NE?ref_=wl_share") { (success) in
+//                                    if success {
+//                                        print("欲しいものリストを表示しました")
+//                                    }else {
+//                                        print("ほしい物リストを表示することができませんでした。")
+//                                    }
+//                                }
+//                            }, label: {
+//                                Image(systemName: "arrow.forward")
+//                                    .font(.title)
+//                                    .foregroundColor(.black)
+//                            })
+//                        }
+//                        .padding()
+//                    }
+//                }
+//                .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("Setting")
         }
         .alert(isPresented: $alertDeleteAll, content: {
             Alert(title: Text("本当に削除しますか？"), message: Text("この作業は取り消すことができません。"), primaryButton:.destructive(Text("削除"), action: {

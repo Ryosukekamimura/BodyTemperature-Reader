@@ -18,26 +18,12 @@ struct BodyTemperaturePickerView: View {
     private let decimalPartReference: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     var body: some View {
-        HStack(alignment: .center, spacing: 20){
+        HStack(alignment: .center, spacing: 0){
             //MARK: INTERGER PART
             Picker(selection: $intPartSelection, label: Text(""), content: {
                 ForEach(intPartReference, id:\.self){ tmp in
                     Text("\(tmp)")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .fontWeight(.regular)
-                }
-            })
-            .pickerStyle(WheelPickerStyle())
-            .labelsHidden()
-            .frame(width: 100, height: 200)
-            .clipped()
-            
-            //MARK: DECIMAL PART
-            Picker(selection: $decimalPartSelection, label: Text(""), content: {
-                ForEach(decimalPartReference, id:\.self){ tmp in
-                    Text("\(tmp)")
-                        .font(.title)
+                        .font(.title3)
                         .foregroundColor(.black)
                         .fontWeight(.regular)
                 }
@@ -46,10 +32,27 @@ struct BodyTemperaturePickerView: View {
             .labelsHidden()
             .frame(width: 100, height: 150)
             .clipped()
+            
+            //MARK: DECIMAL PART
+            Picker(selection: $decimalPartSelection, label: Text(""), content: {
+                ForEach(decimalPartReference, id:\.self){ tmp in
+                    Text("\(tmp)")
+                        .font(.title3)
+                        .foregroundColor(.black)
+                        .fontWeight(.regular)
+                }
+            })
+            .pickerStyle(WheelPickerStyle())
+            .labelsHidden()
+            .frame(width: 100, height: 150)
+            .clipped()
+            
+            Text("℃")
+                .font(.title3)
+                .foregroundColor(.black)
+                .fontWeight(.regular)
         }
-        
-        .frame(width: 200, height: 100, alignment: .center)
-        
+        .frame(height: 150, alignment: .center)
     }
     
 }

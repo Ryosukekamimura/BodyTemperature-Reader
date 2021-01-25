@@ -9,14 +9,14 @@ import SwiftUI
 
 struct LogView: View {
     @EnvironmentObject var  bodyTmpStore: BodyTmpStore
-    
+    @ObservedObject var avFoundationVM = AVFoundationVM()
     var body: some View {
         NavigationView{
             VStack{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
                     
-                    HStack(alignment: .center, spacing: 20, content: {
+                    HStack(alignment: .center, spacing: 20, content : {
                         Image(uiImage: FileHelper.instance.getSavedImage(fileName: String(bodyTmp.id)))
                             .resizable()
                             .frame(width: 100, height: 100)
@@ -24,7 +24,7 @@ struct LogView: View {
                         VStack(alignment: .center, spacing: 10){
                             Text(DateHelper.instance.date2String(date: bodyTmp.dateCreated))
                                 .font(.callout)
-                            Text("温度:\(bodyTmp.bodyTemperature)℃")
+                            Text("体温:\(bodyTmp.bodyTemperature)℃")
                                 .font(.headline)
                         }
                         .padding([.horizontal], 20)
@@ -33,6 +33,7 @@ struct LogView: View {
                         .font(.headline)
                         .padding()
                         .background(Color.gray)
+                        .cornerRadius(20)
                         .contextMenu {
                             Button(action: {
                                 //MARK: TODO - 削除ボタン

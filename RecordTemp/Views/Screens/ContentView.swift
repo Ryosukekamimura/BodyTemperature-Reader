@@ -11,6 +11,7 @@ import RealmSwift
 struct ContentView: View {
     
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+    @ObservedObject var avFoundationVM = AVFoundationVM()
     @State private var isShowTutorialView: Bool = false
     @State var tabViewSelection: Int = 0
     
@@ -41,7 +42,7 @@ struct ContentView: View {
             SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .environmentObject(bodyTmpStore)
                 .tabItem{
-                    Image(systemName: "person.crop.circle.fill")
+                    Image(systemName: "gearshape")
                     Text("Setting")
                 }
                 .tag(2)
