@@ -85,7 +85,6 @@ struct HomeView: View {
                         let fileName = String(bodyTmpStore.id)
                         FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
                             if success {
-                                
                                 print("画像の保存に成功しました。")
                                 
                                 print(bodyTmpStore.dateCreated)
@@ -95,7 +94,7 @@ struct HomeView: View {
                                 DispatchQueue.main.asyncAfter(deadline: .now()+2) {
                                     tabViewSelection = 1
                                     if let bodyTemperatureValue = (Double(bodyTemperature)){
-                                        if isConnectHealthCare == true {
+                                        if isConnectHealthCare {
                                             HealthHelper.instance.uploadBodyTemperature(bodyTmp: bodyTemperatureValue) { (success) in
                                                 if success {
                                                     print("ヘルスケアにアップロードすることができました")
@@ -110,7 +109,7 @@ struct HomeView: View {
                                         print("ERROR: 体温をDouble値に変換できませんでした")
                                     }
                                 }
-                            }else {
+                            }else{
                                 print("画像の保存に失敗しました。")
                                 bodyTmpStore.addData()
                                 
@@ -138,15 +137,19 @@ struct HomeView: View {
     //MARK: PRIVATE FUNCTIONS
     private func performVision(uiImage: UIImage){
         // Recognied Text -> return [ Recognized Text ]
-        VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
-            print("recognized Strings -> \(recognizedStrings)")
-            // Format Result Strings
-            VisionFormatter.instance.recognizedTextFormatter(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
-                selectedBodyTemperature = String(returnedBodyTemperature)
-                let intPartAndDecimalPart = selectedBodyTemperature.split(separator: ".")
-                selectedIntPart = String(intPartAndDecimalPart[0]) + "."
-                selectedDecimalPart = String(intPartAndDecimalPart[1])
+        if isRecognizedText {
+            VisionHelper.instance.performVisionRecognition(uiImage: uiImage) { (recognizedStrings) in
+                print("recognized Strings -> \(recognizedStrings)")
+                // Format Result Strings
+                VisionFormatter.instance.recognizedTextFormatter(recognizedStrings: recognizedStrings) { (returnedBodyTemperature) in
+                    selectedBodyTemperature = String(returnedBodyTemperature)
+                    let intPartAndDecimalPart = selectedBodyTemperature.split(separator: ".")
+                    selectedIntPart = String(intPartAndDecimalPart[0]) + "."
+                    selectedDecimalPart = String(intPartAndDecimalPart[1])
+                }
             }
+        }else {
+            print("Visionの許可がおりていません")
         }
     }
 }

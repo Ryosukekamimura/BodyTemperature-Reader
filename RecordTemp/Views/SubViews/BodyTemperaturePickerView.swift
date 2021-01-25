@@ -47,7 +47,9 @@ struct BodyTemperaturePickerView: View {
             .frame(width: 100, height: 150)
             .clipped()
         }
-        .frame(width: 200, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        
+        .frame(width: 200, height: 100, alignment: .center)
+        
     }
     
 }
