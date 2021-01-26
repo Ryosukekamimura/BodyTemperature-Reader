@@ -11,20 +11,17 @@ import SwiftUI
 //MARK: FOR USE EXTENSION COLOR
 extension Color {
     struct MyThemeColor {
+        static var backgroundColor: Color {
+            Color("backgroundColor")
+        }
         static var lightGrayColor: Color {
-            Color("lightGray")
+            Color("lightGrayColor")
         }
-        static var darkOrangeColor: Color {
-            Color("darkOrange")
+        static var darkGrayColor: Color {
+            Color("darkGrayColor")
         }
-        static var lightYellowColor: Color {
-            Color("lightYellow")
-        }
-        static var officialOrangeColor: Color{
-            Color("officialOrangeColor")
-        }
-        static var lightGreen: Color{
-            Color("lightGreen")
+        static var accentColor: Color{
+            Color("accentColor")
         }
     }
 }
