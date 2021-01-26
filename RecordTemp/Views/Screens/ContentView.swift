@@ -41,7 +41,7 @@ struct ContentView: View {
             SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .environmentObject(bodyTmpStore)
                 .tabItem{
-                    Image(systemName: "person.crop.circle.fill")
+                    Image(systemName: "gearshape")
                     Text("Setting")
                 }
                 .tag(2)
