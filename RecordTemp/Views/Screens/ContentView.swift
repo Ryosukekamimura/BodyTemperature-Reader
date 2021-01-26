@@ -10,6 +10,7 @@ import RealmSwift
 
 struct ContentView: View {
     
+    @ObservedObject var avFoundationVM = AVFoundationVM()
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
     @State private var isShowTutorialView: Bool = false
     @State var tabViewSelection: Int = 0
@@ -20,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $tabViewSelection){
             
-            HomeView(tabViewSelection: $tabViewSelection, isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
+            HomeView(avFoundationVM: avFoundationVM, tabViewSelection: $tabViewSelection, isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
                 .onDisappear(perform: {
                     bodyTmpStore.deInitData()
                 })
@@ -47,10 +48,22 @@ struct ContentView: View {
                 .tag(2)
                 .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
         }
-        .accentColor(Color.MyThemeColor.officialOrangeColor)
-        .onAppear(perform: {
-            firstVisitStep()
-        })
+        .accentColor(Color.MyThemeColor.accentColor)
+        
+        .onAppear {
+            DispatchQueue.main.async {
+                avFoundationVM.startSession()
+            }
+            print("startSession を始めます")
+        }
+        
+        .onDisappear {
+            DispatchQueue.main.async {
+                avFoundationVM.endSession()
+            }
+            bodyTmpStore.deInitData()
+            print("endSession　で終了します")
+        }
     }
     
     // MARK: PRIVATE FUNCTIONS

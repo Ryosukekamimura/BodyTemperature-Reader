@@ -49,6 +49,7 @@ struct LogView: View {
         .padding()
         .onAppear(perform: {
             bodyTmpStore.fetchData()
+            print("fetchData終わったよ")
         })
         
     }

@@ -10,7 +10,7 @@ import UIKit
 
 struct HomeView: View {
     
-    @ObservedObject var avFoundationVM = AVFoundationVM()
+    @ObservedObject var avFoundationVM: AVFoundationVM
     @Binding var tabViewSelection: Int
     @Binding var isConnectHealthCare: Bool
     @Binding var isRecognizedText: Bool
@@ -28,6 +28,10 @@ struct HomeView: View {
     
     
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+    
+    // MARK: NEW PROPERTIES
+    @State private var isShowImagePicker: Bool = false
+    @State var imageSelected: UIImage = UIImage(named: "logo")!
     
     var body: some View {
         VStack{
@@ -128,21 +132,6 @@ struct HomeView: View {
                    .font(.title3)
            })
         }
-
-        
-        
-        .onAppear {
-            DispatchQueue.main.async {
-                avFoundationVM.startSession()
-            }
-        }
-        
-        .onDisappear {
-            DispatchQueue.main.async {
-                avFoundationVM.endSession()
-            }
-            bodyTmpStore.deInitData()
-        }
     }
     
     //MARK: PRIVATE FUNCTIONS
@@ -172,7 +161,7 @@ struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            HomeView(tabViewSelection: $tabViewSelection, isConnectHealthCare: $isBool, isRecognizedText: $isBool)
+            HomeView(avFoundationVM: AVFoundationVM(), tabViewSelection: $tabViewSelection, isConnectHealthCare: $isBool, isRecognizedText: $isBool)
         }
     }
 }
