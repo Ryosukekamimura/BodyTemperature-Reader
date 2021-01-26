@@ -70,12 +70,18 @@ class AVFoundationVM: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Ob
     }
 
     func startSession() {
-        if captureSession.isRunning { return }
+        if captureSession.isRunning {
+            print("Already Started!")
+            return
+        }
         captureSession.startRunning()
     }
 
     func endSession() {
-        if !captureSession.isRunning { return }
+        if !captureSession.isRunning {
+            print("Already Stopped!")
+            return
+        }
         captureSession.stopRunning()
     }
     

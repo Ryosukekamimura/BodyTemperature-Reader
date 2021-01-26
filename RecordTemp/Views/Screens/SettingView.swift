@@ -18,147 +18,113 @@ struct SettingView: View {
     @State private var alertDeleteAll: Bool = false
     
     var body: some View {
-        NavigationView{
-            ScrollView(.vertical, showsIndicators: false) {
-                // MARK: APPLICATION
-                GroupBox{
-                    VStack{
-                        SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
-                        Divider()
-                        //MARK: ヘルスケアに接続する
-                        HStack{
-                            Toggle(isOn: $isConnectHealthCare, label: {
-                                HStack(alignment:.center, spacing: 10){
-                                    Image(systemName: "heart.text.square")
-                                        .font(.title)
-                                    Text("ヘルスケアに連携する")
-                                }
-                            })
-                            .padding()
-                        }
-                        //MARK: 自動認識をオフにする
-                        HStack{
-                            Toggle(isOn: $isRecognizedText, label: {
-                                HStack(alignment: .center, spacing: 10){
-                                    Image(systemName: "eyes")
-                                        .font(.title)
-                                    Text("自動認識機能")
-                                }
-                            })
-                            .padding()
-                        }
-                        
-                        //MARK: 端末内データを削除する
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "trash")
-                                .font(.title)
-                            Text("端末内データを削除する")
-                            Spacer()
-                            Button(action: {
-                                alertDeleteAll.toggle()
-                            }, label: {
-                                Image(systemName: "arrow.forward")
+        ScrollView(.vertical, showsIndicators: false) {
+            // MARK: APPLICATION
+            GroupBox{
+                VStack{
+                    SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
+                    Divider()
+                    //MARK: ヘルスケアに接続する
+                    HStack{
+                        Toggle(isOn: $isConnectHealthCare, label: {
+                            HStack(alignment:.center, spacing: 10){
+                                Image(systemName: "heart.text.square")
                                     .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
+                                Text("ヘルスケアに連携する")
+                            }
+                        })
                         .padding()
                     }
-                }
-                .padding()
-                
-                // MARK: CONTACT US
-                GroupBox{
-                    VStack{
-                        SettingRowView(title: "Contact us".uppercased(), imageName: "paperplane.circle")
-                        Divider()
-                        // MARK: お問い合わせ
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "envelope.fill")
-                                .font(.title)
-                            Text("お問い合わせ")
-                            Spacer()
-                            Button(action: {
-                                // MARK: TODO: お問い合わせの実装
-                                URLHelper.instance.openURL(urlString: "mailto:info.ryosuke.kamimura@gmail.com") { (success) in
-                                    if success {
-                                        print("お問い合わせリンクを正常に開きました。")
-                                    }else {
-                                        print("URL を正常に開くことができませんでした。")
-                                    }
-                                }
-                                
-                            }, label: {
-                                Image(systemName: "arrow.forward")
+                    //MARK: 自動認識をオフにする
+                    HStack{
+                        Toggle(isOn: $isRecognizedText, label: {
+                            HStack(alignment: .center, spacing: 10){
+                                Image(systemName: "eyes")
                                     .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
+                                Text("自動認識機能")
+                            }
+                        })
                         .padding()
-                        
-                        
-                        // MARK: プライバシーポリシー
-                        HStack(alignment: .center, spacing: 10){
-                            Image(systemName: "person.crop.square.fill.and.at.rectangle")
-                                .font(.title)
-                            Text("プライバシーポリシー")
-                            Spacer()
-                            Button(action: {
-                                // MARK: TODO: プライバシーポリシーの実装
-                                URLHelper.instance.openURL(urlString: "https://www.notion.so/afb19b1809f542d7ac5492c57849d290") { (success) in
-                                    if success {
-                                        print("プライバシーポリシーを開くことができました。")
-                                    }else {
-                                        print("プライバシーポリシーを開くことができませんでした")
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "arrow.forward")
-                                    .font(.title)
-                                    .foregroundColor(.black)
-                            })
-                        }
-                        .padding()
-                        
                     }
+                    
+                    //MARK: 端末内データを削除する
+                    HStack(alignment: .center, spacing: 10){
+                        Image(systemName: "trash")
+                            .font(.title)
+                        Text("端末内データを削除する")
+                        Spacer()
+                        Button(action: {
+                            alertDeleteAll.toggle()
+                        }, label: {
+                            Image(systemName: "arrow.forward")
+                                .font(.title)
+                                .foregroundColor(.black)
+                        })
+                    }
+                    .padding()
                 }
-                .padding()
-                
-                
-                // MARK: Supporting Developer
-//                GroupBox{
-//                    VStack{
-//                        SettingRowView(title: "Support Developer".uppercased(), imageName: "gift.circle")
-//                        Divider()
-//                        // MARK: 開発者を支援する
-//                        HStack(alignment: .center, spacing: 10){
-//                            Image(systemName: "suit.heart")
-//                                .font(.title)
-//                            Text("開発者を支援する")
-//                            Spacer()
-//                            Button(action: {
-//                                // MARK: TODO: amazon ほしい物リスト
-//                                URLHelper.instance.openURL(urlString: "https://www.amazon.jp/hz/wishlist/ls/2RW8GL0IYK5NE?ref_=wl_share") { (success) in
-//                                    if success {
-//                                        print("欲しいものリストを表示しました")
-//                                    }else {
-//                                        print("ほしい物リストを表示することができませんでした。")
-//                                    }
-//                                }
-//                            }, label: {
-//                                Image(systemName: "arrow.forward")
-//                                    .font(.title)
-//                                    .foregroundColor(.black)
-//                            })
-//                        }
-//                        .padding()
-//                    }
-//                }
-//                .padding()
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle("Setting")
+            .padding()
+            
+            // MARK: CONTACT US
+            GroupBox{
+                VStack{
+                    SettingRowView(title: "Contact us".uppercased(), imageName: "paperplane.circle")
+                    Divider()
+                    // MARK: お問い合わせ
+                    HStack(alignment: .center, spacing: 10){
+                        Image(systemName: "envelope.fill")
+                            .font(.title)
+                        Text("お問い合わせ")
+                        Spacer()
+                        Button(action: {
+                            // MARK: TODO: お問い合わせの実装
+                            URLHelper.instance.openURL(urlString: "mailto:info.ryosuke.kamimura@gmail.com") { (success) in
+                                if success {
+                                    print("お問い合わせリンクを正常に開きました。")
+                                }else {
+                                    print("URL を正常に開くことができませんでした。")
+                                }
+                            }
+                            
+                        }, label: {
+                            Image(systemName: "arrow.forward")
+                                .font(.title)
+                                .foregroundColor(.black)
+                        })
+                    }
+                    .padding()
+                    
+                    
+                    // MARK: プライバシーポリシー
+                    HStack(alignment: .center, spacing: 10){
+                        Image(systemName: "person.crop.square.fill.and.at.rectangle")
+                            .font(.title)
+                        Text("プライバシーポリシー")
+                        Spacer()
+                        Button(action: {
+                            // MARK: TODO: プライバシーポリシーの実装
+                            URLHelper.instance.openURL(urlString: "https://www.notion.so/afb19b1809f542d7ac5492c57849d290") { (success) in
+                                if success {
+                                    print("プライバシーポリシーを開くことができました。")
+                                }else {
+                                    print("プライバシーポリシーを開くことができませんでした")
+                                }
+                            }
+                        }, label: {
+                            Image(systemName: "arrow.forward")
+                                .font(.title)
+                                .foregroundColor(.black)
+                        })
+                    }
+                    .padding()
+                    
+                }
+            }
+            .padding()
         }
+        
+        
         .alert(isPresented: $alertDeleteAll, content: {
             Alert(title: Text("本当に削除しますか？"), message: Text("この作業は取り消すことができません。"), primaryButton:.destructive(Text("削除"), action: {
                 // 削除するアクション

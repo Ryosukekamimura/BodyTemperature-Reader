@@ -11,7 +11,6 @@ import RealmSwift
 struct ContentView: View {
     
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
-    @ObservedObject var avFoundationVM = AVFoundationVM()
     @State private var isShowTutorialView: Bool = false
     @State var tabViewSelection: Int = 0
     

@@ -30,14 +30,14 @@ struct HomeView: View {
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
     
     var body: some View {
-        NavigationView{
+        VStack{
             ZStack{
                 // MARK: CAMERA VIEW
                 ZStack {
                     // camera View
                     CALayerView(caLayer: avFoundationVM.previewLayer, screenWidth: screenWidth)
-//                        .frame(width: screenWidth, height: screenWidth, alignment: .center)
-  //                      .background(Color.black)
+                        //                        .frame(width: screenWidth, height: screenWidth, alignment: .center)
+                        //                      .background(Color.black)
                         .onTapGesture {
                             if avFoundationVM.image != nil {
                                 // Take Picture Second Time
@@ -76,69 +76,71 @@ struct HomeView: View {
                     }
                 }
             }
-            
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(Text("Record"))
-            .navigationBarItems(trailing: Button(action: {
-                if avFoundationVM.image != nil{
-                    let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
-                    bodyTmpStore.bodyTemperature = bodyTemperature
-                    print("Add Data -> \(bodyTemperature)")
-                    
-                    bodyTmpStore.id = UUID().hashValue
-                    bodyTmpStore.dateCreated = Date()
-                    
-                    let fileName = String(bodyTmpStore.id)
-                    FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
-                        if success {
-                            print("画像の保存に成功しました。")
-                            
-                            print(bodyTmpStore.dateCreated)
-                            print(bodyTmpStore.id)
-                            bodyTmpStore.addData()
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                                tabViewSelection = 1
-                                if let bodyTemperatureValue = (Double(bodyTemperature)){
-                                    if isConnectHealthCare {
-                                        HealthHelper.instance.uploadBodyTemperature(bodyTmp: bodyTemperatureValue) { (success) in
-                                            if success {
-                                                print("ヘルスケアにアップロードすることができました")
-                                            }else {
-                                                print("ヘルスケアに接続できませんでした")
-                                            }
-                                        }
-                                    } else{
-                                        print("ヘルスケアに接続許可が降りていません")
-                                    }
-                                }else{
-                                    print("ERROR: 体温をDouble値に変換できませんでした")
-                                }
-                            }
-                        }else{
-                            print("画像の保存に失敗しました。")
-                            bodyTmpStore.addData()
-                            
-                            isSheet.toggle()
-                        }
-                    }
-                }else{
-                    print("写真を撮影してください")
-                }
-            }, label: {
-                Text("保存")
-                Image(systemName: "plus.square")
-                    .font(.title3)
-            }))
+            Button(action: {
+               if avFoundationVM.image != nil{
+                   let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
+                   bodyTmpStore.bodyTemperature = bodyTemperature
+                   print("Add Data -> \(bodyTemperature)")
+                   
+                   bodyTmpStore.id = UUID().hashValue
+                   bodyTmpStore.dateCreated = Date()
+                   
+                   let fileName = String(bodyTmpStore.id)
+                   FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
+                       if success {
+                           print("画像の保存に成功しました。")
+                           
+                           print(bodyTmpStore.dateCreated)
+                           print(bodyTmpStore.id)
+                           bodyTmpStore.addData()
+                           
+                           DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                               tabViewSelection = 1
+                               if let bodyTemperatureValue = (Double(bodyTemperature)){
+                                   if isConnectHealthCare {
+                                       HealthHelper.instance.uploadBodyTemperature(bodyTmp: bodyTemperatureValue) { (success) in
+                                           if success {
+                                               print("ヘルスケアにアップロードすることができました")
+                                           }else {
+                                               print("ヘルスケアに接続できませんでした")
+                                           }
+                                       }
+                                   } else{
+                                       print("ヘルスケアに接続許可が降りていません")
+                                   }
+                               }else{
+                                   print("ERROR: 体温をDouble値に変換できませんでした")
+                               }
+                           }
+                       }else{
+                           print("画像の保存に失敗しました。")
+                           bodyTmpStore.addData()
+                           
+                           isSheet.toggle()
+                       }
+                   }
+               }else{
+                   print("写真を撮影してください")
+               }
+           }, label: {
+               Text("保存")
+               Image(systemName: "plus.square")
+                   .font(.title3)
+           })
         }
+
+        
         
         .onAppear {
-            self.avFoundationVM.startSession()
-            print("width")
-            print(UIScreen.main.bounds.width)
+            DispatchQueue.main.async {
+                avFoundationVM.startSession()
+            }
         }
+        
         .onDisappear {
-            self.avFoundationVM.endSession()
+            DispatchQueue.main.async {
+                avFoundationVM.endSession()
+            }
             bodyTmpStore.deInitData()
         }
     }

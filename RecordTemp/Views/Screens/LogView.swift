@@ -9,10 +9,9 @@ import SwiftUI
 
 struct LogView: View {
     @EnvironmentObject var  bodyTmpStore: BodyTmpStore
-    @ObservedObject var avFoundationVM = AVFoundationVM()
     var body: some View {
-        NavigationView{
-            VStack{
+        
+        VStack{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in
                     
@@ -28,32 +27,30 @@ struct LogView: View {
                                 .font(.headline)
                         }
                         .padding([.horizontal], 20)
-                        })
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .padding()
-                        .background(Color.gray)
-                        .cornerRadius(20)
-                        .contextMenu {
-                            Button(action: {
-                                //MARK: TODO - 削除ボタン
-                                bodyTmpStore.deleteData(object: bodyTmp)
-                            }, label: {
-                                Text("削除")
-                            })
-                        }
-                    }
+                    })
+                    .foregroundColor(.white)
+                    .font(.headline)
                     .padding()
+                    .background(Color.gray)
+                    .cornerRadius(20)
+                    .contextMenu {
+                        Button(action: {
+                            //MARK: TODO - 削除ボタン
+                            bodyTmpStore.deleteData(object: bodyTmp)
+                        }, label: {
+                            Text("削除")
+                        })
+                    }
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
-            .onAppear(perform: {
-                bodyTmpStore.fetchData()
-            })
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(Text("Log"))
+            Spacer()
         }
+        .padding()
+        .onAppear(perform: {
+            bodyTmpStore.fetchData()
+        })
+        
     }
 }
 
