@@ -17,15 +17,15 @@ struct HealthCareRegistrationButton: View {
         Button(action: {
             if let confirmedBodyTemperature = Double(bodyTemperatureSelectioin){
                 // Connect to HealthCare
-                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
-                    if success{
-                        isDisplayHealthCareSuccessView.toggle()
-                        launchHealthCareApp()
-                    }else{
-                        // MARK: MUST CREATE ALERT FUNCTIONS
-                        print("Couldn't Connect To HealthCare")
-                    }
-                } 
+//                HealthHelper.instance.uploadBodyTemperature(bodyTmp: confirmedBodyTemperature) { (success) in
+//                    if success{
+//                        isDisplayHealthCareSuccessView.toggle()
+//                        launchHealthCareApp()
+//                    }else{
+//                        // MARK: MUST CREATE ALERT FUNCTIONS
+//                        print("Couldn't Connect To HealthCare")
+//                    }
+//                }
             }else{
                 print("confirmedBody Temperature is not Double")
             }
