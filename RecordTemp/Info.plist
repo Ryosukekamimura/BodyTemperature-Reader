@@ -37,12 +37,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>体温計の読み取りに使用します</string>
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>Use HealthKit and Record</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Use HealthKit and Share</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Use HealthKit and Update</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

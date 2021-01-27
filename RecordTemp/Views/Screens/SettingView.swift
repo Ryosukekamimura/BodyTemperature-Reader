@@ -25,16 +25,16 @@ struct SettingView: View {
                     SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                     Divider()
                     //MARK: ヘルスケアに接続する
-                    HStack{
-                        Toggle(isOn: $isConnectHealthCare, label: {
-                            HStack(alignment:.center, spacing: 10){
-                                Image(systemName: "heart.text.square")
-                                    .font(.title)
-                                Text("ヘルスケアに連携する")
-                            }
-                        })
-                        .padding()
-                    }
+//                    HStack{
+//                        Toggle(isOn: $isConnectHealthCare, label: {
+//                            HStack(alignment:.center, spacing: 10){
+//                                Image(systemName: "heart.text.square")
+//                                    .font(.title)
+//                                Text("ヘルスケアに連携する")
+//                            }
+//                        })
+//                        .padding()
+//                    }
                     //MARK: 自動認識をオフにする
                     HStack{
                         Toggle(isOn: $isRecognizedText, label: {
