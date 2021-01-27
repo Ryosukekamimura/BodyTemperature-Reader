@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LogView: View {
     @EnvironmentObject var  bodyTmpStore: BodyTmpStore
+    
     var body: some View {
-        
         VStack{
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 ForEach(bodyTmpStore.bodyTmps){ bodyTmp in

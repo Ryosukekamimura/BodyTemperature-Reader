@@ -12,7 +12,6 @@ struct HomeView: View {
     
     @ObservedObject var avFoundationVM: AVFoundationVM
     @Binding var tabViewSelection: Int
-    @Binding var isConnectHealthCare: Bool
     @Binding var isRecognizedText: Bool
     
     
@@ -100,21 +99,6 @@ struct HomeView: View {
                            
                            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
                                tabViewSelection = 1
-//                               if let bodyTemperatureValue = (Double(bodyTemperature)){
-//                                   if isConnectHealthCare {
-//                                       HealthHelper.instance.uploadBodyTemperature(bodyTmp: bodyTemperatureValue) { (success) in
-//                                           if success {
-//                                               print("ヘルスケアにアップロードすることができました")
-//                                           }else {
-//                                               print("ヘルスケアに接続できませんでした")
-//                                           }
-//                                       }
-//                                   } else{
-//                                       print("ヘルスケアに接続許可が降りていません")
-//                                   }
-//                               }else{
-//                                   print("ERROR: 体温をDouble値に変換できませんでした")
-//                               }
                            }
                        }else{
                            print("画像の保存に失敗しました。")
@@ -161,7 +145,7 @@ struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            HomeView(avFoundationVM: AVFoundationVM(), tabViewSelection: $tabViewSelection, isConnectHealthCare: $isBool, isRecognizedText: $isBool)
+            HomeView(avFoundationVM: AVFoundationVM(), tabViewSelection: $tabViewSelection, isRecognizedText: $isBool)
         }
     }
 }

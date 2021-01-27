@@ -11,7 +11,6 @@ struct SettingView: View {
     
     @EnvironmentObject var bodyTmpStore: BodyTmpStore
     
-    @Binding var isConnectHealthCare: Bool
     @Binding var isRecognizedText: Bool
     
     // MARK: Alert
@@ -24,17 +23,6 @@ struct SettingView: View {
                 VStack{
                     SettingRowView(title: "Application".uppercased(), imageName: "apps.iphone")
                     Divider()
-                    //MARK: ヘルスケアに接続する
-//                    HStack{
-//                        Toggle(isOn: $isConnectHealthCare, label: {
-//                            HStack(alignment:.center, spacing: 10){
-//                                Image(systemName: "heart.text.square")
-//                                    .font(.title)
-//                                Text("ヘルスケアに連携する")
-//                            }
-//                        })
-//                        .padding()
-//                    }
                     //MARK: 自動認識をオフにする
                     HStack{
                         Toggle(isOn: $isRecognizedText, label: {
@@ -140,10 +128,9 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     
-    @State static var isConnectHealthCare: Bool = true
     @State static var isRecognizedText: Bool = true
     
     static var previews: some View {
-        SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
+        SettingView(isRecognizedText: $isRecognizedText)
     }
 }

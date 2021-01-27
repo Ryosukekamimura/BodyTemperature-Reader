@@ -28,8 +28,6 @@
 		92A6085225BC10B400827651 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6085125BC10B400827651 /* DateHelper.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
-		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
-		92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */; };
 		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
 		92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */; };
 		92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DB125B3D68C00DC4925 /* TutorialView.swift */; };
@@ -81,8 +79,6 @@
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
-		92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareRegistrationButton.swift; sourceTree = "<group>"; };
 		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
 		92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct&Enum.swift"; sourceTree = "<group>"; };
 		92E45DB125B3D68C00DC4925 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
@@ -204,7 +200,6 @@
 			children = (
 				92E45DB125B3D68C00DC4925 /* TutorialView.swift */,
 				92977B2525B9148F002F01FD /* BodyTemperaturePickerView.swift */,
-				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
 				92977B4725B9442D002F01FD /* SettingRowView.swift */,
 				92977B6725B97787002F01FD /* CALayerView.swift */,
 			);
@@ -268,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
-				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
 				9241865F25B68F7C006384D2 /* AVFoundationHelper.swift */,
 				92A6084925BBC09200827651 /* URLHelper.swift */,
 				92A6085125BC10B400827651 /* DateHelper.swift */,
@@ -414,7 +408,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
-				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				92A00EF325B647CB00452BF5 /* HomeView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92A6084A25BBC09200827651 /* URLHelper.swift in Sources */,
@@ -429,7 +422,6 @@
 				9241866D25B6A77E006384D2 /* SettingView.swift in Sources */,
 				92977B6825B97787002F01FD /* CALayerView.swift in Sources */,
 				92977B4825B9442D002F01FD /* SettingRowView.swift in Sources */,
-				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */,
 				92A6081825BA656B00827651 /* BodyTmpStore.swift in Sources */,
 				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
@@ -592,7 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
 				ENABLE_PREVIEWS = YES;
@@ -616,7 +608,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
 				ENABLE_PREVIEWS = YES;
