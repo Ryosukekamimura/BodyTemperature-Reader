@@ -11,17 +11,21 @@ import RealmSwift
 struct ContentView: View {
     
     @ObservedObject var avFoundationVM = AVFoundationVM()
+    
     @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+    
+    // Show Tutorial View
     @State private var isShowTutorialView: Bool = false
+    
+    // Select Tab View
     @State var tabViewSelection: Int = 0
     
-    @State var isConnectHealthCare: Bool = true
+    // Whether to Recognized Text
     @State var isRecognizedText: Bool = true
     
     var body: some View {
         TabView(selection: $tabViewSelection){
-            
-            HomeView(avFoundationVM: avFoundationVM, tabViewSelection: $tabViewSelection, isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
+            HomeView(avFoundationVM: avFoundationVM, tabViewSelection: $tabViewSelection, isRecognizedText: $isRecognizedText)
                 .onDisappear(perform: {
                     bodyTmpStore.deInitData()
                 })
@@ -39,7 +43,7 @@ struct ContentView: View {
                 }
                 .tag(1)
                 .highPriorityGesture(DragGesture().onEnded({ self.handleSwipe(translation: $0.translation.width)}))
-            SettingView(isConnectHealthCare: $isConnectHealthCare, isRecognizedText: $isRecognizedText)
+            SettingView(isRecognizedText: $isRecognizedText)
                 .environmentObject(bodyTmpStore)
                 .tabItem{
                     Image(systemName: "gearshape")
@@ -76,7 +80,6 @@ struct ContentView: View {
             isShowTutorialView.toggle()
             UserDefaults.standard.set(true, forKey: CurrentUserDefault.isFirstVisit)
         }
-        
     }
     
     private func handleSwipe(translation: CGFloat) {

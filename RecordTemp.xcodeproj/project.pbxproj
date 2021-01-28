@@ -28,8 +28,8 @@
 		92A6085225BC10B400827651 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6085125BC10B400827651 /* DateHelper.swift */; };
 		92AB72EF25A94765000F268A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB72EE25A94765000F268A /* Extensions.swift */; };
 		92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B2A52225A9722900F1CE66 /* HealthKit.framework */; };
-		92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2A52725A9731200F1CE66 /* HealthHealper.swift */; };
-		92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */; };
+		92B40BE225C239DB0056D108 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 92B40BE125C239DB0056D108 /* PopupView */; };
+		92B40BE725C249780056D108 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B40BE625C249780056D108 /* PopupView.swift */; };
 		92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */; };
 		92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */; };
 		92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E45DB125B3D68C00DC4925 /* TutorialView.swift */; };
@@ -81,8 +81,7 @@
 		92AB72EE25A94765000F268A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92B2A52025A9722900F1CE66 /* RecordTemp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecordTemp.entitlements; sourceTree = "<group>"; };
 		92B2A52225A9722900F1CE66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		92B2A52725A9731200F1CE66 /* HealthHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHealper.swift; sourceTree = "<group>"; };
-		92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareRegistrationButton.swift; sourceTree = "<group>"; };
+		92B40BE625C249780056D108 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		92BE0F7A25AE6F810039F606 /* VisionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFormatter.swift; sourceTree = "<group>"; };
 		92E45DAC25B3D52800DC4925 /* Struct&Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct&Enum.swift"; sourceTree = "<group>"; };
 		92E45DB125B3D68C00DC4925 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
@@ -95,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B40BE225C239DB0056D108 /* PopupView in Frameworks */,
 				9206319F25B99B2600217D10 /* RealmSwift in Frameworks */,
 				9206319D25B99B2600217D10 /* Realm in Frameworks */,
 				92B2A52325A9722900F1CE66 /* HealthKit.framework in Frameworks */,
@@ -204,9 +204,9 @@
 			children = (
 				92E45DB125B3D68C00DC4925 /* TutorialView.swift */,
 				92977B2525B9148F002F01FD /* BodyTemperaturePickerView.swift */,
-				92B31B3325B10DF20002B366 /* HealthCareRegistrationButton.swift */,
 				92977B4725B9442D002F01FD /* SettingRowView.swift */,
 				92977B6725B97787002F01FD /* CALayerView.swift */,
+				92B40BE625C249780056D108 /* PopupView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -268,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				92ED3AA125A70977008381B5 /* VisionHelper.swift */,
-				92B2A52725A9731200F1CE66 /* HealthHealper.swift */,
 				9241865F25B68F7C006384D2 /* AVFoundationHelper.swift */,
 				92A6084925BBC09200827651 /* URLHelper.swift */,
 				92A6085125BC10B400827651 /* DateHelper.swift */,
@@ -296,6 +295,7 @@
 			packageProductDependencies = (
 				9206319C25B99B2600217D10 /* Realm */,
 				9206319E25B99B2600217D10 /* RealmSwift */,
+				92B40BE125C239DB0056D108 /* PopupView */,
 			);
 			productName = RecordTemp;
 			productReference = 9251FA2B25A68F8E009A0C7C /* RecordTemp.app */;
@@ -370,6 +370,7 @@
 			mainGroup = 9251FA2225A68F8E009A0C7C;
 			packageReferences = (
 				9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				92B40BE025C239DA0056D108 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 9251FA2C25A68F8E009A0C7C /* Products */;
 			projectDirPath = "";
@@ -414,7 +415,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9251FA3125A68F8E009A0C7C /* ContentView.swift in Sources */,
-				92B31B3425B10DF20002B366 /* HealthCareRegistrationButton.swift in Sources */,
 				92A00EF325B647CB00452BF5 /* HomeView.swift in Sources */,
 				92ED3AA225A70977008381B5 /* VisionHelper.swift in Sources */,
 				92A6084A25BBC09200827651 /* URLHelper.swift in Sources */,
@@ -427,9 +427,9 @@
 				92E45DAD25B3D52800DC4925 /* Struct&Enum.swift in Sources */,
 				9241866025B68F7C006384D2 /* AVFoundationHelper.swift in Sources */,
 				9241866D25B6A77E006384D2 /* SettingView.swift in Sources */,
+				92B40BE725C249780056D108 /* PopupView.swift in Sources */,
 				92977B6825B97787002F01FD /* CALayerView.swift in Sources */,
 				92977B4825B9442D002F01FD /* SettingRowView.swift in Sources */,
-				92B2A52825A9731200F1CE66 /* HealthHealper.swift in Sources */,
 				92E45DB225B3D68C00DC4925 /* TutorialView.swift in Sources */,
 				92A6081825BA656B00827651 /* BodyTmpStore.swift in Sources */,
 				92BE0F7B25AE6F810039F606 /* VisionFormatter.swift in Sources */,
@@ -592,7 +592,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
 				ENABLE_PREVIEWS = YES;
@@ -616,7 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = RecordTemp/RecordTemp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"RecordTemp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4L3H8AS5LU;
 				ENABLE_PREVIEWS = YES;
@@ -767,6 +767,14 @@
 				minimumVersion = 10.5.1;
 			};
 		};
+		92B40BE025C239DA0056D108 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.11;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -779,6 +787,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9206319B25B99B2600217D10 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		92B40BE125C239DB0056D108 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92B40BE025C239DA0056D108 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
