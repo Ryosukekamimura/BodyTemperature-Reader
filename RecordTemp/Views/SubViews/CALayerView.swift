@@ -11,11 +11,11 @@ import AVFoundation
 
 struct CALayerView: UIViewControllerRepresentable {
     var caLayer:CALayer
-    var screenWidth: CGFloat
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<CALayerView>) -> UIViewController {
         let viewController = UIViewController()
-
+        let screenWidth = UIScreen.main.bounds.width
+        
         let aspectRatio = CGSize(width: screenWidth, height: screenWidth)
         
         caLayer.frame = AVMakeRect(aspectRatio: aspectRatio, insideRect: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth))

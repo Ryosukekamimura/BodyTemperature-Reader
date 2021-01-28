@@ -7,114 +7,130 @@
 
 import SwiftUI
 import UIKit
+import PopupView
 
 struct HomeView: View {
-    
+    // For AVFoundation View Model
     @ObservedObject var avFoundationVM: AVFoundationVM
+    // For Realm DB
+    @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
+    
+    // Binding Properties
     @Binding var tabViewSelection: Int
     @Binding var isRecognizedText: Bool
     
-    
+    // State Properties
     @State var selectedBodyTemperature: String = "36.5"
     @State var selectedIntPart: String = "36."
     @State var selectedDecimalPart: String = "5"
     
-    // DEBUG
-    @State var isSheet: Bool = false
-    @State var imageData: Data? = nil
-    
-    let screenWidth = UIScreen.main.bounds.width
-    
-    
-    @StateObject var bodyTmpStore: BodyTmpStore = BodyTmpStore()
-    
-    // MARK: NEW PROPERTIES
-    @State private var isShowImagePicker: Bool = false
-    @State var imageSelected: UIImage = UIImage(named: "logo")!
+    // Alert Properties
+    @State var isShowPopup: Bool = false
+    @State var popupMessage: PopupMessage = .succeededInSaveImage
     
     var body: some View {
-        VStack{
-            ZStack{
-                // MARK: CAMERA VIEW
-                ZStack {
-                    // camera View
-                    CALayerView(caLayer: avFoundationVM.previewLayer, screenWidth: screenWidth)
-                        //                        .frame(width: screenWidth, height: screenWidth, alignment: .center)
-                        //                      .background(Color.black)
-                        .onTapGesture {
-                            if avFoundationVM.image != nil {
-                                // Take Picture Second Time
-                                avFoundationVM.image = nil
-                                avFoundationVM.takePicture()
-                            }else{
-                                // Take Picture First Time
-                                avFoundationVM.takePicture()
+        ZStack{
+            VStack{
+                ZStack{
+                    // MARK: Camera View
+                    ZStack {
+                        // camera View
+                        CALayerView(caLayer: avFoundationVM.previewLayer)
+                            .onTapGesture {
+                                if avFoundationVM.image != nil {
+                                    // Take Picture Second Time
+                                    avFoundationVM.image = nil
+                                    avFoundationVM.takePicture()
+                                }else{
+                                    // Take Picture First Time
+                                    avFoundationVM.takePicture()
+                                }
+                            }
+                            .border(Color.white, width: 5)
+                        // Captured Image View
+                        if avFoundationVM.image != nil {
+                            VStack{
+                                Spacer()
+                                HStack{
+                                    Image(uiImage: avFoundationVM.image!)
+                                        .resizable()
+                                        .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
+                                        .border(Color.white, width: 5)
+                                        .background(Color.white)
+                                        .onAppear(perform: {
+                                            performVision(uiImage: avFoundationVM.image!)
+                                        })
+                                    Spacer()
+                                }
                             }
                         }
-                        .border(Color.white, width: 5)
-                    // Captured Image View
-                    if avFoundationVM.image != nil {
-                        VStack{
+                    }
+                    VStack{
+                        Spacer()
+                        HStack(alignment: .center){
                             Spacer()
-                            HStack{
-                                Image(uiImage: avFoundationVM.image!)
-                                    .resizable()
-                                    .frame(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.width/3)
-                                    .border(Color.white, width: 5)
-                                    .background(Color.white)
-                                    .onAppear(perform: {
-                                        performVision(uiImage: avFoundationVM.image!)
-                                    })
-                                Spacer()
-                            }
+                            BodyTemperaturePickerView(selectedBodyTemperature: $selectedBodyTemperature, intPartSelection: $selectedIntPart, decimalPartSelection: $selectedDecimalPart)
+                            Spacer()
                         }
                     }
                 }
-                VStack{
-                    Spacer()
-                    HStack(alignment: .center){
-                        Spacer()
-                        BodyTemperaturePickerView(selectedBodyTemperature: $selectedBodyTemperature, intPartSelection: $selectedIntPart, decimalPartSelection: $selectedDecimalPart)
-                        Spacer()
+                Button(action: {
+
+                    if avFoundationVM.image != nil{
+                        let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
+                        bodyTmpStore.bodyTemperature = bodyTemperature
+                        print("Add Data -> \(bodyTemperature)")
+                        
+                        bodyTmpStore.id = UUID().hashValue
+                        bodyTmpStore.dateCreated = Date()
+                        
+                        let fileName = String(bodyTmpStore.id)
+                        FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
+                            if success {
+                                popupMessage = .succeededInSaveImage
+                                isShowPopup.toggle()
+                                print("画像の保存に成功しました。")
+                                
+                                print(bodyTmpStore.dateCreated)
+                                print(bodyTmpStore.id)
+                                bodyTmpStore.addData()
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                                    tabViewSelection = 1
+                                }
+                            }else{
+                                popupMessage = .failedToSavePicture
+                                isShowPopup.toggle()
+                                print("画像の保存に失敗しました。")
+                            }
+                        }
+                    }else{
+                        popupMessage = .needTakePicture
+                        isShowPopup.toggle()
+                        print("写真を撮影してください")
                     }
+                }, label: {
+                    Text("保存")
+                        .font(.title)
+                    Image(systemName: "plus.square")
+                        .font(.title)
+                })
+                Spacer()
+            }
+        }.popup(isPresented: $isShowPopup, type: .toast, position: .top, animation: .easeOut, autohideIn: 2.0) {
+            VStack{
+                if popupMessage == .succeededInSaveImage {
+                    PopupView(systemNameImage: "checkmark", title: "success", subTitle: "写真を保存することができました")
+                }else if popupMessage == .failedToSavePicture {
+                    PopupView(systemNameImage: "xmark", title: "failed", subTitle: "写真を保存することができませんでした")
+                }else if popupMessage == .needTakePicture {
+                    PopupView(systemNameImage: "megaphone", title: "need", subTitle: "写真を撮影してください")
+                }else if popupMessage == .requiredVisionPermission {
+                    PopupView(systemNameImage: "list.bullet.rectangle", title: "need", subTitle: "自動認識機能をオンにしてください")
                 }
             }
-            Button(action: {
-               if avFoundationVM.image != nil{
-                   let bodyTemperature = String(selectedIntPart + selectedDecimalPart)
-                   bodyTmpStore.bodyTemperature = bodyTemperature
-                   print("Add Data -> \(bodyTemperature)")
-                   
-                   bodyTmpStore.id = UUID().hashValue
-                   bodyTmpStore.dateCreated = Date()
-                   
-                   let fileName = String(bodyTmpStore.id)
-                   FileHelper.instance.saveImage(fileName: fileName, image: avFoundationVM.image!) { (success) in
-                       if success {
-                           print("画像の保存に成功しました。")
-                           
-                           print(bodyTmpStore.dateCreated)
-                           print(bodyTmpStore.id)
-                           bodyTmpStore.addData()
-                           
-                           DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                               tabViewSelection = 1
-                           }
-                       }else{
-                           print("画像の保存に失敗しました。")
-                           bodyTmpStore.addData()
-                           
-                           isSheet.toggle()
-                       }
-                   }
-               }else{
-                   print("写真を撮影してください")
-               }
-           }, label: {
-               Text("保存")
-               Image(systemName: "plus.square")
-                   .font(.title3)
-           })
+            .frame(width: UIScreen.main.bounds.width, height: 120)
+            .background(Color.MyThemeColor.lightGrayColor)
         }
     }
     
@@ -133,6 +149,8 @@ struct HomeView: View {
                 }
             }
         }else {
+            popupMessage = .requiredVisionPermission
+            isShowPopup.toggle()
             print("Visionの許可がおりていません")
         }
     }
@@ -148,4 +166,11 @@ struct HomeView_Previews: PreviewProvider {
             HomeView(avFoundationVM: AVFoundationVM(), tabViewSelection: $tabViewSelection, isRecognizedText: $isBool)
         }
     }
+}
+
+enum PopupMessage {
+    case succeededInSaveImage
+    case failedToSavePicture
+    case needTakePicture
+    case requiredVisionPermission
 }
